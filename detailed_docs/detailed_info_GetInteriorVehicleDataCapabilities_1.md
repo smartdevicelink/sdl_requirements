@@ -25,10 +25,11 @@ _Expected:_
 **Exceptions:**
 
 2.1 Request is invalid -> SDL returns INVALID_DATA
+
 3.1 Request is disallowed by policies -> SDL returns USER_DISALLOWED
+
 4.1 Requested <moduleType> is disallowed by policies -> SDL returns DISALLOWED
-6.1 HMI didn't respond or received response is invalid -> SDL returns GENERIC_ERROR
-6.2 HMI responds with <errorCode> -> SDL transfer received <errorCode>, success:false
+
 
 **Alternative flow 1**
 
@@ -37,6 +38,14 @@ _Expected:_
 6.a.2 SDL transfers to mobile application capabilities of available on HMI module and responds with WARNINGS "%moduleType% is not available" for anavailable module 
 
 
+**Alternative flow 1**
 
+6.b.1 HMI does not respond or HMI response is invalid
+
+6.b.2 SDL transfers to mobile app capabilities for requested module from InteriorVehicleDataCapabilities.json file
+
+**Exception:**
+
+6.b.2.1  "InteriorVehicleDataCapabilities.json" file is invalid, empty or missing -> SDL must respond with "resultCode: GENERIC_ERROR, success: false, info: 'Invalid response from the vehicle'" to this mobile app's request
 
 > Requirement [#1](https://github.com/smartdevicelink/sdl_requirements/issues/1)
