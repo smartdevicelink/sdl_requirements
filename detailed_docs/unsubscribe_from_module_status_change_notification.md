@@ -54,7 +54,7 @@ _Expected:_
 
 **Alternative flow 3**
 
-3.c.1 SDL received response from HMI with <any-erroneous-result>
+3.c.1 SDL received response from HMI with any_erroneous_result
 
 _Expected:_
 
