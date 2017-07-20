@@ -36,6 +36,8 @@ _Expected:_
 
 1.6 Requested module is busy with processing request from another application -> SDL responds IN_USE and doesn't process this request
 
+1.7 Requested module is busy with processing request from the same application -> SDL responds IN_USE and doesn't process this request
+
 **Alternative flow 1**
 
 1.a.1 Application requested to emulate Button Press of "ButtonName_MODULE_2" for "MODULE_1"
