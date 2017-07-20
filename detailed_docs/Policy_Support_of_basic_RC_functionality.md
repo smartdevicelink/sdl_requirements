@@ -42,29 +42,4 @@ _Expected:_
 
 1.a.6 RC-request from non-RC application is disallowed
 
-## Use Case 2: Number of connected devices with RC-applications
-
-**Main Flow:**
-
-_Pre-conditions:_
-
-a. device_1 is connected to SDL via one of the available transports
-
-b. app_1 is registered with REMOTE_CONTROL appHMIType with SDL from this device_1 with assigned policies from "groups_PrimaryRC"
-
-_Steps:_
-
-1. Driver connects device_2 via one of the available transports
-2. app_2 from device_2 with REMOTE_CONTROL appHMIType requests to register on SDL
-
-_Expected:_
-
-3. SDL rejects registration of app_2
-
-**Alternative flow 1:**
-
-2.a.1 app_2 from device_2 is not REMOTE_CONTROL and requests to register on SDL
-
-2.a.2 SDL allows registration of app_2
-
 > Requirement: [#7](https://github.com/smartdevicelink/sdl_requirements/issues/7)
