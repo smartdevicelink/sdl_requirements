@@ -32,11 +32,7 @@ _Expected:_
 
 1.4 RC interface is not available on HMI -> SDL responds UNSUPPORTED_RESOURCE and doesn't process the request
 
-1.5 Requested module is already in control by another app and control cannot be transferred to requested app -> SDL responds IN_USE and doesn't process the request
-
-1.6 Requested module is busy with processing request from another application -> SDL responds IN_USE and doesn't process this request
-
-1.7 Requested module is busy with processing request from the same application -> SDL responds IN_USE and doesn't process this request
+1.5 Requested module is busy with processing request from the same application -> SDL responds IN_USE and doesn't process this request
 
 **Alternative flow 1**
 
