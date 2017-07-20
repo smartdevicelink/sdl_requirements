@@ -37,13 +37,13 @@ _Expected:_
 
 4.1 Requested moduleType_X is disallowed by policies -> SDL returns DISALLOWED and doesn't transfer the request to HMI
 
-5.1 Requested moduleType_X is unavailable on HMI -> SDL returns DISALLOWED and doesn't transfer the request to HMI
+5.1 Requested moduleType_X is unavailable on HMI -> SDL returns UNSUPPORTED_RESOUCE and doesn't transfer the request to HMI
 
 6.1 Requested module_Type_X is already controlled by another application -> SDL returns IN_USE and doesn't transfer the request to HMI
 
 7.1 Application requested to set available control settings with read only control items -> SDL returns READ_ONLY result code and doesn't transfer the request to HMI
 
-7.2 Application requested to set available control settings with read only and settable control items -> SDL cuts off read_only control items and transfers only settable control items to HMI
+7.2 Application requested to set available control settings with read_only and settable control items -> SDL cuts off read_only control items and transfers only settable control items to HMI
 
 7.3 Application requested to set available control settings for moduleType_X with all moduleType_Y control items - > SDL returns INVALID_DATA result code and doesn't transfer this request to HMI
 
