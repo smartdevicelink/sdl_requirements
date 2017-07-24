@@ -7,7 +7,7 @@ In case
 
 SDL must
 
-transfer GetInteriorVehicleData_response  with "resultCode:<any_result>" and with added "isSubscribed: <current_subscription_status>" to the related app
+transfer GetInteriorVehicleData_response  with "resultCode:<any_not_erroneous_result>" and with added "isSubscribed: <current_subscription_status>" to the related app
 
 Info: In case in HMI response the subscription status was not signed or changed then SDL just transfers received result code with current subscription status without changing it
 
@@ -127,6 +127,27 @@ SDL must
 transfer GetInteriorVehicleData_response with "resultCode: <any-erroneous-result>" and without "isSubscribed" param to the related app. 
 
 Information: SDL does not un-subscribe the app in this case, but just transfers HMI's response with removed "isSubscribed" param to the app. 
+
+12. 
+In case 
+- RC app is subscribed to "<moduleType_value>" 
+- and sends valid and allowed-by-policies GetInteriorVehicleData_request with "subscribe:true" parameter for the same "<moduleType_value>" 
+
+SDL must
+- forward request to HMI without "subscribe:true" parameter
+- not change the subscription status of the app
+
+Information: SDL transfers HMI's response with added "isSubscribed: true" to the app. 
+
+13.
+- RC app is not subscribed to "<moduleType_value>" 
+- and sends valid and allowed-by-policies GetInteriorVehicleData_request with "subscribe:false" parameter for the same "<moduleType_value>" 
+
+SDL must
+- forward request to HMI without "subscribe:false" parameter
+- not change the subscription status of the app
+
+Information: SDL transfers HMI's response with added "isSubscribed: false" to the app. 
 
 ## Diagrams
 
