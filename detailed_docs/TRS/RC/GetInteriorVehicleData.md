@@ -3,7 +3,7 @@
 1.
 In case 
 - RC app sends valid and allowed by policies GetInteriorvehicleData_request with "subscribe" parameter
-- and SDL received GetInteriorVehicledata_response with "resultCode:<any_result>" and without "isSubscribed" parameter from HMI 
+- and SDL received GetInteriorVehicledata_response with "resultCode:<any_not_erroneous_result>" and without "isSubscribed" parameter from HMI 
 
 SDL must
 
