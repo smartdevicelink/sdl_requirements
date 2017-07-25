@@ -140,6 +140,7 @@ SDL must
 Information: SDL transfers HMI's response with added "isSubscribed: true" to the app. 
 
 13.
+In case
 - RC app is not subscribed to "<moduleType_value>" 
 - and sends valid and allowed-by-policies GetInteriorVehicleData_request with "subscribe:false" parameter for the same "<moduleType_value>" 
 
