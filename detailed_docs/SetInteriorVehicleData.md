@@ -45,7 +45,8 @@ _Expected:_
 
 7.2 Application requested to set available control settings with read_only and settable control items -> SDL cuts off read_only control items and transfers only settable control items to HMI
 
-7.3 Application requested to set available control settings for moduleType_X with all moduleType_Y control items - > SDL returns INVALID_DATA result code and doesn't transfer this request to HMI
+7.3 Application requested to set available control settings for moduleType_X with all moduleType_Y control items in "*controlData" structure - > SDL returns INVALID_DATA result code and doesn't transfer this request to HMI
 
+7.4 3 Application requested to set available control settings for moduleType_X with moduleType_Y or unknown control items and with moduleType_X control items -> SDL cuts off unknown or related to another module control items and transfers only related to requested moduleType control items to HMI
 
 > Requirement: [#3](https://github.com/smartdevicelink/sdl_requirements/issues/3)[SDL_RC] Set available control module settings SetInteriorVehicleData
