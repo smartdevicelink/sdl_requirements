@@ -1,51 +1,35 @@
-## Use Case 1: RC capabilities request of available modules and control items
+## Use Case 1: Mobile app requests RC capabilities
 
 **Main Flow:**
 
 _Pre-conditions:_
 
-a. device is connected to SDL.
-
-b. app is registered with REMOTE_CONTROL appHMIType with SDL from this device. 
+a. mobile app is registered with REMOTE_CONTROL appHMIType with SDL 
 
 _Steps:_
 
-1. App requests RC capabilities of available modules with corresponding control items
-
+1. App requests RC capabilities for SystemCapabilityType = REMOTE_CONTROL
 _Expected:_
 
-2. SDL checks if such request is valid
-3. SDL checks if such request is allowed by Policies for such app
-4. SDL checks if requested modules are allowed by Policies
-5. SDL transfers request to HMI
-6. SDL receives the response from HMI
-7. SDL transfers received response from HMI to the app
-8. App receives current RC capabilities of available modules with corresponding control items
+2. SDL checks appHMIType if requested SystemCapability is allowed for such app
+3. SDL checks if capabilities for requested moduleType is allowed by Policy for such app
+4. SDL checks if the requested Interface capability is available on HMI
+5. SDL checks if the requested moduleType capability was provided by HMI
+6. SDL checks "moduleName" parameter
+7. App receives current RC capabilities 
+SDL -> app: GetSystemCapability(requested_RemoteControlCapabilites)
 
 **Exceptions:**
 
-2.1 Request is invalid -> SDL returns INVALID_DATA
+2.1 mobile app registerred with different from REMOTE_CONTROL appHMIType, SDL responds - GetSystemCapability (DISALLOWED, success:false)
 
-3.1 Request is disallowed by policies -> SDL returns USER_DISALLOWED
+3.1 moduleType is not assigned in mobile app's Policy, SDL responds - GetSystemCapability (DISALLOWED, success:false)
 
-4.1 Requested <moduleType> is disallowed by policies -> SDL returns DISALLOWED
+3.2 application requested capabilities for a few moduleTypes and some of them are not allowed by Policy, SDL responds GetSystemCapability (<only_allowed_by_policy>RemoteControlCapability)
 
+4.1 HMI responded RC.Isready(available:false) - SDL responds GetSystemCapability (UNSUPPORTED_RESOURCE)
 
-**Alternative flow 1**
+5.1 If HMI did not provide capabilities for the signed moduleType -> SDL provides capabilities from HMI_capabilities.json
 
-6.a.1 One of the requested modules is not available on HMI
-
-6.a.2 SDL transfers to mobile application capabilities of available on HMI module and responds with WARNINGS "%moduleType% is not available" for anavailable module 
-
-
-**Alternative flow 1**
-
-6.b.1 HMI does not respond or HMI response is invalid
-
-6.b.2 SDL transfers to mobile app capabilities for requested module from InteriorVehicleDataCapabilities.json file
-
-**Exception:**
-
-6.b.2.1  "InteriorVehicleDataCapabilities.json" file is invalid, empty or missing -> SDL must respond with "resultCode: GENERIC_ERROR, success: false, info: 'Invalid response from the vehicle'" to this mobile app's request
 
 > Requirement [#1](https://github.com/smartdevicelink/sdl_requirements/issues/1)
