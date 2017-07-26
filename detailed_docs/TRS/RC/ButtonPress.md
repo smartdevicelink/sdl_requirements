@@ -24,3 +24,8 @@ SDL must
 - respond with "resultCode: INVALID_DATA, success: false" to this mobile application
 - not transfer this request to HMI
 
+## Diagram
+
+ButtonPress
+
+![ButtonPress](https://github.com/smartdevicelink/sdl_requirements/blob/ButtonPress_TRS/detailed_docs/accessories/ButtonPress.png)
