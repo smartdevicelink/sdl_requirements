@@ -55,3 +55,42 @@ In case
 SDL must
 - send GetInteriorVehicleDataConsent to HMI to display permission prompt to the driver after another RC_application_2 in HMILevel FULL sends control RPC (either SetInteriorVehicleData or ButtonPress) to the same RC_module 
 - apply access to RC_module for RC_application_2 based on driver's decision  
+
+6. 
+In case
+
+SDL received OnRemoteControlSettings (allowed:false) from HMI
+
+SDL must
+- store RC state allowed:false internally
+- assign HMILevel none to all registered applications with appHMIType REMOTE_CONTROL and send OnHMIStatus (NONE) to such apps
+- keep all applications with appHMIType REMOTE_CONTROL registered 
+- unsubscribe all REMOTE_CONTROL applications from OnInteriorVehicleData notifications for all HMI modules internally
+
+Note: HMILevel NONE cannot be changed for all REMOTE_CONTROL applications when RC-functionality is disabled
+
+7.
+In case
+- RC_functionality is disabled on HMI
+- and HMI sends notification OnRemoteControlSettings (allowed:true, <any_accessMode>)
+
+SDL must
+- store RC state allowed:true and <accessMode> received from HMI internally
+- allow RC functionality for applications with REMOTE_CONTROL appHMIType,
+
+Note: When RC functionality is enabled HMIlevel of REMOTE_CONTROL applications can be changed to other than NONE
+
+8.
+In case
+
+HMI didn't send OnRemoteControlSettings notifications on systems start
+
+SDL must
+
+use default value allowed:true and accessMode = "AUTO_ALLOW" for all registered REMOTE_CONTROL applications until OnRemoteControlSettings notification with other settings is received
+
+
+## Diagrams
+
+OnRemoteControlSettings for Resource Allocation
+![OnRemoteControlSettings and GetInteriorVehicleDataConsent](https://github.com/smartdevicelink/sdl_requirements/blob/OnRemoteControlSettings/detailed_docs/accessories/OnRemoteControlSettings_GetInteriorVehicleDataConsent.png)
