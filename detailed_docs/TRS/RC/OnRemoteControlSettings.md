@@ -20,7 +20,7 @@ In case
 
 SDL must
 - deny access to RC_module for another RC_application_2 after it sends control RPC (either SetInteriorVehicleData or ButtonPress) for the same RC_module without asking a driver
-- not process the request from RC_application_2 and respond with result code IN_USE, success:false
+- not process the request from RC_application_2 and respond with result code REJECTED, success:false
 - leave RC_application_1 in control of the RC_module
 
 3.
@@ -54,7 +54,6 @@ In case
 
 SDL must
 - send GetInteriorVehicleDataConsent to HMI to display permission prompt to the driver after another RC_application_2 in HMILevel FULL sends control RPC (either SetInteriorVehicleData or ButtonPress) to the same RC_module 
-- apply access to RC_module for RC_application_2 based on driver's decision  
 
 6. 
 In case
