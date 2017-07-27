@@ -85,6 +85,33 @@ SDL must
 
 send <"any-RPC-except-of-SetInteriorVehicleData"> response (resultCode: GENERIC_ERROR, success: false) to the related mobile app. 
 
+## Non-Functional requirements
+
+1. The list of control items considered in the each control module
+
+| RC Module | Control Item | Value Range |Type | Comments |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| Radio | Radio Enabled | true,false  | Get/Set/Notification| all other radio control items need radio enabled to work|
+|       | Radio Band | AM,FM,XM  | Get/Set/Notification| |
+|       | Radio Frequency | | Get/Set/Notification | value range depends on band |
+|       | Radio RDS Data | | Get/Notification | read only |
+|       | Available HD Channel | 1-3 | Get/Notification | read only |
+|       | Current HD Channel | 1-3 | Get/Set/Notification |
+|       | Radio Signal Strength |  | Get/Notification | read only |
+|       | Signal Change Threshold |  | Get/Notification | read only |
+|       | Radio State | Acquiring, acquired, multicast, not_found | Get/Notification | read only |
+| Climate | Current Cabin Temperature |  | Get/Notification | read only, value range depends on OEM |
+|         | Desired Cabin Temperature |  | Get/Set/Notification | value range depends on OEM |
+|         | AC Setting | on,off | Get/Set/Notification |  |
+|         | AC MAX Setting | on,off  | Get/Set/Notification |  |
+|         | Air Recirculation Setting | on,off  | Get/Set/Notification |  |
+|         | Auto AC Mode Setting | on,off  | Get/Set/Notification |  |
+|         | Defrost Zone Setting | front,rear,all,none  | Get/Set/Notification |  |
+|         | Dual Mode Setting | on,off  | Get/Set/Notification |  |
+|         | Fan Speed Setting | 0%-100% | Get/Set/Notification |  |
+|         | Ventilation Mode Setting | upper,lower,both,none  | Get/Set/Notification |  |
+
+
 ## Diagrams
 
 SetInteriorVehicleData
