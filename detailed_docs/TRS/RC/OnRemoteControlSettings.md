@@ -93,3 +93,6 @@ use default value allowed:true and accessMode = "AUTO_ALLOW" for all registered
 
 OnRemoteControlSettings for Resource Allocation
 ![OnRemoteControlSettings](https://github.com/smartdevicelink/sdl_requirements/blob/OnRemoteControlSettings/detailed_docs/accessories/OnRemoteControlSettings.png)
+
+OnRemoteControlSettings disabling/enabling RC functionality
+![OnRemoteControlSettings disabling/enabling RC functionality](https://github.com/smartdevicelink/sdl_requirements/blob/OnRemoteControlSettings/detailed_docs/accessories/OnRemoteControlSettings_disablingRC.png)
