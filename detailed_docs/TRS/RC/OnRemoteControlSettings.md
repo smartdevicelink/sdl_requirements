@@ -92,4 +92,4 @@ use default value allowed:true and accessMode = "AUTO_ALLOW" for all registered
 ## Diagrams
 
 OnRemoteControlSettings for Resource Allocation
-![OnRemoteControlSettings and GetInteriorVehicleDataConsent](https://github.com/smartdevicelink/sdl_requirements/blob/OnRemoteControlSettings/detailed_docs/accessories/OnRemoteControlSettings_GetInteriorVehicleDataConsent.png)
+![OnRemoteControlSettings](https://github.com/smartdevicelink/sdl_requirements/blob/OnRemoteControlSettings/detailed_docs/accessories/OnRemoteControlSettings.png)
