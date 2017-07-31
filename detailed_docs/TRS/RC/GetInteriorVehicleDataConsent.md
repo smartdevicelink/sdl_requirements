@@ -3,7 +3,7 @@
 1.
 In case
 - SDL received OnRemoteControlSettings notification from HMI with "ASK_DRIVER" access mode
-- and RC application requested access to remote control module that is already allocated to another RC application
+- and RC application (in HMILevel FULL) requested access to remote control module that is already allocated to another RC application
 - and SDL requested user consent from HMI via GetInteriorVehicleDataConsent
 - and user allowed access to RC module for requested application
 
@@ -14,7 +14,7 @@ SDL must
 2.
 In case
 - SDL received OnRemoteControlSettings notification from HMI with "ASK_DRIVER" access mode
-- and RC application requested access to remote control module that is already allocated to another RC application
+- and RC application (in HMILevel FULL) requested access to remote control module that is already allocated to another RC application
 - and SDL requested user consent from HMI via GetInteriorVehicleDataConsent
 - and user did not provide the answer during default timeout
 - and SDL received in response from HMI GetInteriorVehicleDataConsent (TIMED_OUT)
@@ -28,7 +28,7 @@ SDL must
 3.
 In case
 - SDL received OnRemoteControlSettings notification from HMI with "ASK_DRIVER" access mode
-- and RC application requested access to remote control module that is already allocated to another RC application
+- and RC application (in HMILevel FULL) requested access to remote control module that is already allocated to another RC application
 - and SDL requested user consent from HMI via GetInteriorVehicleDataConsent
 - and HMI did not respond during default timeout or response is invalid or erroneous
 
@@ -41,7 +41,7 @@ SDL must
 4. 
 In case
 - SDL received OnRemoteControlSettings notification from HMI with "ASK_DRIVER" access mode
-- and RC application requested access to remote control module that is already allocated to another RC application
+- and RC application (in HMILevel FULL) requested access to remote control module that is already allocated to another RC application
 - and SDL requested user consent from HMI via GetInteriorVehicleDataConsent
 - and user disallowed access to RC module for the requested application
 
