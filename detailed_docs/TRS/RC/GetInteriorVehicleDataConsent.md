@@ -54,4 +54,4 @@ SDL must
 ## Diagrams
 
 GetInteriorVehicleDataConsent
-![GetInteriorVehicleDataConsent](https://github.com/smartdevicelink/sdl_requirements/blob/GetInteriorVehicleDataConsent_TRS/detailed_docs/accessories/get_nterior_vehicle_data_consent.png)
+![GetInteriorVehicleDataConsent](https://github.com/smartdevicelink/sdl_requirements/blob/GetInteriorVehicleDataConsent_TRS/detailed_docs/accessories/GetInteriorVehicleDataConsent.png)
