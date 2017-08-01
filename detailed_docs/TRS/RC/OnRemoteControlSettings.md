@@ -16,7 +16,7 @@ In case
 - SDL received OnRemoteControlSettings notification from HMI with allowed:true
 - and with any "accessMode" or without "accessMode" parameter at all
 - and RC_module on HMI is alreay in control by RC-application_1
-- and another RC_application_2 is in HMILevel other than FULL (either LIMITTED or BACKGROUND)
+- and another RC_application_2 is in HMILevel other than FULL (either LIMITED or BACKGROUND)
 
 SDL must
 - deny access to RC_module for another RC_application_2 after it sends control RPC (either SetInteriorVehicleData or ButtonPress) for the same RC_module without asking a driver
