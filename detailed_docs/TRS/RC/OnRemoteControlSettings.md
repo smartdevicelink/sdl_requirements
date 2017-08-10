@@ -3,13 +3,19 @@
 1. 
 In case
 - SDL received OnRemoteControlSettings notification from HMI with allowed:true
-- and "accessMode" = "AUTO_ALLOW" or without "accessMode" parameter at all
+- and "accessMode" = "AUTO_ALLOW" 
 - and RC_module on HMI is alreay in control by RC-application
 
 SDL must
 
 - provide access to RC_module for the second RC_application in HMILevel FULL after it sends control RPC (either SetInteriorVehicleData or ButtonPress) for the same RC_module without asking a driver
 - process the request from the second RC_application
+
+*Information:*
+
+a. in case HMI didn't provide "accessMode" parameter during start up or when RC feature was enabled SDL must set "accessMode" = "AUTO_ALLOW" by default (see p. 8)
+
+b. in case HMI didn't provide "accessMode" parameter in current OnRemoteControlSettings notification but this parameter was received in previous OnRemoteControlSettings notification, SDL must use previously received "accessMode"
 
 2.
 In case
@@ -26,7 +32,7 @@ SDL must
 3.
 In case
 - SDL received OnRemoteControlSettings notification from HMI with allowed:true
-- and "accessMode" = "AUTO_ALLOW" or without "accessMode" parameter at all
+- and "accessMode" = "AUTO_ALLOW" 
 - and RC_module on HMI is alreay in control by RC-application_1
 - and RC_module is currently executing request by RC_application_1
 - and another RC_application_2 in HMILevel FULL sends control RPC (either SetInteriorVehicleData or ButtonPress)
@@ -35,6 +41,12 @@ SDL must
 - deny access to RC_module for RC_application_2 without asking a driver
 - not process the request from RC_application_2 and respond with result code IN_USE, success:false
 - leave RC_application_1 in control of the RC_module
+
+*Information:*
+
+a. in case HMI didn't provide "accessMode" parameter during start up or when RC feature was enabled SDL must set "accessMode" = "AUTO_ALLOW" by default (see p. 8)
+
+b. in case HMI didn't provide "accessMode" parameter in current OnRemoteControlSettings notification but this parameter was received in previous OnRemoteControlSettings notification, SDL must use previously received "accessMode"
 
 4. 
 In case
@@ -71,10 +83,10 @@ Note: HMILevel NONE cannot be changed for all REMOTE_CONTROL applications when R
 7.
 In case
 - RC_functionality is disabled on HMI
-- and HMI sends notification OnRemoteControlSettings (allowed:true, <any_accessMode>)
+- and HMI sends notification OnRemoteControlSettings (allowed:true, "any_accessMode")
 
 SDL must
-- store RC state allowed:true and <accessMode> received from HMI internally
+- store RC state allowed:true and "accessMode" received from HMI internally
 - allow RC functionality for applications with REMOTE_CONTROL appHMIType,
 
 Note: When RC functionality is enabled HMIlevel of REMOTE_CONTROL applications can be changed to other than NONE
