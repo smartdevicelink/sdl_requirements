@@ -142,7 +142,7 @@ a. HMI and SDL are started, RC interface is available on HMI
 
 b. RC_app_1 and RC_app_2 are registered on SDL with "REMOTE_CONTROL" appHMIType
 
-c. RC functionality is enabled and "accessMode" is "ASK_DRIVER"
+c. RC functionality is enabled and "accessMode" is "AUTO_DENY"
 
 d. module_1 is in use by RC_app_1
 
@@ -160,5 +160,21 @@ _Expected:_
 7. RC_app_2 gets in control of module_1 without asking a driver
 8. User activates RC_app_1 and RC_app_1 requests the control of module_1
 9. SDL sends the request to HMI to display permission prompt to the driver
+
+_Exception:_
+
+4.1 User activates RC functionality without choosing "accessMode"
+
+4.2 SDL is using "accessMode" stored before disabling RC functionality ("AUTO_DENY")
+
+4.3 User activates RC_app_2, module_1 is in "free" state again
+
+4.4 RC_app_2 requests the control of module_1
+
+4.5 RC_app_2 gets in control of module_1 without asking a driver
+
+4.6 User activates RC_app_1 and RC_app_1 requests the control of module_1
+
+4.7 RC_app_1 control request was rejected without asking a driver with result code IN_USE, RC_app_2 remains in control of module_1
 
 > Requirement: [#10](https://github.com/smartdevicelink/sdl_requirements/issues/10) [SDL_RC] Resource allocation based on access mode
