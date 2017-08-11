@@ -14,8 +14,8 @@ _Steps:_
 _Expected:_
 
 3. HMI responds that RC interface is available: true
-4. SDL requests RemoteControlCapabilities from HMI
-5. HMI responds with RemoteControlCapabilities
+4. SDL requests RC.GetCapabilities from HMI
+5. HMI responds with RC.GetCapabilities(remoteControlCapabilities)
 6. SDL stores received capabilities and uses during ignition cycle
 
 _Exception 1:_
@@ -82,7 +82,7 @@ _Steps:_
 _Expected:_
 
 2. SDL checks appHMIType if requested SystemCapability is allowed for such app
-3. SDL checks if capabilities for requested moduleType is allowed by Policy for such app
+3. SDL checks if requested capabilities align with allowed by Policy moduleType for such app
 4. SDL checks if requested capabilities are valid
 5. SDL checks if the requested Interface capability is available on HMI
 6. SDL checks if the requested moduleType capability was provided by HMI
@@ -93,7 +93,7 @@ _Expected:_
 
 2.1 mobile app registerred with different from REMOTE_CONTROL appHMIType, SDL responds - GetSystemCapability (DISALLOWED, success:false)
 
-3.1 moduleType is not assigned in mobile app's Policy, SDL responds - GetSystemCapability (DISALLOWED, success:false)
+3.1 requested capability does not align with moduleType assigned in mobile app's Policy, SDL responds - GetSystemCapability (DISALLOWED, success:false)
 
 3.2 application requested capabilities for a few moduleTypes and some of them are not allowed by Policy, SDL responds GetSystemCapability (<only_allowed_by_policy>RemoteControlCapability)
 
@@ -101,7 +101,7 @@ _Expected:_
 
 5.1 RC interface is not available on HMI, SDL responds to mobile application GetSystemCapability (UNSUPPORTED_RESOURCE, success:false)
 
-6.1 HMI did not provide capabilities for the signed moduleType, SDL provides capabilities from HMI_capabilities.json file
+6.1 HMI did not provide capabilities for the signed moduleType, SDL responds UNSUPPORTED_RESOURCE, success:false to mobile RPCs that requested such module
 
 
 > Requirement [#1](https://github.com/smartdevicelink/sdl_requirements/issues/1)
