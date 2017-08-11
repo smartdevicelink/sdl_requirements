@@ -58,6 +58,15 @@ _Expected:_
 
 1.a.6 RC_app_2 control request was rejected with result code IN_USE, RC_app_1 remains in control of module_1
 
+_Exception 1.1:_
+
+1.a.4.a User activates RC_app_2 (app_2 is in FULL HMI level now) and closed RC_app_1 (RC_app_1 unregistered from SDL)
+
+1.a.4.b RC_app_2 sends control request to module_1 (sent request to either change settings or emulate button press)
+
+1.a.4.c RC_app_2 gets in control of the module_1
+
+
 **Alternative flow 2**
 
 1.b.1 User chose allow RC functionality via HMI and specified access mode as ASK_DRIVER
@@ -82,12 +91,20 @@ _Expected:_
 
 1.b.10 RC_app_2 gets in control of the module_1
 
-_Exception:_
+_Exception 2.1:_
 
 1.b.9.1 HMI does not respond during default time out or responds with invalid parameters
 
 1.b.9.2 SDL responds with result code GENERIC_ERROR to RC_app_2 control request, RC_app_1 remains in control of module_1. 
 New control requests from RC_app_2 to module_1 if it is still in use by another application shall trigger new driver consent requests.
+
+_Exception 2.2:_
+
+1.b.4.a User activates RC_app_2 (app_2 is in FULL HMI level now) and closed RC_app_1 (RC_app_1 unregistered from SDL)
+
+1.b.4.b RC_app_2 sends control request to module_1 (sent request to either change settings or emulate button press)
+
+1.b.4.c RC_app_2 gets in control of the module_1
 
 **Alternative flow 2.1**
 
@@ -117,5 +134,31 @@ _Expected:_
 
 1.b.8.b.5 SDL sends new request to HMI to display permission prompt to the driver
 
+## Use Case 2: Resource allocation after RC disabling/enabling
+
+_Pre-conditions:_
+
+a. HMI and SDL are started, RC interface is available on HMI
+
+b. RC_app_1 and RC_app_2 are registered on SDL with "REMOTE_CONTROL" appHMIType
+
+c. RC functionality is enabled and "accessMode" is "ASK_DRIVER"
+
+d. module_1 is in use by RC_app_1
+
+_Steps:_
+
+1. User disables RC functionality
+2. HMI sent notification to SDL that RC functionality is disabled
+3. SDL assigns HMILevel NONE to RC_app_1 and RC_app_2 and unsubscribes applications from module_1
+4. User activates RC functionality with "accessMode" = "ASK_DRIVER"
+5. User activates RC_app_2, module_1 gets in "free" state again
+6. RC_app_2 requests the control of module_1
+
+_Expected:_
+
+7. RC_app_2 gets in control of module_1 without asking a driver
+8. User activates RC_app_1 and RC_app_1 requests the control of module_1
+9. SDL sends the request to HMI to display permission prompt to the driver
 
 > Requirement: [#10](https://github.com/smartdevicelink/sdl_requirements/issues/10) [SDL_RC] Resource allocation based on access mode
