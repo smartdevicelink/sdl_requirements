@@ -96,9 +96,21 @@ _Exception 3.3:_
 
 5.d.3 HMI responds with successfull result code on control request
 
-5.d.4 SDL returns received parameters from HMI response with result code UNSUPPORTED_RESORCE, success: true, info: ""%capability% is not available on HMI"
+5.d.4 SDL returns received parameters from HMI response with result code UNSUPPORTED_RESORCE, success: true, info: ""%capability%, %capability% (list of unavailable capabilities)," is not available on HMI"
 
 _Note:_ SDL must consider missing capabilities as not supported for this available module and not forward such parameters to HMI
+
+_Exception 3.3.a:_
+
+5.d.3.a.1 HMI responds with erroneous result code on control request from mobile application
+
+5.d.3.a.1 SDL returns received erroneous result code **without** info: ""%capability%, %capability% (list of unavailable capabilities)," is not available on HMI"
+
+_Exception 3.3.b:_
+
+5.d.3.b.1 HMI does not respond on control request from mobile application or response in invalid
+
+5.d.3.b.2 SDL esponds GENERIC_ERROR **without** info: ""%capability%, %capability% (list of unavailable capabilities)," is not available on HMI"
 
 ## Use Case 2: Mobile app requests RC capabilities
 
@@ -124,7 +136,7 @@ _Expected:_
 
 **Exceptions:**
 
-2.1 mobile app registerred with different from REMOTE_CONTROL appHMIType, SDL responds - GetSystemCapability (DISALLOWED, success:false)
+2.1 mobile app registered with different from REMOTE_CONTROL appHMIType, SDL responds - GetSystemCapability (DISALLOWED, success:false)
 
 3.1 requested capability does not align with moduleType assigned in mobile app's Policy, SDL responds - GetSystemCapability (DISALLOWED, success:false)
 
