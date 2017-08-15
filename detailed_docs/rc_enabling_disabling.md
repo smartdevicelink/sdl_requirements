@@ -23,8 +23,9 @@ _Expected:_
 4. SDL sends OnHMIStatus (NONE) to all applications with REMOTE_CONTROL appHMIType
 5. SDL keeps all applications with REMOTE_CONTROL appHMIType registered
 6. SDL unsubscribes all applications from RC_modules on HMI
-7. HMILevel cannot be changed to other than NONE until RC functionality is enabled
-8. All RC-requests from applications with REMOTE_CONTROL appHMIType are not processed
+7. SDL releases all allocated RC_modules
+8. HMILevel cannot be changed to other than NONE until RC functionality is enabled
+9. All RC-requests from applications with REMOTE_CONTROL appHMIType are not processed
 
 ## Use Case 2: Enabling RC-functionality
 
