@@ -87,7 +87,7 @@ In case
 
 SDL must
 - store RC state allowed:true and "accessMode" received from HMI internally
-- allow RC functionality for applications with REMOTE_CONTROL appHMIType,
+- allow RC functionality for applications with REMOTE_CONTROL appHMIType
 
 Note: When RC functionality is enabled HMIlevel of REMOTE_CONTROL applications can be changed to other than NONE
 
@@ -99,6 +99,15 @@ HMI didn't send OnRemoteControlSettings notifications on systems start
 SDL must
 
 use default value allowed:true and accessMode = "AUTO_ALLOW" for all registered REMOTE_CONTROL applications until OnRemoteControlSettings notification with other settings is received
+
+9.
+In case
+- on system start up HMI sent OnRemoteControlSettings notification with "accessMode" pasrameter
+- and **without** "allowed" parameter
+
+SDL must
+- use default value allowed: true and received "accessMode" until for all registered REMOTE_CONTROL applications until OnRemoteControlSettings notification with other settings is received
+- allow RC functionality for applications with REMOTE_CONTROL appHMIType
 
 
 ## Diagrams
