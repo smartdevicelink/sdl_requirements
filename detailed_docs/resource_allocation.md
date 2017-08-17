@@ -177,4 +177,96 @@ _Exception:_
 
 4.7 RC_app_1 control request was rejected without asking a driver with result code IN_USE, RC_app_2 remains in control of module_1
 
+## Use Case 1: Resource allocation cases to release the RC module
+
+**Main Flow:**
+
+_Pre-conditions:_
+
+a. HMI and SDL are started, RC interface is available on HMI
+
+b. SDL is build with "-DEXTENDED_POLICY: PROPRIETARY" flag or without this flag at all
+
+c. RC_app_1 and RC_app_2 are registered on SDL with "REMOTE_CONTROL" appHMIType
+
+d. module_1 is assigned in app's specific policies for RC_app_1 and RC_app_2
+
+e. module_1 is in "in use" state on HMI and allocated to RC_app_1
+
+_Steps:_
+
+1. SDL unregisters the RC_app_1 by any reason (mobile appication sent UnregisterAppInterface, unexpected disconnect, master/factory defaults reset, protocol violation etc.)
+2. RC_app_2 requests the control of module_1
+
+_Expected:_
+
+3. SDL releases module_1 from RC_app_1 control
+4. RC_app_2 gets in control of module_1
+
+**Alternative Flow 1:**
+
+1.a.1 SDL received OnExitApplication (either user exits RC_app_1 vis HMI (either by UI or VR) or due to driver distraction violation)
+
+1.a.2 RC_app_2 requests the control of module_1
+
+_Expected:_
+
+1.a.3 SDL assigns HMILevel NONE to RC_app_1 and releases module_1 from RC_app_1 control
+
+1.a.4 RC_app_2 gets in control of module_1
+
+**Alternative Flow 2:**
+
+1.b.1 Any trigger of Policy Table Update happened and in received PTU module_1 is not in the list of assigned moduleTypes for RC_app_1
+
+1.b.2 RC_app_2 requests the control of module_1
+
+_Expected:_
+
+1.b.3 SDL disallows all RPC for module_1 from RC_app_1 and releases module_1 from RC_app_1 control
+
+1.b.4 RC_app_2 gets in control of module_1
+
+_Excpetion 2.1_
+
+1.b.1.1 Any trigger of Policy Table Update happened and in received PTU RC_app_1 is revoked
+
+1.b.1.2 SDL releases module_1 from RC_app_1 control
+
+**Alternative Flow 3:**
+
+_Pre-conditions:_
+
+a.3 HMI and SDL are started, RC interface is available on HMI
+
+b.3 SDL is build with "-DEXTENDED_POLICY: EXTERNAL_PROPRIETARY" flag 
+
+c.3 RC_app_1 and RC_app_2 are registered on SDL with "REMOTE_CONTROL" appHMIType
+
+d.3 module_1 is assigned in app's specific policies for RC_app_1 and RC_app_2
+
+e.3 module_1 is in "in use" state on HMI and allocated to RC_app_1
+
+f.3 RC_app_1 and RC_app_2 are running on deviceID
+
+_Steps:_
+
+1.c.1 SDL received OnAllowSDLFunctionality (deviceInfo (deviceID), allowed: FALSE)
+
+1.c.2 RC_app_2 requests the control of module_1
+
+_Expected:_
+
+1.c.3 SDL assigns HMILevel NONE to all applications registered from deviceID signed in deviceInfo 
+
+1.c.4 module_1 is not allocated to any application
+
+_Exception 3.1_
+
+1.c.1.1 SDL received OnAllowSDLFunctionality (allowed: FALSE) without specified deviceInfo
+
+1.c.1.2 SDL assigns HMILevel NONE to all applications registered from all devices
+
+1.c.1.3 module_1 is not allocated to any application
+
 > Requirement: [#10](https://github.com/smartdevicelink/sdl_requirements/issues/10) [SDL_RC] Resource allocation based on access mode
