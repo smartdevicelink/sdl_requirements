@@ -177,7 +177,7 @@ _Exception:_
 
 4.7 RC_app_1 control request was rejected without asking a driver with result code IN_USE, RC_app_2 remains in control of module_1
 
-## Use Case 1: Resource allocation cases to release the RC module
+## Use Case 3: Resource allocation cases to release the RC module
 
 **Main Flow:**
 
