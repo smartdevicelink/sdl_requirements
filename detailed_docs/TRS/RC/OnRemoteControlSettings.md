@@ -113,7 +113,7 @@ SDL must
 ## Diagrams
 
 OnRemoteControlSettings for Resource Allocation
-![OnRemoteControlSettings](https://github.com/smartdevicelink/sdl_requirements/blob/OnRemoteControlSettings/detailed_docs/accessories/OnRemoteControlSettings.png)
+![OnRemoteControlSettings](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/OnRemoteControlSettings.png)
 
 OnRemoteControlSettings disabling/enabling RC functionality
-![OnRemoteControlSettings disabling/enabling RC functionality](https://github.com/smartdevicelink/sdl_requirements/blob/OnRemoteControlSettings/detailed_docs/accessories/OnRemoteControlSettings_disablingRC.png)
+![OnRemoteControlSettings disabling/enabling RC functionality](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/OnRemoteControlSettings_disablingRC.png)
