@@ -28,4 +28,4 @@ SDL must
 
 ButtonPress
 
-![ButtonPress](https://github.com/smartdevicelink/sdl_requirements/blob/ButtonPress_TRS/detailed_docs/accessories/ButtonPress.png)
+![ButtonPress](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/ButtonPress.png)
