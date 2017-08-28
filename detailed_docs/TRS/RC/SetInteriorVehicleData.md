@@ -116,7 +116,7 @@ send <"any-RPC-except-of-SetInteriorVehicleData"> response (resultCode: GENERIC_
 
 SetInteriorVehicleData
 
-![SetInteriorVehicleData](https://github.com/smartdevicelink/sdl_requirements/blob/SetInteriorVehicleData_TRS/detailed_docs/accessories/SetInteriorVehicleData.png)
+![SetInteriorVehicleData](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/SetInteriorVehicleData.png)
 
 SetInteriorVehicleData_READ_ONLY
-![SetInteriorVehicleData_READ_ONLY](https://github.com/smartdevicelink/sdl_requirements/blob/SetInteriorVehicleData_TRS/detailed_docs/accessories/SetInteriorVehicleData_READ_ONLY.png)
+![SetInteriorVehicleData_READ_ONLY](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/SetInteriorVehicleData_READ_ONLY.png)
