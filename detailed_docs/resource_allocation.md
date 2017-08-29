@@ -200,7 +200,7 @@ _Steps:_
 
 _Expected:_
 
-3. SDL releases module_1 from RC_app_1 control
+3. SDL releases module_1 from RC_app_1 control and unsubscribes RC_app_1 from receiving notifications about module_1 settings changed
 4. RC_app_2 gets in control of module_1
 
 **Alternative Flow 1:**
@@ -211,7 +211,7 @@ _Expected:_
 
 _Expected:_
 
-1.a.3 SDL assigns HMILevel NONE to RC_app_1 and releases module_1 from RC_app_1 control
+1.a.3 SDL assigns HMILevel NONE to RC_app_1, releases module_1 from RC_app_1 control and unsubscribes RC_app_1 from receiving notifications about module_1 settings changed
 
 1.a.4 RC_app_2 gets in control of module_1
 
@@ -223,7 +223,7 @@ _Expected:_
 
 _Expected:_
 
-1.b.3 SDL disallows all RPC for module_1 from RC_app_1 and releases module_1 from RC_app_1 control
+1.b.3 SDL disallows all RPC for module_1 from RC_app_1, releases module_1 from RC_app_1 control and unsubscribes RC_app_1 from receiving notifications about module_1 settings changed
 
 1.b.4 RC_app_2 gets in control of module_1
 
@@ -257,7 +257,7 @@ _Steps:_
 
 _Expected:_
 
-1.c.3 SDL assigns HMILevel NONE to all applications registered from deviceID signed in deviceInfo 
+1.c.3 SDL assigns HMILevel NONE to all applications registered from deviceID signed in deviceInfo and unsubscribes all applications of this device from all modules
 
 1.c.4 module_1 is not allocated to any application
 
@@ -265,7 +265,7 @@ _Exception 3.1_
 
 1.c.1.1 SDL received OnAllowSDLFunctionality (allowed: FALSE) without specified deviceInfo
 
-1.c.1.2 SDL assigns HMILevel NONE to all applications registered from all devices
+1.c.1.2 SDL assigns HMILevel NONE to all applications registered from all devices and unsubscribes all applications from all modules
 
 1.c.1.3 module_1 is not allocated to any application
 
