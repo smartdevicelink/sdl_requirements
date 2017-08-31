@@ -1,4 +1,4 @@
-## Use Case 1: Unsubscribe from RC module status change notification
+## Use Case 1: Unsubscribe from RC module status change notification via request from the app
 
 **Main Flow:**
 
@@ -8,7 +8,7 @@ a. mobile device is connected to SDL.
 
 b. app is registered with REMOTE_CONTROL appHMIType with SDL from this device. 
 
-c. app issubscribed on RC module status change notification
+c. app is subscribed on RC module status change notification
 
 _Steps:_
 
@@ -66,5 +66,59 @@ _Expected:_
 
 3.c.5 SDL transfers the notification to the app
 
+## Use Case 2: SDL unsubscribes application from RC module status change notification
+
+**Main Flow:**
+
+_Pre-conditions:_
+
+a. mobile device is connected to SDL.
+
+b. app is registered with REMOTE_CONTROL appHMIType with SDL from this device. 
+
+c. app is subscribed on RC module status change notification
+
+_Steps:_
+
+1. User disables RC functionality via HMI
+
+_Expected:_
+
+2. HMI sends notification to SDL that RC functionality is disabled
+3. SDL assigns HMIlevel NONE and unsubscribes application from module settings change notification
+
+**Alternative flow 1**
+
+1.a.1 SDL unregisters application by any reason (mobile application sent UnregisterAppInterface, unexpected disconnect, master/factory defaults reset, protocol violation etc.)
+
+1.a.2 Application registers again
+
+_Expected_
+
+1.a.3 SDL does not save the subscription status the mobile application had before registration before unregistration
+
+**Alternative flow 2**
+
+1.b.1 SDL received OnExitApplication (either user exits RC_app_1 vis HMI (either by UI or VR) or due to driver distraction violation)
+
+_Expected_
+
+1.b.2 SDL assigns HMILevel NONE for this application and unsubscribes from receiving module settings change notifications
+
+**Alternative flow 3**
+
+1.c.1 Any trigger of Policy Table Update happened and in received PTU module is not allowed for the application
+
+_Expected_
+
+1.c.2 SDL unsubscribes application from receiving module settings change notification
+
+**Alternative flow 4**
+
+1.d.1 User disallowed device from which application is registered
+
+_Expected_
+
+1.d.2 SDL assigns HMILevel NONE for all applications registered from this device and unsubscribes from module settings change notifications
 
 > [#5](https://github.com/smartdevicelink/sdl_requirements/issues/5)[SDL_RC] Unsubscribe from RC module change notifications
