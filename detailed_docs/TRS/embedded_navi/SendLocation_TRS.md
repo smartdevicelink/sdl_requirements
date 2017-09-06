@@ -180,3 +180,9 @@ b. The "SendLocation" without "deliveryMode" and with other related parameters p
  ```
 c. PoliciesManager must allow all parameters of SendLocation defined in <functional_grouping> of PolicyTable for mobile app assigned with this <functional_grouping>
 
+## Diagram
+
+SendLocation
+
+![SendLocation](https://github.com/smartdevicelink/sdl_requirements/blob/SendLocation/detailed_docs/accessories/SendLocation.png)
+
