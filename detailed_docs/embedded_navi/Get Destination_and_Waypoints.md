@@ -10,13 +10,14 @@ b. Mobile application is registered on SDL
 
 _Steps:_
 
-1. appID requests to get details he details of the destination and waypoints set on the system so that it can provide last mile connectivity.
+1. appID requests to get details of the destination and waypoints set on the system so that it can provide last mile connectivity.
 
 _Expected:_
 
-2. SDL validates parameters of request
+2. SDL validates parameters of the request
 3. SDL checks if the request is allowed by Policies
 4. SDL checks if Navi interface is available on HMI
+5. SDL checks if  "getWayPointsEnabled" is enabled in HMI capabilities
 6. SDL transfers the request with valid and allowed parameters to HMI
 7. SDL receives response from HMI
 8. SDL transfers response to mobile app
@@ -41,11 +42,17 @@ _Expected:_
 
 **Exception 4:**
 
+5.1.a "getWayPointsEnabled": false in HMI cqapabilities
+
+5.1.b SDL responds UNSUPPORTED_RESOURCE, success:false ot mobile app and doesn't transfer this request to HMI
+
+**Exception 5:**
+
 7.1.a HMI did not respond during default timeout
 
 7.1.b SDL responds GENERIC_ERROR, success:false to mobile app
 
-**Exception 5:**
+**Exception 6:**
 
 7.2.a Response from HMI is invalid
 
