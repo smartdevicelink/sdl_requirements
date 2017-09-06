@@ -1,4 +1,4 @@
-## Use Case 1:Notification about changes to Destination or Waypoints
+## Use Case 1: Notification about changes to Destination or Waypoints
 
 **Main Flow:**
 
@@ -10,7 +10,7 @@ b. Navi interface and embedded navigation source are available on HMI
 
 c. Mobile applications are registered on SDL
 
-d. Mobile applications are subscribed on destination and waypoints changes notifications
+d. Mobile applications are subscribed on destination and waypoints changes notification
 
 _Steps:_
 
@@ -26,9 +26,9 @@ _Expected:_
 
 2.1.a Notification about changes to destination or waypoints is not allowed by Policies for mobile application
 
-2.1.b SDL logs corresponding error internally, ignores received notification from HMI and doesn't transfer it to mobile application
+2.1.b SDL doesn't transfer the notification to such mobile application
 
-**exception 2**
+**Exception 2**
 
 2.2.a Received notification about changes to destination or waypoints from HMI is invalid
 
