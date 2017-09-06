@@ -46,3 +46,9 @@ a. New "GetWayPoits" RPC must be added to "functional_groupings" at PolicyTable:
             ]
           },
 ```
+
+## Diagram
+
+GetWayPoints
+
+![GetwayPoints](https://github.com/smartdevicelink/sdl_requirements/blob/GetWayPoints/detailed_docs/accessories/GetWayPoints.png)
