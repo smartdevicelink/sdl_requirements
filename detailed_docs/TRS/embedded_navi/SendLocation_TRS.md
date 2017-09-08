@@ -5,7 +5,7 @@ In case mobile application sends SendLocation_request to SDL
 - **with both** "longitudeDegrees" and "latitudeDegrees" parameters
 - **with** "address" parameter
 - with any other valid parameters related to request
-- and the "address" param is empty
+- and "address" param is empty
 
 SDL must:
 - consider such request as valid
@@ -54,7 +54,7 @@ SDL must:
 respond "INVALID_DATA, success:false" to mobile application
 
 6.
-In case mobile application sends the SendLocation_request
+In case mobile application sends SendLocation_request
 - with “deliveryMode” parameter and other valid and allowed parameters
 - and “deliveryMode” parameter is allowed by Policies 
 
@@ -68,7 +68,7 @@ In case mobile application sends SendLocation_request
 - and “deliveryMode” parameter is NOT allowed by Policies 
 
 SDL must: 
-- cut off the "deliveryMode" parameter from SendLocation request
+- cut off "deliveryMode" parameter from SendLocation request
 - transfer SendLocation without "deliveryMode" parameter to HMI
 - respond with <resultCode_received_from_HMI> to mobile app
 
@@ -184,5 +184,5 @@ c. PoliciesManager must allow all parameters of SendLocation defined in <functio
 
 SendLocation
 
-![SendLocation](https://github.com/smartdevicelink/sdl_requirements/blob/SendLocation/detailed_docs/accessories/SendLocation.png)
+![SendLocation](https://github.com/smartdevicelink/sdl_requirements/blob/SendLocation/detailed_docs/accessories/SendLocation_cases.png)
 
