@@ -5,7 +5,7 @@ In case mobile application sends valid and allowed by Policies GetWayPoints_requ
 
 SDL must: 
 - transfer GetWayPoints_request to HMI
-- respond with <resultCode> received from HMI to mobile app
+- respond with '<resultCode>' received from HMI to mobile application
 - provide the requested parameters at the same order as received from HMI to mobile application (in case of successfull response)
 
 2.
@@ -20,7 +20,7 @@ respond "DISALLOWED, success:false" to mobile application
 3. 
 In case mobile application sends valid and allowed by Policies GetWayPoints_request to SDL
 
-and navigation interface is not available on HMI
+and Navigation interface is not available on HMI
 
 or
 
@@ -28,7 +28,7 @@ or
  
  SDL must:
  
- respond UNSUPPORTED_RESOURCE, success;false to mobile application and not transfer this request to HMI
+ respond "UNSUPPORTED_RESOURCE, success:false" to mobile application and not transfer this request to HMI
 
 
 ## Non-Functional Requirements
