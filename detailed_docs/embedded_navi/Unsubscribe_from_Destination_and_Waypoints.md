@@ -8,7 +8,7 @@ a. SDL and HMI are started
 
 b. Mobile application is registered on SDL
 
-c. Mobile application is subscribed on destination & Waypoints
+c. Mobile application is subscribed on Destination & Waypoints
 
 _Steps:_
 
@@ -27,31 +27,49 @@ _Expected:_
 10. HMI sends the notification to SDL with the changes in waypoints or destination
 11. SDL does not transfer the notification to unsubscribed application
 
-**Alternative flow 1**
+**Alternative flow 1:** In case there are more than one applications subscribed on waypoints change notifications
 
-2.a.1 Request is invalid
+5.a.1 SDL does not transfer the request to HMI
 
-2.a.2 SDL responds INVALID_DATA, success:false to mobile application and doesn't unsubscribe from destination and waypoints change notifications
+5.a.2 SDL unsubscribes the requesting application from destination & waypoints change notifications
 
-**Alternative flow 2:**
+5.a.3 SDL keeps all other applications subscription staus unchanged
 
-3.a.1 Request is not allowed by Policies
+5.a.4 Any change on destination or waypoints happens on HMI
 
-3.a.2 SDL responds DISALLOWED, success:false to mobile app and doesn't unsubscribe from destination and waypoints change notifications
+_Expected:_
 
-**Alternative flow 3:**
+5.a.5 HMI sends the notification to SDL with the changes in waypoints or destination
 
-4.a.1 Navigation interface is not available on HMI
+5.a.6 SDL transfers the notification to subscribed applications
 
-4.a.2 SDL responds UNSUPPORTED_RESOURCE, success:false to mobile app and doesn't unsubscribe from destination and waypoints change notifications
+5.a.7 SDL does not transfer the notification to unsubscribed application
 
 **Exception 1:**
+
+2.1.a Request is invalid
+
+2.1.b SDL responds INVALID_DATA, success:false to mobile application and doesn't unsubscribe from destination and waypoints change notifications
+
+**Exception 2:**
+
+3.1.a Request is not allowed by Policies
+
+3.1.b SDL responds DISALLOWED, success:false to mobile app and doesn't unsubscribe from destination and waypoints change notifications
+
+**Exception 3:**
+
+4.1.a Navigation interface is not available on HMI
+
+4.1.b SDL responds UNSUPPORTED_RESOURCE, success:false to mobile app and doesn't unsubscribe from destination and waypoints change notifications
+
+**Exception 4:**
 
 6.1.a HMI did not respond during default timeout
 
 6.1.b SDL responds GENERIC_ERROR, success:false to mobile application and does not unsubscribe from destination and waypoints change notifications
 
-**Exception 2:**
+**Exception 5:**
 
 6.2.a HMI responds with UNSUPPORTED_RESOURCE
 
