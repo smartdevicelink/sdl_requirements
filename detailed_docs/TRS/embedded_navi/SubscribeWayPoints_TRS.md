@@ -14,12 +14,12 @@ and this request is NOT allowed by Policies
 
 SDL must: 
 
-respond "DISALLOWED, success:false" to mobile app
+respond "DISALLOWED, success:false" to mobile application
 
 3.
 In case mobile application sent valid and allowed by Policies SubscribeWayPoints_request to SDL
 
-and Navigation interface ios not available on HMI
+and Navigation interface is not available on HMI
 
 SDL must:
 
@@ -58,8 +58,8 @@ In case mobile application is already subscribed on WayPoints-related data
 and another application sends SubscribeWayPoints_request to SDL
 
 SDL must:
-- remember this another app as subscribed on WayPoints-related data
-- respond SubscribeWayPoints (SUCCESS) to this other application without transferring secong SubscribeWayPoints_request to HMI 
+- remember this other application as subscribed on WayPoints-related data
+- respond SubscribeWayPoints (SUCCESS) to this other application without transferring second SubscribeWayPoints_request to HMI 
 
 ## Non-Functional Requirements
 
