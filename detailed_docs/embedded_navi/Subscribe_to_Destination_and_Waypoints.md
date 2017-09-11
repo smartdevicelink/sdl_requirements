@@ -17,7 +17,7 @@ _Steps:_
 5. SDL transfers the request with valid and allowed parameters to HMI
 6. SDL receives response from HMI
 7. SDL stores the subscription status of the application internally
-8. SDL transfers response to mobile app
+8. SDL transfers response to mobile application
 9. Any change on destination or waypoints happens on HMI
 
 _Expected:_
@@ -49,7 +49,7 @@ _Expected:_
 
 _Pre-conditions:_
 
-a. SDL amd HMI are started
+a. SDL and HMI are started
 
 b. Mobile application is registered on SDL
 
@@ -80,7 +80,7 @@ _Expected:_
 
 1.b.1 Ignition OFF - ignition cycle is over
 
-1.b.2 New ignitions cycle, mobile application registers with the same hashID that was in previous ignition cycle
+1.b.2 New ignitions cycle, mobile application registers with the same hashID as in previous ignition cycle
 
 _Expected:_
 
@@ -88,7 +88,7 @@ _Expected:_
 
 **Alternative flow 3:**
 
-1.c.1 Another application requests to sunscribe on destination and waypoints change notification
+1.c.1 Another application requests to sunbscribe on destination and waypoints change notification
 
 _Expected:_
 
@@ -97,5 +97,7 @@ _Expected:_
 1.c.3 SDL responds SUCCESS, success:true on subscription request of the second application
 
 1.c.4 SDL doesn't transfer new subscription request to HMI
+
+1.c.5 SDL transfers stored waypoints change notification to newly subscribed application
 
 > _Requirement [26](https://github.com/smartdevicelink/sdl_requirements/issues/26) Subscribe to Destination & Waypoints_SubscribeWayPoints_
