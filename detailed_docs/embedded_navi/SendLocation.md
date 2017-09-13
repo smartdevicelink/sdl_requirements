@@ -24,35 +24,23 @@ _Expected:_
 
 **Alternative flow 1:**
 
-1.a.1. appID requests SendLocation **without** address and with longitudeDegrees, latitudeDegrees, deliveryMode and other valid and allowed parameters
+1.a.1. appID requests SendLocation **without** address and **with** longitudeDegrees, latitudeDegrees, deliveryMode and other valid and allowed parameters
 
 1.a.2. SDL transfers the requests to HMI
 
 **Alternative flow 2:**
 
-1.b.1. appID requests SendLocation **with** address, latitudeDegrees, deliveryMode, other parameters and without longitudeDegrees
+1.b.1. appID requests SendLocation **with** address, deliveryMode, other parameters **and without** longitudeDegrees  **or** latitudeDegrees **or without both** longitudeDegrees and latitudeDegrees
 
 1.b.2. SDL responds "INVALID_DATA, success:false" to appID and doesn't transfer the request on HMI
 
 **Alternative flow 3:**
 
-1.c.1. appID requests SendLocation with address, longitudeDegrees, deliveryMode, other valid and allowed parameters and **without** latitudeDegrees
-
-1.c.2. SDL responds "INVALID_DATA, success:false" to appID and doesn't transfer the request on HMI
-
-**Alternative flow 4:**
-
-1.d.1. appID requests SendLocation **with** address, deliveryMode, other valid and allowed parameters and **without** latitudeDegrees and longitudeDegrees
-
-1.d.2. SDL responds "INVALID_DATA, success:false" to appID and doesn't transfer the request on HMI
-
-**Alternative flow 5:**
-
 1.e.1. appID requests SendLocation **with deliveryMode**, other valid and allowed parameters and **without**  address, latitudeDegrees and longitudeDegrees
 
 1.e.2. SDL responds "INVALID_DATA, success:false" to appID and doesn't transfer the request on HMI
 
-**Alternative flow 5:**
+**Alternative flow 4:**
 
 1.f.1. appID requests SendLocation **without** deliveryMode and with other allowed and valid parameters 
 
@@ -92,37 +80,46 @@ _Expected:_
 
 **Exception 6:**
 
-5.2.a Mandatory parameter is invalid in SendLocation request from mobile app
+5.2.a Some of the parameters of "OASISAddress" structure are invalid
 
-5.2.b SDL responds INVALID_DATA, success:false to mobile app without transferring this request to HMI
+5.2.b SDL cuts off invalid parameter of "OASISAddress" structure and transfers request to HMI without invalid parameter
 
 **Exception 7:**
 
-5.3.a Some of requested parameters are not allowed by Policies
+5.3.a "address" parameters is empty
 
-5.3.b SDL cuts off disallowed by Policies parameters and transfers request to HMI
-
-5.3.c SDL transfers received result code from HMI to mobile app with info: "<param_1>, <param_2> parameters are disallowed by Policies"
+5.3.b SDL transfers SendLocation_request to HMI without "address" parameter
 
 **Exception 8:**
 
-5.4.a Some of requested parameters are disallowed in Policies by user
+5.4.a Mandatory parameter is invalid in SendLocation request from mobile app
 
-5.4.b SDL cuts off disallowed by user parameters and transfers request to HMI
-
-5.4.c SDL transfers received result code from HMI with info: "<param_1>, <param_2> are disallowed by user"
+5.4.b SDL responds INVALID_DATA, success:false to mobile app without transferring this request to HMI
 
 **Exception 9:**
 
-5.5.a "parameters" field is omitted in Policy Table for SendLocation RPC
+5.5.a Some of requested parameters are not allowed by Policies
 
-5.5.b SDL transfers request with all valid parameters to HMI
+5.5.b SDL cuts off disallowed by Policies parameters and transfers request to HMI
+
+5.5.c SDL transfers received result code from HMI to mobile app with info: "<param_1>, <param_2> parameters are disallowed by Policies"
 
 **Exception 10:**
 
-5.6.a All requested paramters are disallowed by Policies
+5.6.a "parameters" field is omitted in Policy Table for SendLocation RPC
 
-5.6.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
+5.6.b SDL transfers request with all valid parameters to HMI
 
+**Exception 11:**
+
+5.7.a All requested paramters are disallowed by Policies
+
+5.7.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
+
+**Exception 12:**
+
+7.1.a SDL received "SAVED" resultCode from HMI
+
+7.1.b SDL trnasfers "SAVED, success:true" to appID
 
 > _[Requirement #24](https://github.com/smartdevicelink/sdl_requirements/issues/24) SendLocation to set a location on the head unit_
