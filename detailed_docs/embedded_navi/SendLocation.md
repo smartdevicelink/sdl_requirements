@@ -74,7 +74,7 @@ _Expected:_
 
 **Exception 5:**
 
-5.1.a Non-mandatory parameter is invalid in SendLocation request from mobile app
+5.1.a Non-mandatory parameter is invalid in SendLocation request from mobile app (wrong type, out of bounds, invalid characters, whitespaces only)
 
 5.1.b SDL cuts off invalid parameter and transfers request to HMI
 
@@ -82,7 +82,7 @@ _Expected:_
 
 5.2.a Some of the parameters of "OASISAddress" structure are invalid
 
-5.2.b SDL cuts off invalid parameter of "OASISAddress" structure and transfers request to HMI without invalid parameter
+5.2.b SDL cuts off invalid parameter of "OASISAddress" structure and transfers request to HMI without invalid parameters
 
 **Exception 7:**
 
@@ -110,13 +110,19 @@ _Expected:_
 
 5.6.b SDL transfers request with all valid parameters to HMI
 
-**Exception 11:**
+**Exception 11**
 
-5.7.a All requested paramters are disallowed by Policies
+5.7.a "parameters" field is empty for SendLocation RPC in Policy Table 
 
 5.7.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
 
 **Exception 12:**
+
+5.8.a All requested paramters are disallowed by Policies
+
+5.8.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
+
+**Exception 13:**
 
 7.1.a SDL received "SAVED" resultCode from HMI
 
