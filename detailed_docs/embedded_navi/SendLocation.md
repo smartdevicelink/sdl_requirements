@@ -14,11 +14,11 @@ _Steps:_
 
 _Expected:_
 
-2. SDL checks if Navi interface is available on HMI
-3. SDL checks if SendLocation is allowed by Policies
-4. SDL checks if deliveryMode is allowed by Policies
-5. SDL validates other parameters of RPC
-6. SDL transfers the request with valid and allowed parameters to HMI
+2. SDL validates parameters of the request
+3. SDL checks if Navi interface is available on HMI
+4. SDL checks if SendLocation is allowed by Policies
+5. SDL checks if deliveryMode is allowed by Policies
+6. SDL transfers the request with allowed parameters to HMI
 7. SDL receives response from HMI
 8. SDL transfers response to mobile app
 
@@ -48,81 +48,69 @@ _Expected:_
 
 **Exception 1:**
 
-2.1.a Navi interface is not available on HMI
+2.1.a Request is invalid: Wrong json, parameters of wrong type, string parameters with empty values or whitespace as the only symbol, out of bounds, wrong characters, missing mandatory parameters
 
-2.1.b SDL respponds with UNSUPPORTED_RESOURCE, success: false to mobile app
+2.1.b SDL responds INVALID_DATA, success:false
 
 **Exception 2:**
 
-2.2.a "sendLocationEnabled": false in HMI navigation capabilities
+2.2.a "address" parameters is empty
 
-2.2.b SDL respponds with UNSUPPORTED_RESOURCE, success: false to mobile app
+2.2.b SDL transfers SendLocation_request to HMI without "address" parameter
 
 **Exception 3:**
 
-3.1.a SendLocaction is not allowed by Policies
+3.1.a Navi interface is not available on HMI
 
-3.1.b. SDL responds DISALLOWED, success:false and doesn't transfer this request to HMI
+3.1.b SDL respponds with UNSUPPORTED_RESOURCE, success: false to mobile app
 
 **Exception 4:**
 
-4.1.a deliveryMode is not allowed by Policies
+3.2.a "sendLocationEnabled": false in HMI navigation capabilities
 
-4.1.b SDL cuts off deliveryMode parameter from application's request and if other parameters are valid, transfers request to HMI without deliverMode
-
-4.1.c SDL transfers received response from HMI to mobile app with added info: "default value of deliveryMode will be used"
+3.2.b SDL respponds with UNSUPPORTED_RESOURCE, success: false to mobile app
 
 **Exception 5:**
 
-5.1.a Non-mandatory parameter is invalid in SendLocation request from mobile app (wrong type, out of bounds, invalid characters, whitespaces only)
+4.1.a SendLocaction is not allowed by Policies
 
-5.1.b SDL cuts off invalid parameter and transfers request to HMI
+4.1.b. SDL responds DISALLOWED, success:false and doesn't transfer this request to HMI
 
 **Exception 6:**
 
-5.2.a Some of the parameters of "OASISAddress" structure are invalid
+5.1.a deliveryMode is not allowed by Policies
 
-5.2.b SDL cuts off invalid parameter of "OASISAddress" structure and transfers request to HMI without invalid parameters
+5.1.b SDL cuts off deliveryMode parameter from application's request and if other parameters are valid, transfers request to HMI without deliverMode
+
+5.1.c SDL transfers received response from HMI to mobile app with added info: "default value of deliveryMode will be used"
 
 **Exception 7:**
 
-5.3.a "address" parameters is empty
+6.1.a Some of requested parameters are not allowed by Policies
 
-5.3.b SDL transfers SendLocation_request to HMI without "address" parameter
+6.1.b SDL cuts off disallowed by Policies parameters and transfers request to HMI
+
+6.1.c SDL transfers received result code from HMI to mobile app with info: "<param_1>, <param_2> parameters are disallowed by Policies"
 
 **Exception 8:**
 
-5.4.a Mandatory parameter is invalid in SendLocation request from mobile app
+6.2.a "parameters" field is omitted in Policy Table for SendLocation RPC
 
-5.4.b SDL responds INVALID_DATA, success:false to mobile app without transferring this request to HMI
+6.2.b SDL transfers request with all valid parameters to HMI
 
-**Exception 9:**
+**Exception 9**
 
-5.5.a Some of requested parameters are not allowed by Policies
+6.3.a "parameters" field is empty for SendLocation RPC in Policy Table 
 
-5.5.b SDL cuts off disallowed by Policies parameters and transfers request to HMI
-
-5.5.c SDL transfers received result code from HMI to mobile app with info: "<param_1>, <param_2> parameters are disallowed by Policies"
+6.3.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
 
 **Exception 10:**
 
-5.6.a "parameters" field is omitted in Policy Table for SendLocation RPC
+6.4.a All requested paramters are disallowed by Policies
 
-5.6.b SDL transfers request with all valid parameters to HMI
+6.4.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
 
-**Exception 11**
-
-5.7.a "parameters" field is empty for SendLocation RPC in Policy Table 
-
-5.7.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
-
-**Exception 12:**
-
-5.8.a All requested paramters are disallowed by Policies
-
-5.8.b SDL responds with DISALLOWED, success:false result code and info: "Requested parameters are disallowed by Policies"
-
-**Exception 13:**
+**Exception 11:**
 
 7.1.a SDL received "SAVED" resultCode from HMI
 
