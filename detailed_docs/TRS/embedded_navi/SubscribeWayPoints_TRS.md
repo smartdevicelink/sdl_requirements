@@ -5,7 +5,7 @@ In case mobile application sent valid and allowed by Policies SubscribeWayPoints
 
 SDL must: 
 - transfer SubscribeWayPoints_request_ to HMI
-- respond with <'resultCode'> received from HMI to mobile app 
+- respond with `<resultCode>` received from HMI to mobile app 
 
 2.
 In case mobile application sent valid SubscribeWayPoints_request to SDL
@@ -42,7 +42,7 @@ SDL must:
 - store the status of subscription on wayPoints-related data for this application
 - send UnsubscribeWayPoints_request to HMI ONLY if ther are no other applications currently subscribed to WayPoints-related data 
 - restore status of subscription on WayPoints-related data for this application right after the same mobile application re-connects within the same ignition cycle with the same <'hashID'> as before unexpected disconnect
-- after successful resumption send SubscribeWayPoints request to HMI only
+- after successful resumption send SubscribeWayPoints request to HMI only if ther are no other applications currently subscribed to WayPoints-related data 
 
 6.
 In case mobile application subscribed on WayPoints-related data in previous ignition cycle
@@ -60,6 +60,8 @@ and another application sends SubscribeWayPoints_request to SDL
 SDL must:
 - remember this other application as subscribed on WayPoints-related data
 - respond SubscribeWayPoints (SUCCESS) to this other application without transferring second SubscribeWayPoints_request to HMI 
+
+8.
 
 ## Non-Functional Requirements
 
