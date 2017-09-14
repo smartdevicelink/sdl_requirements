@@ -93,6 +93,6 @@ SubscribeWayPoints
 
 ![SubscribeWayPoints](https://github.com/smartdevicelink/sdl_requirements/blob/SubscribeWayPoints/detailed_docs/accessories/SubscribeWayPoints.png)
 
-OnWayPointChnage for newly subscribed application
+OnWayPointChange for newly subscribed application
 
 ![OnWayPointChange_storing](https://github.com/smartdevicelink/sdl_requirements/blob/SubscribeWayPoints/detailed_docs/accessories/Store_OnWayPointsChange.png)
