@@ -60,15 +60,7 @@ and another application sends SubscribeWayPoints_request to SDL
 SDL must:
 - remember this other application as subscribed on WayPoints-related data
 - respond SubscribeWayPoints (SUCCESS) to this other application without transferring second SubscribeWayPoints_request to HMI 
-
-8. 
-In case SDL already subscribed one mobile application on OnWayPointChange-related data 
-and another application sends SubscribeWayPoints_request to SDL 
-
-SDL must:
-- respond SubscribeWayPoints (SUCCESS) to this other mobile application without transferring request to HMI
-- send to this application OnWayPointChange-related data stored after subscribing previous application 
-- re-write and send updated OnWayPointChange-related data to all subscribed applications when HMI notifies with waypoints changes
+- send to this newly subscribed application stored OnWayPointChange-related data 
 
 
 ## Non-Functional Requirements
