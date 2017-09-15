@@ -81,7 +81,7 @@ SDL must:
 
 _Note:_ In case HMI responded with SAVED resultCode, SDL must transfer "SAVED, success:true" to mobile application
 
-12.
+8.
 In case mobile application sends SendLocation_request with
 - one or more requested parameters allowed by Policies
 - one or more requested parameters disallowed by Policies
@@ -98,7 +98,7 @@ a. in case with disallowed "deliveryMode" SDL must add to info also: "default va
 
 b. in case HMI responded with SAVED resultCode, SDL must transfer "SAVED, success:true" to mobile application
 
-13.
+9.
 In case mobile application sends SendLocation_request 
 - with all requested parameters disallowed by Policies 
 - and this request is allowed by Policies for this mobile application
@@ -109,7 +109,7 @@ respond with "DISALLOWED, success:false", "info: Requested parameters are disall
 
 _NOTE:_ In case at least one of the mandatory parameters is disallowed by Policies, SDL must respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" to mobile application
 
-14.
+10.
 In case mobile application sends SendLocation_request
 - this request is allowed by Policies for this mobile application
 - "parameters" field is empty in PolicyTable for SendLocation RPC
