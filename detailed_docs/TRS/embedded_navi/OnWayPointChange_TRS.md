@@ -1,4 +1,4 @@
-## Functiona Requirements
+## Functional Requirements
 
 1. 
 In case SDL received valid OnWayPointChange notification from HMI
