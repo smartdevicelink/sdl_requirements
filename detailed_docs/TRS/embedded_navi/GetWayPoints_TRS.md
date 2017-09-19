@@ -6,7 +6,7 @@ In case mobile application sends valid and allowed by Policies GetWayPoints_requ
 SDL must: 
 - transfer GetWayPoints_request to HMI
 - respond with `<resultCode>` received from HMI to mobile application
-- provide the requested parameters at the same order as received from HMI to mobile application (in case of successful response)
+- provide the requested wayPoints at the same order as received from HMI to mobile application (in case of successful response)
 
 2.
 In case mobile application sends valid GetWayPoints_request to SDL
