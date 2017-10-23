@@ -5,7 +5,7 @@
 
 _Pre-conditions:_  
 a. iOS device is connected over Bluetooth  
-b. Device is consented and N applications from this device are registered in SDL  
+b. N applications from this device are registered in SDL  
  
 _Steps:_  
  1. User connects the same device over USB
