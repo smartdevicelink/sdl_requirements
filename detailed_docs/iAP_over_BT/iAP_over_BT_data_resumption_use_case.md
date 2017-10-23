@@ -12,39 +12,25 @@ _Steps:_
 _Expected:_  
 2. SDL starts `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` reconnection timer  
 3. SDL receives `<RegisterAppInterface>` request **before** timer expires  
-4. SDL **validates** "hashID" received with RegisterAppInterface request  
+4. App sends **valid** "hashID" with `RegisterAppInterface` request 
 5. SDL sends succesful response to the app  
 6. SDL successfully resumes data for this app
+7. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
 
 _Exception 1:_  
-3.1.a SDL receives `<RegisterAppInterface>` request **after** timer expires  
-3.1.b SDL **doesn't validate** "hashID" received with RegisterAppInterface request  
-3.1.c SDL notifies HMI about app being unregistred  
-3.1.d When the app re-registers SDL checks `<hashID>`  
-3.1.e SDL  doesn’t  validates "hashID" received with `<RegisterAppInterface>` request  
-3.1.f SDL clears all data related to the app
+3.1. Timer expires with **no** `<RegisterAppInterface>` request from mobile application
+3.1.a. SDL notifies HMI about app being unregistred
+3.1.b. App registers with **valid** "hashID"
+3.1.c. SDL performs data resumption for this app
+3.1.d. SDL **notifies** HMI about fresh app registration
 
 _Exception 2:_  
-4.1.a SDL **doesn't validate** "hashID" received with `<RegisterAppInterface>`  request  
-4.1.b SDL responds RESUME_FAILED, success:true to the app  
-4.1.c SDL clears all data created/stored by this app  
-4.1.d SDL sends to HMI following RPCs  
-OnButtonSubscription (isSubscribed=false)  
-UnsubscribeVehicleData  
-UnsubscribeWayPoints
-ResetGlobalProperties  
-DeleteSubMenu  
-DeleteCommand  
-DeleteCommands for choiseSets (CreateInteractionChoiceSet)
+3.1.b.1. App registers with **invalid** or **missing** "hashID"
+3.1.b.1.a. SDL clears all resumption data related to this app
+3.1.b.1.b. SDL **notifies** HMI about fresh app registration
 
-**Alternative flow 1**  
-3.a.1 SDL receives `<RegisterAppInterface>` request **after** timer expires  
-3.a.2 SDL **validates** "hashID" received with RegisterAppInterface request  
-
-_Expected:_  
-1. SDL notifies HMI about app being unregistred 
-2. SDL receives `<RegisterAppInterface>` request 
-3. SDL validates "hashID" received with RegisterAppInterface request
-4. SDL sends `<OnAppRegistered>` (resumeVRGrammars=true) to HMI
-5. SDL sends succesful `<RegisterAppInterface>` response to the app
-6. SDL performs data resumption
+_Exception 3:_
+4.1. App sends **invalid** "hashID" with `RegisterAppInterface` request 
+4.1.a. SDL responds with RESUME_FAILED to app's registration request
+4.1.b. SDL clears all resumption data related to this app
+4.1.c. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
