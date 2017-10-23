@@ -32,5 +32,5 @@ _Exception 2:_
 _Exception 3:_  
 4.1. App sends **invalid** or omitted `<hashID>` with `RegisterAppInterface` request   
 4.1.a. SDL responds with RESUME_FAILED to app's registration request  
-4.1.b. SDL clears all resumption data related to this app **except** "AppIconsFolder  
+4.1.b. SDL clears all resumption data related to this app **except** "AppIconsFolder"  
 4.1.c. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
