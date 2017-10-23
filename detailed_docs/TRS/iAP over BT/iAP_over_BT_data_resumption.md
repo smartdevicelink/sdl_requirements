@@ -25,7 +25,8 @@ and sends valid `hashID` param via RegisterAppInterface_request to SDL
 SDL must:  
 - start data resumption process according to existing rules
 
-4. In case application re-registers AFTER "AppTransportChangeTimer" + "AppTransportChangeTimerAddition"*N expiration 
+4. 
+In case application re-registers AFTER `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` expiration 
 and sends invalid `hashID` param via RegisterAppInterface_request to SDL  
 or omits `hashID` at all  
 
