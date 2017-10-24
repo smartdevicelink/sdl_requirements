@@ -45,7 +45,7 @@ _Exception 3:_
 **Alternative flow:**  
 
 _Pre-conditions:_  
-a. iOS device is connected over Bluetooth  
+a. iOS device is connected over USB  
 b. App from iOS device is registred and running on SDL  
 
 _Steps:_    
