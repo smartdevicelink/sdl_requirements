@@ -23,7 +23,8 @@ In case application re-register AFTER `<AppTransportChangeTimer> + <AppTransport
 and sends valid `hashID` param via RegisterAppInterface_request to SDL   
 
 SDL must:  
-- start data resumption process according to existing rules
+- notify HMI about app being unregistered
+- start data resumption process according to existing rules when app re-registers if `hashID` is valid
 
 4. 
 In case application re-registers AFTER `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` expiration 
