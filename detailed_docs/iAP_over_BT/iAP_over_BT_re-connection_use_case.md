@@ -4,7 +4,7 @@
 
 _Pre-conditions:_  
 a. iOS device is connected over Bluetooth  
-b. App from iOS device is registred and running on SDL 
+b. App from iOS device is registered and running on SDL 
 
 _Steps:_    
 1. User connects the same iOS device connects over USB  
