@@ -12,7 +12,7 @@ _Steps:_
 _Expected:_  
 
 2. SDL receives signal about USB connection of the same device 
-3. SDL receives signal about transport switch of the same device  
+3. SDL sends signal about transport switch of the same device  
 4. SDL starts `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` reconnection timer  
 
 _Exception 1:_
