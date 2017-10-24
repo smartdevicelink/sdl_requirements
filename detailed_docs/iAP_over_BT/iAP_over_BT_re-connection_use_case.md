@@ -36,7 +36,7 @@ _Exception 2:_
 6.1.b.1.b. SDL **notifies** HMI about fresh app registration (sends BC.OnAppRegistered to HMI send BC.UpdateAppList to HMI)
 
 _Exception 3:_  
-7.1. App sends **invalid** or omitted "hashID" with `RegisterAppInterface` request (after Timer expires)   
+7.1. App sends **invalid** or omitted "hashID" with `RegisterAppInterface` request  
 7.1.a. SDL responds with RESUME_FAILED to app's registration request  
 7.1.b. SDL clears all resumption data related to this app **except** "AppIconsFolder"  
 7.1.c. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
