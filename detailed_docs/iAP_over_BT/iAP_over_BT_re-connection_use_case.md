@@ -20,7 +20,7 @@ _Expected:_
 8. SDL compares `<UUID>` and `<appID>` with previously closed  BT session
 9. SDL sends succesful response to the app
 10. SDL updates data in Policytable (`<device_identifier>` section)
-11. SDL notifies HMI via UpdatadeviceList about changed transportType
-12. SDL does not sent BC.OnAppRegistered to HMI
+11. SDL notifies HMI via `UpdatadeviceList` about changed `transportType`
+12. SDL does not sent `BC.OnAppRegistered` to HMI
 
 _Exception 1:_
