@@ -42,3 +42,16 @@ _Exception 3:_
 7.1.b. SDL clears all resumption data related to this app **except** "AppIconsFolder"  
 7.1.c. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
 
+**Alternative flow:**  
+
+_Pre-conditions:_  
+a. iOS device is connected over Bluetooth  
+b. App from iOS device is registred and running on SDL  
+
+_Steps:_    
+1. USB transport was disconnected
+
+_Expected:_   
+
+2. SDL does not start `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` reconnection timer  
+3. SDL notifies HMI about app being unregistred
