@@ -17,11 +17,10 @@ _Expected:_
 5. SDL starts `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` reconnection timer
 6. SDL receives `<RegisterAppInterface>` request **before** timer expires
 7. App sends **valid** "hashID" with `RegisterAppInterface` request 
-8. SDL compares `<UUID>` and `<appID>` with previously closed  BT session
-9. SDL sends succesful response to the app (keep all data created/stored by this app BEFORE re-registration (transport switching)
-10. SDL updates data in Policytable (`<device_identifier>` section) [write hashed `<UUID>` to `<device identifier>` in Device Data section of Policy Table]
-11. SDL notifies HMI via `UpdatadeviceList` about changed `transportType`
-12. SDL does not sent `BC.OnAppRegistered` to HMI
+8. SDL sends succesful response to the app (keep all data created/stored by this app BEFORE re-registration (transport switching)
+9. SDL updates data in Policytable (`<device_identifier>` section) [write hashed `<UUID>` to `<device identifier>` in Device Data section of Policy Table]
+10. SDL notifies HMI via `UpdatadeviceList` about changed `transportType`
+11. SDL does not sent `BC.OnAppRegistered` to HMI
 
 
 _Exception 1:_  
