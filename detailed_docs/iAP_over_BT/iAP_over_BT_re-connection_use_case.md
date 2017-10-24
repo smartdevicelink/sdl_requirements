@@ -24,7 +24,7 @@ _Expected:_
 
 
 _Exception 1:_  
-6.1. **After** timer expires app sends **valid** or omitted "hashID" with `<RegisterAppInterface>` request  (either RegisterAppInterface was not sent or was sent but registration was rejected)  
+6.1. **After** timer expires app sends **valid** "hashID" with `<RegisterAppInterface>` request  (either RegisterAppInterface was not sent or was sent but registration was rejected)  
 6.1.a. SDL notifies HMI about app being unregistred via BC.OnAppUnregistered (appID, unexpectedDisconnect:true)  
 6.1.b. App registers with **valid** "hashID"  
 6.1.c. SDL performs data resumption for this app  
