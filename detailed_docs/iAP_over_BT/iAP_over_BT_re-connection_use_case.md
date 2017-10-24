@@ -13,7 +13,7 @@ _Expected:_
 
 2. SDL receives signal about USB connection of the same device 
 3. SDL sends signal about transport switch of the same device  
-4. SDL receives `<UUID>` of the connected device 
+4. SDL receives `<UUID>` via IOSDeviceConnectInfo of the connected device 
 5. SDL starts `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` reconnection timer
 6. SDL receives `<RegisterAppInterface>` request **before** timer expires
 7. App sends **valid** "hashID" with `RegisterAppInterface` request 
