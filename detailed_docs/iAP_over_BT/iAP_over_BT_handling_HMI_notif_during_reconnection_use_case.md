@@ -12,7 +12,7 @@ _Steps:_
  
  
 _Expected:_   
- 2. SDL starts reconnection timer 
+ 2. SDL starts reconnection timer  
  3. HMI sends no RPCs to SDL assigned to these N applications  
  4. SDL unregisters the applications right after reconnection timer expires
 
