@@ -13,7 +13,7 @@ _Expected:_
 2. SDL starts `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` reconnection timer  
 3. SDL receives `<RegisterAppInterface>` request **before** timer expires  
 4. App sends **valid** "hashID" with `RegisterAppInterface` request  
-5. SDL sends succesful response to the app  
+5. SDL sends successful response to the app  
 6. SDL successfully resumes data for this app  
 7. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
 
