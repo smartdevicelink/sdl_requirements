@@ -5,7 +5,7 @@ In case device was connected over Bluetooth and SDL received signal about USB co
 
 SDL must:
 
-- start `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` after receiving switch signal from external system  
+- start `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` after sending switch signal to external system  
 _Note:_ **N** is the number of applications that need to be re-registered
 
 2.
