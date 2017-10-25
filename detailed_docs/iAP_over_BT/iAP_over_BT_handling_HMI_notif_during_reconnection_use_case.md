@@ -12,9 +12,9 @@ _Steps:_
  
  
 _Expected:_   
- 2. SDL starts `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` timer for reconnection  
- 3. HMI sends no RPCs to SDL assigned to these N applications
- 4. SDL unregisters the applications right after `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` timer expires
+ 2. SDL starts reconnection timer 
+ 3. HMI sends no RPCs to SDL assigned to these N applications  
+ 4. SDL unregisters the applications right after reconnection timer expires
 
 **Alternative flow 1**  
 3.1 HMI sends an RPC to  any of these N applications that need to be reconnected  
