@@ -53,5 +53,35 @@ _Steps:_
 
 _Expected:_   
 
-2. SDL does not start `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` reconnection timer  
+2. SDL does not start reconnection timer  
 3. SDL notifies HMI about app being unregistred
+
+**Use Case 3**  
+_Pre-conditions:_  
+a. iOS device is connected over Bluetooth  
+b. App `<app_1>` from iOS device is registred and running on SDL  
+
+_Steps:_
+ 1. User connects the same device over USB
+ 2. SDL receives signal with `<UUID>` via IOSDeviceConnectInfo
+ 3. SDL opens hub EAP protocol for USB session
+ 4. SDL closes active EAP session opened for Bluetooth
+ 5. SDL starts reconnection timer
+ 6. App `<app_2>` sends RegisterAppInterface (params)  
+ 
+ _Expected result:_  
+ 7. SDL compares `<UUID>` and `<appID>` parameters with previously closed session  
+ 8. SDL registers `<app_2>` as a new app  
+ 9. SDL sends BC.OnAppRegistered to HMI  
+ 
+ _Exception 1:_   
+ 1.1. User connects another device over Bluetooth  
+ 1.1.a SDL receives signal with `<UUID_1>` about USB connection of the same device  
+ 1.1.b SDL receives signal with `<UUID_2>` about Bluetooth connection of another device  
+ 1.1.c SDL opens hub EAP protocol for `<UUID_1>` USB session  
+ 1.1.d SDL closes active EAP session opened for `<UUID_1>` Bluetooth  
+ 1.1.e SDL opens hub EAP protocol for `<UUID_2>` BT session  
+ 1.1.f SDL starts reconnection timer for `<UUID_1>`  
+ 1.1.g `<app_1>` from device `<UUID_2>` sends RegisterAppInterface (params)  
+ SDL compares `<UUID>` and `<appID>` parameters with previously closed session  
+ SDL responds to the app with RegisterAppInterface (DUPLICATE_NAME, success:false)
