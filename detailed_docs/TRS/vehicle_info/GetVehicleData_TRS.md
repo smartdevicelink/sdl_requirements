@@ -47,7 +47,8 @@ respond with "GENERIC_ERROR, success:"false" to mobile application
 
 ## Non-Functional Requirements
 Additions to mobile API, HMI_API  
-Changes to enums and functions should be applied
+Changes to enums and functions should be applied  
+1.
 
 ```xml
 <enum name="FuelType">
@@ -92,9 +93,9 @@ Changes to enums and functions should be applied
         <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
     </param>
 </function>
-
-
-
+```
+2.
+```
 <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request">
             :
 	<param name="engineOilLife" type="Boolean" mandatory="false">
@@ -107,7 +108,6 @@ Changes to enums and functions should be applied
         <description>The estimated percentage of remaining oil life of the engine.</description>
     </param>
 </function>
-
-
+```
 
 ## Diagram
