@@ -33,8 +33,13 @@ SDL must:
 - NOT send SubscribeVehicleData(param_1, param_2) to HMI  
 - respond via SubscribeVehicleData (SUCCESS) to app_2  
 
+4.
+In case mobile application sends an UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
 
-4.  
+SDL must:  
+return DISALLOWED, success:false to this mobile app  
+
+5.  
 In case app already subscribed on a single or multiple `<vehicleData>`  
 
 and sends SubscribeVehicleData_request with all `<vehicleData>` subscribed by the application before  
@@ -44,7 +49,7 @@ SDL must:
 - not transfer a resuest to HMI  
 - respond with (IGNORED, success:false {`<vehicleData>`: DATA_ALREADY_SUBSCRIBED} ) to mobile app 
 
-5.  
+6.  
 In case mobile application sends valid SubscribeVehicleData_request 
 
 trying to subscribe the parameter the application has already subscribed for (even if the request contains at least one non-subscribed parameter)
@@ -57,7 +62,7 @@ SDL must:
 
 _Important Note: success:true and resultCode: IGNORED is applicabe for general_result_Code_from_HMI SUCCESS/WARNINGS, otherwise success:false and resultCode: general_result_Code_from_HMI must be returned to mobile application._  
 
-6.  
+7.  
 	
 In case SubscribeVehicleData RPC is allowed by Policies with less than supported by protocol parameters  
 
@@ -66,16 +71,17 @@ and the app assigned with such policies requests SubscribeVehicleData with one a
 SDL must:  
 
 - send nothing to HMI  
-- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false".  
+- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false"  
 
-7.
+8.
 In case mobile app sends SubscribeVehicleData_request to SDL  
 
 and this request is allowed by Policies for this mobile app  
 
 and "parameters" field is empty at PolicyTable for SubscribeVehicleData RPC  
 
-SDL must:  
+SDL must:
+
 - respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" 
 - NOT transfer this request to HMI
 
