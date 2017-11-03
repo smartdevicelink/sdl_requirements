@@ -34,13 +34,13 @@ SDL must:
 - respond via SubscribeVehicleData (SUCCESS) to app_2  
 
 4.
-In case mobile application sends an UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
+In case mobile application sends UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
 
 SDL must:  
 return DISALLOWED, success:false to this mobile app  
 
 5.  
-In case app already subscribed on a single or multiple `<vehicleData>`  
+In case mobile application already subscribed on a single or multiple `<vehicleData>`  
 
 and sends SubscribeVehicleData_request with all `<vehicleData>` subscribed by the application before  
 
@@ -71,19 +71,31 @@ and the app assigned with such policies requests SubscribeVehicleData with one a
 SDL must:  
 
 - send nothing to HMI  
-- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false"  
+- return the individual results of DISALLOWED to response to mobile application + "ResultCode:DISALLOWED, success: false"  
 
 8.
 In case mobile app sends SubscribeVehicleData_request to SDL  
 
-and this request is allowed by Policies for this mobile app  
+and this request is allowed by Policies for this mobile application  
 
-and "parameters" field is empty at PolicyTable for SubscribeVehicleData RPC  
+and "parameters" field is **empty** at PolicyTable for SubscribeVehicleData RPC  
 
 SDL must:
 
 - respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" 
-- NOT transfer this request to HMI
+- NOT transfer this request to HMI  
+
+9.
+In case mobile application sends UnsubscribeVehicleData_request to SDL  
+
+and this request is allowed by Policies for this mobile application  
+
+and "parameters" field is **omited** at PolicyTable for this request  
+
+SDL must:  
+- transfer received request with all requested parameters as is to HMI  
+- respond with `<received_resultCode_from_HMI>` to mobile app
+
 
 ## Non-Functional Requirements
 1.
