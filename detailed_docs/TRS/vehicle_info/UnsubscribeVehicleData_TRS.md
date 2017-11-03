@@ -37,7 +37,8 @@ SDL must:
 5.
 In case UnubscribeVehicleData request is trying to unsubscribe the parameter the application is not yet subscribed for (even if the request contains at least one subscribed parameter)  
 
-SDL must:  
+SDL must: 
+
 - ignore not subscribed items and transfer subscribed params of UnsubscribeVehicleData to HMI  
 - get the response with general_result_Code_from_HMI and newly-unsubscribed parameters with their correponding individual-result-codes from HMI  
 - respond to mobile application with "ResultCode: IGNORED, success: <applicable flag>" + "info" parameter+ all parameters and their correponding individual result codes got from HMI and all ignored parameter(s) with the individual result code(s): DATA_NOT_SUBSCRIBED for items ignored by SDL
@@ -45,12 +46,26 @@ SDL must:
 _Important Note: success:true and resultCode: IGNORED is applicabe for general_result_Code_from_HMI SUCCESS/WARNINGS, otherwise success:false and resultCode: general_result_Code_from_HMI must be returned to mobile application._
 
 6.  
-In case UnsubscribeVehicleData RPC is allowed by policies with less than supported by protocol parameters AND the app assigned with such policies requests UnsubscribeVehicleData with one and-or more NOT-allowed params only  
+In case UnsubscribeVehicleData RPC is allowed by policies with less than supported by protocol parameters  
+
+and the app assigned with such policies requests UnsubscribeVehicleData with one and-or more NOT-allowed params only  
 
 SDL must:  
-- send nothing to HMI  
-- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false".
 
+- send nothing to HMI  
+- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false"  
+
+7.
+In case mobile app sends SubscribeVehicleData_request to SDL  
+
+and this request is allowed by Policies for this mobile app  
+
+and "parameters" field is empty at PolicyTable for SubscribeVehicleData RPC  
+
+SDL must: 
+
+- respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" 
+- NOT transfer this request to HMI
 ## Non-Functiona Requirements
 ```
 <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request">
