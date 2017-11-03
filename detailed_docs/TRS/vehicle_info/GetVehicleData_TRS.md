@@ -36,7 +36,7 @@ and "parameters" field is **empty** in PolicyTable for GetVehicleData RPC
 SDL must:  
 respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" to mobile application  
 
-6.
+5.
 In case mobile application sends request to SDL  
 
 and this request is allowed by Policies for this mobile app  
@@ -47,7 +47,7 @@ SDL must:
 - transfer received request with all requested parameters as is to HMI  
 - respond with `<received_resultCode_from_HMI>` to mobile app  
 
-7. In case an application sends a request and:
+6. In case an application sends a request and:
 -> either unknown issue happenes 
 -> or something goes wrong  
 
