@@ -1,4 +1,4 @@
-## Use Case 1: 
+## Use Case 1: Get VehicleData
 
 **Main Flow:**
 
@@ -39,7 +39,7 @@ _Expected:_
 
 **Exeption 4:**  
 4.2.a The request has "parameters" field empty in PolicyTable  
-4.2.b SDL responds DISALLOWED, success:false to mobile application  
+4.2.b SDL responds DISALLOWED, success:false to mobile application and doesn't transfer this request to HMI 
 
 **Exeption 5:**  
 4.3.a The request has "parameters" field omitted at PolicyTable  
