@@ -1,22 +1,32 @@
 ## Functional Requirements
 
 1.
-In case mobile application sent valid UnsubscribeVehicleData_request to SDL
+In case mobile application sends valid UnsubscribeVehicleData_request to SDL to unsubscribe already subscribed parameters 
 - and this request is allowed by Policies
-- and there are no other applications subscribed on vehicle info npotifications
+- and there are no other applications subscribed on vehicle info notifications
 
 SDL must: 
 - transfer UnsubscribeVehicleData_request to HMI
 - respond with `<resultCode>` received from HMI to mobile application
 
-2.
-In case mobile application sent valid UnsubscribeVehicleData_request to SDL
-- and this request is allowed by Policies
-- and there are other applications still subscribed on vehicle info npotifications
 
-SDL must: 
-- unsubscribe requesting application from vehicle data change notifications
-- not send UnsubscribeVehicleData_reques to HMI
+2.
+In case SDL successfully subscribes param_1 for app_1 and app_2 via SubscribeVehicleData 
+
+and app_1 sends UnsubscribeVehicleData (param_1)  
+
+SDL must:  
+- respond via UnsubscribeVehicleData(SUCCESS) to app_1  
+- stop sending OnVehicleData (param_1) ONLY to app_1  
+- NOT send UnsubscribeVehicleData (param_1) to HMI while there are app_2 still subscribed on param_1  
+
+3.
+In case mobile application sends an UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
+
+SDL must:  
+return DISALLOWED, success:false to this mobile app  
+
+4.
 
 ## Non-Functiona Requirements
 ```
