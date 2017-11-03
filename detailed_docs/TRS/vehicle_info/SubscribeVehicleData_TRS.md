@@ -66,7 +66,18 @@ and the app assigned with such policies requests SubscribeVehicleData with one a
 SDL must:  
 
 - send nothing to HMI  
-- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false".
+- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false".  
+
+7.
+In case mobile app sends SubscribeVehicleData_request to SDL  
+
+and this request is allowed by Policies for this mobile app  
+
+and "parameters" field is empty at PolicyTable for SubscribeVehicleData RPC  
+
+SDL must:  
+- respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" 
+- NOT transfer this request to HMI
 
 ## Non-Functional Requirements
 1.
