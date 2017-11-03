@@ -60,7 +60,7 @@ In case mobile app sends SubscribeVehicleData_request to SDL
 
 and this request is allowed by Policies for this mobile application  
 
-and "parameters" field is empty at PolicyTable for SubscribeVehicleData RPC  
+and "parameters" field is **empty** at PolicyTable for SubscribeVehicleData RPC  
 
 SDL must: 
 
@@ -73,7 +73,7 @@ In case mobile application sends UnsubscribeVehicleData_request to SDL
 
 and this request is allowed by Policies for this mobile application  
 
-and "parameters" field is omited at PolicyTable for this request  
+and "parameters" field is **omitted** at PolicyTable for this request  
 
 SDL must:  
 - transfer received request with all requested parameters as is to HMI  
