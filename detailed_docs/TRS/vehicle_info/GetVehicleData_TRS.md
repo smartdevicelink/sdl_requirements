@@ -9,40 +9,51 @@ SDL must:
 - transfer GetVehicleData_request to HMI
 - respond with `<resultCode>` received from HMI to mobile application
 
-2.
-In case mobile application sends valid GetVehicleData_request to SDL
+2.   
+In case mobile application sends an GetVehicleData_request  
 
-and this request is NOT allowed by Policies
-
-SDL must:  
-respond "DISALLOWED, success:false" to mobile application
-
-3. 
-
-In case mobile application sends GetVehicleData_request to SDL
-- this request is allowed by Policies for this mobile application
-- "parameters" field is empty in PolicyTable for GetVehicleData RPC
+that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
 
 SDL must:  
-respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" to mobile application
+return DISALLOWED, success:false to this mobile app
 
-
-4.
+3.
 In case mobile application sends GetVehicleData_request to SDL  
 with one and-or more allowed params and with one and-or more NOT-allowed params by Policies  
 
 SDL must:  
 - transfer GetVehicleData_request to HMI with allowed params only  
 - ignore the NOT-allowed params  
-- respond with "ResultCode: `<applicable-result-code>`, success: `<applicable flag>`" + "info" parameter listing the params disallowed by policies to mobile application  
+- respond to mobile application transfered vehicleData values from HMI with "ResultCode: `<applicable-result-code>`, success: `<applicable flag>`" + "info" parameter listing the params disallowed by policies   
 
-5. 
-In case mobile application sends GetVehicleData_request to SDL and:
-- either unknown issue happened 
-- or something went wrong
+4. 
+In case mobile application sends GetVehicleData_request to SDL
+
+and this request is allowed by Policies for this mobile application
+
+and "parameters" field is **empty** in PolicyTable for GetVehicleData RPC
 
 SDL must:  
-respond with "GENERIC_ERROR, success:"false" to mobile application
+respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" to mobile application  
+
+6.
+In case mobile application sends request to SDL  
+
+and this request is allowed by Policies for this mobile app  
+
+and "parameters" field is **omitted** at PolicyTable for this request  
+
+SDL must:  
+- transfer received request with all requested parameters as is to HMI  
+- respond with `<received_resultCode_from_HMI>` to mobile app  
+
+7. In case an application sends a request and:
+-> either unknown issue happenes 
+-> or something goes wrong  
+
+SDL must:
+
+respond with "GENERIC_ERROR, success:"false" to mobile application.
 
 
 ## Non-Functional Requirements
