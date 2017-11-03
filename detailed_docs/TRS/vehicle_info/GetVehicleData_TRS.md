@@ -47,8 +47,10 @@ SDL must:
 - transfer received request with all requested parameters as is to HMI  
 - respond with `<received_resultCode_from_HMI>` to mobile app  
 
-6. In case an application sends a request and:
--> either unknown issue happenes 
+6.  
+
+In case an application sends a request and:  
+-> either unknown issue happenes  
 -> or something goes wrong  
 
 SDL must:
