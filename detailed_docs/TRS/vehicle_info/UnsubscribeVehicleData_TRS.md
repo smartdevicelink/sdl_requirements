@@ -26,7 +26,30 @@ In case mobile application sends an UnsubscribeVehicleData_request that is NOT i
 SDL must:  
 return DISALLOWED, success:false to this mobile app  
 
-4.
+4.  
+In case mobile application is NOT subscribed for a single or multiple `<vehicleData>`
+
+and sends UnsubscribeVehicleData_request with all `<vehicleData>` not subscribed before  
+
+SDL must:  
+- respond with (IGNORED, success:false {<vehicleData>: "DATA_NOT_SUBSCRIBED"} ) to mobile app  
+
+5.
+In case UnubscribeVehicleData request is trying to unsubscribe the parameter the application is not yet subscribed for (even if the request contains at least one subscribed parameter)  
+
+SDL must:  
+- ignore not subscribed items and transfer subscribed params of UnsubscribeVehicleData to HMI  
+- get the response with general_result_Code_from_HMI and newly-unsubscribed parameters with their correponding individual-result-codes from HMI  
+- respond to mobile application with "ResultCode: IGNORED, success: <applicable flag>" + "info" parameter+ all parameters and their correponding individual result codes got from HMI and all ignored parameter(s) with the individual result code(s): DATA_NOT_SUBSCRIBED for items ignored by SDL
+
+_Important Note: success:true and resultCode: IGNORED is applicabe for general_result_Code_from_HMI SUCCESS/WARNINGS, otherwise success:false and resultCode: general_result_Code_from_HMI must be returned to mobile application._
+
+6.  
+In case UnsubscribeVehicleData RPC is allowed by policies with less than supported by protocol parameters AND the app assigned with such policies requests UnsubscribeVehicleData with one and-or more NOT-allowed params only  
+
+SDL must:  
+- send nothing to HMI  
+- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false".
 
 ## Non-Functiona Requirements
 ```
