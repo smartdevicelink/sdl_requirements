@@ -21,7 +21,9 @@ SDL must:
 - NOT send UnsubscribeVehicleData (param_1) to HMI while there are app_2 still subscribed on param_1  
 
 3.
-In case mobile application sends UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
+In case mobile application sends UnsubscribeVehicleData_request  
+
+that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
 
 SDL must:  
 return DISALLOWED, success:false to this mobile app  
