@@ -34,7 +34,7 @@ SDL must:
 - respond via SubscribeVehicleData (SUCCESS) to app_2  
 
 4.
-In case mobile application sends UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
+In case mobile application sends SubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
 
 SDL must:  
 return DISALLOWED, success:false to this mobile app  
