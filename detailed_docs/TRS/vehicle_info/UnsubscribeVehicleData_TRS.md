@@ -21,7 +21,7 @@ SDL must:
 - NOT send UnsubscribeVehicleData (param_1) to HMI while there are app_2 still subscribed on param_1  
 
 3.
-In case mobile application sends an UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
+In case mobile application sends UnsubscribeVehicleData_request that is NOT included (omitted) in the PolicyTable group(s) assigned to the application  
 
 SDL must:  
 return DISALLOWED, success:false to this mobile app  
@@ -53,12 +53,12 @@ and the app assigned with such policies requests UnsubscribeVehicleData with one
 SDL must:  
 
 - send nothing to HMI  
-- return the individual results of DISALLOWED to response to mobile app + "ResultCode:DISALLOWED, success: false"  
+- return the individual results of DISALLOWED to response to mobile application + "ResultCode:DISALLOWED, success: false"  
 
 7.
 In case mobile app sends SubscribeVehicleData_request to SDL  
 
-and this request is allowed by Policies for this mobile app  
+and this request is allowed by Policies for this mobile application  
 
 and "parameters" field is empty at PolicyTable for SubscribeVehicleData RPC  
 
@@ -66,6 +66,20 @@ SDL must:
 
 - respond with "DISALLOWED, success:false", "info: Requested parameters are disallowed by Policies" 
 - NOT transfer this request to HMI
+
+8.  
+	
+In case mobile application sends UnsubscribeVehicleData_request to SDL  
+
+and this request is allowed by Policies for this mobile application  
+
+and "parameters" field is omited at PolicyTable for this request  
+
+SDL must:  
+- transfer received request with all requested parameters as is to HMI  
+- respond with `<received_resultCode_from_HMI>` to mobile app
+
+
 ## Non-Functiona Requirements
 ```
 <function name="UnsubscribeVehicleData" functionID="UnsubscribeVehicleDataID" messagetype="request">
