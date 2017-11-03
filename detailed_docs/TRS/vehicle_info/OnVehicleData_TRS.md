@@ -17,13 +17,6 @@ SDL must:
 - log the issue  
 - ignore this notification  
 
-Invalid notifications means the notification contains:  
-a. params out of bounds or incorrect symbols (/t, /n, `<whitespace>`)  
-b. mandatory params are missing  
-c. params of wrong type  
-d. invalid json  
-e. incorrect combination of params
-
 
 3. 
 In case SDL received valid OnVehicleData notification from HMI
@@ -35,12 +28,23 @@ SDL must:
 - log corresponding error internally
 - ignore this notification and not transfer it to subscribed mobile applications  
 
-4.
+4.  
 In case SDL receives OnVehicleData notification from HMI  
 
 and this notification is allowed by Policies for this mobile app  
 
-and "parameters" field is omited at PolicyTable for this notification  
+and "parameters" field is empty at PolicyTable for OnVehicleData notification  
+
+SDL must:
+- log corresponding error internally
+- NOT transfer this notification to mobile app
+
+5.
+In case SDL receives OnVehicleData notification from HMI  
+
+and this notification is allowed by Policies for this mobile app  
+
+and "parameters" field is **omitted** at PolicyTable for this notification  
 
 SDL must:  
 - transfer received notification with all parameters as is to mobile app  
