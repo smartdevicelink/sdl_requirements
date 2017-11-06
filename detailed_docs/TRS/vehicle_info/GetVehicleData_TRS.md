@@ -123,4 +123,9 @@ Changes to enums and functions should be applied
 </function>
 ```
 
-## Diagram
+## Diagram  
+
+GetVehicleData
+
+![GetVehicleData](https://github.com/smartdevicelink/sdl_requirements/tree/feature/FuelRange/detailed_docs/accessories/GetVehicleData.png)
+
