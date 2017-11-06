@@ -124,4 +124,4 @@ SDL must:
 
 UnsubscribeVehicleData
 
-![UnsubscribeVehicleData](.png)
+![UnsubscribeVehicleData](https://github.com/smartdevicelink/sdl_requirements/tree/feature/FuelRange/detailed_docs/accessories/UnsubscribeVehicleData.png)
