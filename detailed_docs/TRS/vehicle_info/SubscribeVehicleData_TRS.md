@@ -135,4 +135,4 @@ SDL must:
 
 SubscribeVehicleData
 
-![]()
+![SubscribeVehicleData](https://github.com/smartdevicelink/sdl_requirements/tree/feature/FuelRange/detailed_docs/accessories/SubscribeVehicleData.png)
