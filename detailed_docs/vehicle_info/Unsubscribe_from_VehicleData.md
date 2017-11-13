@@ -8,25 +8,25 @@ a. SDL and HMI are started
 
 b. Mobile application is registered on SDL
 
-c. Mobile application is subscribed to Vehicle Data
+c. Mobile application is subscribed to VehicleData
 
 _Steps:_
 
-1. Mobile application requests to unsubscribe from Vehicle Data changes notifications
+1. Mobile application requests to unsubscribe from VehicleData changes notifications
 2. SDL validates parameters of the request
 3. SDL checks if the request is allowed by Policies  
 4. SDL transfers the request with valid and allowed parameters to HMI
 5. SDL receives response from HMI
 6. SDL stores the subscription status of the application internally
 7. SDL transfers response to mobile app
-8. Any change on Vehicle Data happens on HMI
+8. Any change on VehicleData happens on HMI
 
 _Expected:_
 
-9. HMI sends the notification to SDL with the changes in Vehicle Data
+9. HMI sends the notification to SDL with the changes in VehicleData
 10. SDL does not transfer the notification to unsubscribed application
 
-**Alternative flow 1:** In case there are more than one applications subscribed to Vehicle Data change notifications
+**Alternative flow 1:** In case there are more than one applications subscribed to VehicleData change notifications
 
 4.a.1 SDL does not transfer the request to HMI
 
@@ -44,26 +44,26 @@ _Expected:_
 
 4.a.7 SDL does not transfer the notification to unsubscribed application
 
-**Exception 1:**
+**Exception 1**
 
 2.1.a Request is invalid
 
 2.1.b SDL responds INVALID_DATA, success:false to mobile application and doesn't unsubscribe from Vehicle Data change notifications
 
-**Exception 2:**
+**Exception 2**
 
 3.1.a Request is not allowed by Policies
 
 3.1.b SDL responds DISALLOWED, success:false to mobile app and doesn't unsubscribe from Vehicle Data change notifications
 
 
-**Exception 3:**
+**Exception 3**
 
 5.1.a HMI did not respond during default timeout
 
 5.1.b SDL responds GENERIC_ERROR, success:false to mobile application and does not unsubscribe from Vehicle Data changes notifications
 
-**Exception 4:**
+**Exception 4**
 
 5.2.a HMI responds with UNSUPPORTED_RESOURCE
 
