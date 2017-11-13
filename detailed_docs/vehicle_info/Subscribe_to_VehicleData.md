@@ -18,7 +18,7 @@ _Steps:_
 6. SDL receives succussful response from HMI
 7. SDL stores the param in list internally
 8. SDL transfers response to mobile application
-9. Any change on vehicle data happens on HMI
+9. Any change on VehicleData happens on HMI
 
 _Expected:_
 
@@ -73,6 +73,5 @@ _Expected:_
 
 1.a.2 SDL responds SUCCESS, success:true on subscription request of mobile application_2  
 1.a.3 SDL doesn't transfer new subscription request to HMI  
-1.a.4 SDL transfers stored in SDL list Vehicle Data parameters to mobile application_2  
-
+1.a.4 SDL transfers stored in SDL list VehicleData parameters to mobile application_2  
 
