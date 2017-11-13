@@ -32,17 +32,26 @@ _Expected:_
 3.1.b SDL responds DISALLOWED, success:false to mobile application and doesn't transfer this request to HMI
 
 **Exeption 3**  
+
 4.1.a The request contains one and-or more allowed params and one and-or more NOT-allowed params by Policies  
+
 4.1.b SDL transfer request to HMI with allowed params only  
+
 4.1.c SDL ignores the NOT-allowed params  
-4.1.d SDL responds to mobile application transfered VehicleData values from HMI with "ResultCode: <applicable-result-code>, success: <applicable flag>" + "info" parameter listing the params disallowed by policies  
+
+4.1.d SDL responds to mobile application transfered VehicleData values from HMI with "ResultCode: `<applicable-result-code>`, success: `<applicable flag>`" + "info" parameter listing the params disallowed by policies  
 
 **Exeption 4**  
+
 4.2.a The request has "parameters" field empty in PolicyTable  
+
 4.2.b SDL responds DISALLOWED, success:false to mobile application and doesn't transfer this request to HMI 
 
 **Exeption 5**  
+
 4.3.a The request has "parameters" field omitted at PolicyTable  
+
 4.3.b SDL transfers received request with all requested parameters as is to HMI  
+
 4.3.c SDL responds with received resultCode from HMI to mobile app
 
