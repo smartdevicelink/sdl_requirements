@@ -72,6 +72,8 @@ _Expected:_
 _Expected:_  
 
 1.a.2 SDL responds SUCCESS, success:true on subscription request of mobile application_2  
+
 1.a.3 SDL doesn't transfer new subscription request to HMI  
+
 1.a.4 SDL transfers stored in SDL list VehicleData parameters to mobile application_2  
 
