@@ -18,7 +18,7 @@ _Steps:_
 
 _Expected:_
 
-3. SDL transfers the notification with updated vehicle data value to subscribed mobile application
+3. SDL transfers the notification with updated VehicleData value to subscribed mobile application
 
 
 **Exception 1**
