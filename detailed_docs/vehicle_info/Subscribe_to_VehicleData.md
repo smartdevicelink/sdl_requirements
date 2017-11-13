@@ -43,7 +43,7 @@ _Expected:_
 
 6.a.2 SDL responds success:false to mobile application and doesn't store the param in list
 
-## Use Case 2: Mobile application is already subscribed to Vehicle Data
+## Use Case 2: Mobile application is already subscribed to VehicleData
 
 **Main Flow:**
 
