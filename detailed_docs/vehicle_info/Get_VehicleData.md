@@ -4,7 +4,7 @@
 
 _Pre-conditions:_
 
-a. SDL and HMI are started
+a. SDL and HMI are started  
 b. Mobile application is registered and running on SDL
 
 _Steps:_
@@ -35,7 +35,7 @@ _Expected:_
 4.1.a The request contains one and-or more allowed params and one and-or more NOT-allowed params by Policies  
 4.1.b SDL transfer request to HMI with allowed params only  
 4.1.c SDL ignores the NOT-allowed params  
-4.1.d SDL responds to mobile application transfered vehicleData values from HMI with "ResultCode: <applicable-result-code>, success: <applicable flag>" + "info" parameter listing the params disallowed by policies  
+4.1.d SDL responds to mobile application transfered VehicleData values from HMI with "ResultCode: <applicable-result-code>, success: <applicable flag>" + "info" parameter listing the params disallowed by policies  
 
 **Exeption 4:**  
 4.2.a The request has "parameters" field empty in PolicyTable  
