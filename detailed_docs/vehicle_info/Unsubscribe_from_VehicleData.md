@@ -34,7 +34,7 @@ _Expected:_
 
 4.a.3 SDL keeps all other applications subscription status unchanged
 
-4.a.4 Any change on Vehicle Data happens on HMI
+4.a.4 Any change on VehicleData happens on HMI
 
 _Expected:_
 
