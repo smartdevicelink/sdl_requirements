@@ -33,7 +33,7 @@ In case SDL receives OnVehicleData notification from HMI
 
 and this notification is allowed by Policies for this mobile app  
 
-and "parameters" field is empty at PolicyTable for OnVehicleData notification  
+and "parameters" field is **empty** at PolicyTable for OnVehicleData notification  
 
 SDL must:
 - log corresponding error internally
