@@ -35,24 +35,19 @@ _Expected:_
 
 **Exception 3**  
 
-2.3.a  Notification about changes to VehicleData is allowed by Policies for this mobile app  
-and "parameters" field is omitted at PolicyTable  
+2.3.a Notification about changes to VehicleData is allowed by Policies for this mobile app  
+and "parameters" field is empty at PolicyTable   
 
-2.3.b SDL transfers received notification with all parameters as is to mobile app  
-
-2.3.c SDL responds with received resultCode from HMI to mobile app  
+2.3.b SDL doesn't transfer the notification to mobile application and logs corresponding error internally 
 
 **Exception 4** 
 
-2.4.a Notification about changes to VehicleData is allowed by Policies for this mobile app  
-and "parameters" field is empty at PolicyTable   
+2.4.a  Notification about changes to VehicleData is allowed by Policies for this mobile app  
+and "parameters" field is omitted at PolicyTable  
 
-2.4.b SDL doesn't transfer the notification to mobile application and logs corresponding error internally
+2.4.b SDL transfers received notification with all parameters as is to mobile app  
 
-
-
-
-
+2.4.c SDL responds with received resultCode from HMI to mobile app
 
 
 
