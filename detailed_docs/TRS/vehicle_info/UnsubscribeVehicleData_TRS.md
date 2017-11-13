@@ -97,12 +97,7 @@ SDL must:
     </param>
 </function>
 <param name="fuelRange" type="FuelRange" minsize="0" maxsize="100" array="true" mandatory="false">
-<function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request">
-            :
-    <param name="fuelRange" type="Boolean" mandatory="false">
-        <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
-    </param>
-</function>
+
 ```
 
 ```
