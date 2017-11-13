@@ -10,7 +10,7 @@ b. Mobile application is registered on SDL
 
 _Steps:_
 
-1. Mobile application requests to subscribe to vehicle data changes notifications
+1. Mobile application requests to subscribe to VehicleData change notifications
 2. SDL validates parameters of the request
 3. SDL checks if the request is allowed by Policies
 4. SDL checks if requested for subscribtion parameter is stored on the list of successfully subscribed params
@@ -22,24 +22,23 @@ _Steps:_
 
 _Expected:_
 
-9. HMI sends the notification to SDL with the changes in vehicle data
+9. HMI sends the notification to SDL with the changes in VehicleData
 10. SDL transfers the notification to subscribed application
 
 
-
-**Alternative flow 1:**
+**Exception 1**
 
 2.a.1 Request is invalid
 
 2.a.2 SDL responds INVALID_DATA, success:false to mobile application and doesn't subscribe to vehicle data change notifications
 
-**Alternative flow 2:**
+**Exception 2**
 
 3.a.1 Request is not allowed by Policies
 
 3.a.2 SDL responds DISALLOWED, success:false to mobile app and doesn't subscribe to vehicle data change notifications  
 
-**Alternative flow 3:**  
+**Exception 3**  
 6.a.1 SDL receives erroneous result from HMI for the parameter  
 
 6.a.2 SDL responds success:false to mobile application and doesn't store the param in list
@@ -66,7 +65,7 @@ _Expected:_
 3. SDL keeps the subscription status of the application unchanged
 
 
-Alternative flow  
+**Alternative flow**  
 
 1.a.1 Mobile application_2 sends new request to subscribe to Vehicle Data (param_1, param_2) change notification  
 
