@@ -99,6 +99,12 @@ Changes to enums and functions should be applied
     <element name="VEHICLEDATA_FUELRANGE" />
 </enum>
 
+<function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="request">
+            :
+    <param name="fuelRange" type="Boolean" mandatory="false">
+        <description>The estimate range in KM the vehicle can travel based on fuel level and consumption</description>
+    </param>
+</function>
 
 <function name="GetVehicleData" functionID="GetVehicleDataID" messagetype="response">
             :
