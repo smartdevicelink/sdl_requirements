@@ -1,4 +1,4 @@
-## Use Case 1: Unsubscribe from Vehicle Data
+## Use Case 1: Unsubscribe from VehicleData
 
 **Main Flow:**
 
