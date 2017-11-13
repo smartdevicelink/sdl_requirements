@@ -63,11 +63,6 @@ _Expected:_
 
 5.1.b SDL responds GENERIC_ERROR, success:false to mobile application and does not unsubscribe from VehicleData changes notifications
 
-**Exception 4**
-
-5.2.a HMI responds with UNSUPPORTED_RESOURCE
-
-5.2.b SDL transfer UNSUPPORTED_RESOURCE, success:false to mobile application and does not unsubscribe from VehicleData changes notifications
 
 ## Use Case 2: Mobile application is already unsubscribed from VehicleData
 
