@@ -66,14 +66,14 @@ _Expected:_
 3. SDL keeps the subscription status of the application unchanged
 
 
-Alternative flow
+Alternative flow  
 
-1.a.1 Mobile application_2 sends new request to subscribe to Vehicle Data (param_1, param_2) change notification
+1.a.1 Mobile application_2 sends new request to subscribe to Vehicle Data (param_1, param_2) change notification  
 
-_Expected:_
+_Expected:_  
 
-1.a.2 SDL responds SUCCESS, success:true on subscription request of mobile application_2
-1.a.3 SDL doesn't transfer new subscription request to HMI
+1.a.2 SDL responds SUCCESS, success:true on subscription request of mobile application_2  
+1.a.3 SDL doesn't transfer new subscription request to HMI  
 1.a.4 SDL transfers stored in SDL list Vehicle Data parameters to mobile application_2  
 
 
