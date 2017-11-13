@@ -87,7 +87,8 @@ _Steps:_
 
 _Expected:_
 
-2. SDL responds with result code IGNORED, success:false to mobile application
+2. SDL responds with result code IGNORED, success:false to mobile application  
+
 3. SDL keeps the subscription status of the application unchanged (application remains unsubscribed)
 
 
