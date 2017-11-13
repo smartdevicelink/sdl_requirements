@@ -38,7 +38,7 @@ _Expected:_
 
 _Expected:_
 
-4.a.5 HMI sends the notification to SDL with the changes in Vehicle Data
+4.a.5 HMI sends the notification to SDL with the changes in VehicleData
 
 4.a.6 SDL transfers the notification to subscribed applications
 
@@ -48,28 +48,28 @@ _Expected:_
 
 2.1.a Request is invalid
 
-2.1.b SDL responds INVALID_DATA, success:false to mobile application and doesn't unsubscribe from Vehicle Data change notifications
+2.1.b SDL responds INVALID_DATA, success:false to mobile application and doesn't unsubscribe from VehicleData change notifications
 
 **Exception 2**
 
 3.1.a Request is not allowed by Policies
 
-3.1.b SDL responds DISALLOWED, success:false to mobile app and doesn't unsubscribe from Vehicle Data change notifications
+3.1.b SDL responds DISALLOWED, success:false to mobile app and doesn't unsubscribe from VehicleData change notifications
 
 
 **Exception 3**
 
 5.1.a HMI did not respond during default timeout
 
-5.1.b SDL responds GENERIC_ERROR, success:false to mobile application and does not unsubscribe from Vehicle Data changes notifications
+5.1.b SDL responds GENERIC_ERROR, success:false to mobile application and does not unsubscribe from VehicleData changes notifications
 
 **Exception 4**
 
 5.2.a HMI responds with UNSUPPORTED_RESOURCE
 
-5.2.b SDL transfer UNSUPPORTED_RESOURCE, success:false to mobile application and does not unsubscribe from Vehicle Data changes notifications
+5.2.b SDL transfer UNSUPPORTED_RESOURCE, success:false to mobile application and does not unsubscribe from VehicleData changes notifications
 
-## Use Case 2: Mobile application is already unsubscribed from Vehicle Data
+## Use Case 2: Mobile application is already unsubscribed from VehicleData
 
 **Main Flow:**
 
@@ -79,11 +79,11 @@ a. SDL amd HMI are started
 
 b. Mobile application is registered on SDL
 
-c. Mobile application is unsubscribed from Vehicle Data changes notification
+c. Mobile application is unsubscribed from VehicleData changes notification
 
 _Steps:_
 
-1. The same mobile application sends new request to unsubscribe from Vehicle Data changes notification
+1. The same mobile application sends new request to unsubscribe from VehicleData changes notification
 
 _Expected:_
 
