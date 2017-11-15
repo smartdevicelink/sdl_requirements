@@ -32,4 +32,4 @@ and sends invalid `hashID` param via RegisterAppInterface_request to SDL
 or omits `hashID` at all  
 
 SDL must:  
-behave according to existing rules 
+behave according to existing Data Resumption rules 
