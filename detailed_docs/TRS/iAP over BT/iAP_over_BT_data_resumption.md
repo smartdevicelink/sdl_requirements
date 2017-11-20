@@ -49,3 +49,7 @@ defines the timeout for waiting the mobile app to reconnect between Bluetooth an
 "AppTransportChangeTimerAddition" = 0ms
 Defines the timeout  for waiting of every mobile app to reconnect between Bluetooth and USB transports change in case the number of connected apps is more than one
 ```
+
+## Diagram
+Data resumption
+![Data resumption](https://github.com/smartdevicelink/sdl_requirements/blob/feature/iap_over_bt/detailed_docs/accessories/iAP_over_BT_data_resumption.png)
