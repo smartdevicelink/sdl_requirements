@@ -33,3 +33,17 @@ or omits `hashID` at all
 
 SDL must:  
 behave according to existing Data Resumption rules 
+
+## Non-Functional Requirements
+
+```
+[IAP] 
+; defines the timeout for waiting the mobile app to reconnect between Bluetooth and USB transports change
+"AppTransportChangeTimer" = 500 ms
+```
+
+```
+[IAP] 
+"AppTransportChangeTimerAddition" = 0ms
+Defines the timeout  for waiting of every mobile app to reconnect between Bluetooth and USB transports change in case the number of connected apps is more than one
+```
