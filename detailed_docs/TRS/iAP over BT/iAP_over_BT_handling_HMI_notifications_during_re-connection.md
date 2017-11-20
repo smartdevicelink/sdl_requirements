@@ -23,15 +23,17 @@ SDL must:
 discard all responses to such `appID` from HMI
 
 ## Non-Functional Requirements
+New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   must be added to .ini file -> [MAIN] section
 
 ```
-[IAP] 
-; defines the timeout for waiting the mobile app to reconnect between Bluetooth and USB transports change
-"AppTransportChangeTimer" = 500 ms
+[MAIN] 
+"AppTransportChangeTimer" = 500 ms 
+defines the timeout for waiting the mobile app to reconnect between Bluetooth and USB transports change
+
 ```
 
 ```
-[IAP] 
+[MAIN] 
 "AppTransportChangeTimerAddition" = 0ms
 Defines the timeout  for waiting of every mobile app to reconnect between Bluetooth and USB transports change in case the number of connected apps is more than one
 ```
