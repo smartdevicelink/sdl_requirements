@@ -21,3 +21,17 @@ and HMI sends any responses to `appID` on requests that were sent before reconne
 
 SDL must:  
 discard all responses to such `appID` from HMI
+
+## Non-Functional Requirements
+
+```
+[IAP] 
+; defines the timeout for waiting the mobile app to reconnect between Bluetooth and USB transports change
+"AppTransportChangeTimer" = 500 ms
+```
+
+```
+[IAP] 
+"AppTransportChangeTimerAddition" = 0ms
+Defines the timeout  for waiting of every mobile app to reconnect between Bluetooth and USB transports change in case the number of connected apps is more than one
+```
