@@ -64,8 +64,8 @@ b. App `<app_1>` from iOS device is registred and running on SDL
 _Steps:_
  1. User connects the same device over USB
  2. SDL receives signal with `<UUID>` via IOSDeviceConnectInfo
- 3. SDL opens hub EAP protocol for USB session
- 4. SDL closes active EAP session opened for Bluetooth
+ 3. SDL connects USB device
+ 4. SDL disconnects Bluetooth
  5. SDL starts reconnection timer
  6. App `<app_2>` sends RegisterAppInterface (params)  
  
