@@ -83,5 +83,6 @@ _Steps:_
  1.1.e SDL opens hub EAP protocol for `<UUID_2>` BT session  
  1.1.f SDL starts reconnection timer for `<UUID_1>`  
  1.1.g `<app_1>` from device `<UUID_2>` sends RegisterAppInterface (params)  
- SDL compares `<UUID>` and `<appID>` parameters with previously closed session  
- SDL responds to the app with RegisterAppInterface (DUPLICATE_NAME, success:false)
+ Expected result:
+ 1.1.h SDL compares `<UUID>` and `<appID>` parameters with previously closed session  
+ 1.1.i SDL responds to the app with RegisterAppInterface (DUPLICATE_NAME, success:false)
