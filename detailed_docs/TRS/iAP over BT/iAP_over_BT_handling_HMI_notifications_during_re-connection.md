@@ -23,7 +23,7 @@ SDL must:
 discard all responses to such `appID` from HMI
 
 ## Non-Functional Requirements
-New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   must be added to .ini file -> [MAIN] section
+New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   must be added to smartdevicelink.ini file -> [MAIN] section
 
 ```
 [MAIN] 
