@@ -13,7 +13,7 @@ In case mobile application sends RegisterAppInterface during `<AppTransportChang
 and `<UUID>` and `<appID>` parameters match with closed session
 
 SDL must:
-- consider such app as re-registered app
+- consider such application as re-registered
 - update data in PolicyTable (`<device_identifier>` section)
 - send UpdateDeviceList to HMI
 
@@ -33,12 +33,12 @@ and `<UUID>` of reconnected device matches
 and `<appID>` parameter does not match with closed session
 
 SDL must:  
-- register such app as a new app  
+- register such application as a new one  
 - send BC.OnAppRegistered to HMI  
 - send BC.UpdateAppList to HMI
 
 5.
-In case mobile app sends RegisterAppInterface during `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` timer  
+In case mobile application sends RegisterAppInterface during `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` timer  
 and `<appID>` parameter matches with appID of closed session  
 and `<UUID>` does not match  
 
