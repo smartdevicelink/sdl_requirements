@@ -42,7 +42,7 @@ _Exception 3:_
 8.1.b. SDL clears all resumption data related to this application **except** "AppIconsFolder"  
 8.1.c. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
 
-**Use Case 2**  
+## Use Case 2: USB connection loss  
 
 _Pre-conditions:_  
 a. iOS device is connected over USB  
@@ -56,7 +56,7 @@ _Expected:_
 2. SDL does not start reconnection timer  
 3. SDL notifies HMI about application being unregistered
 
-**Use Case 3**  
+## Use Case 3: Multiple connection   
 _Pre-conditions:_  
 a. iOS device is connected over Bluetooth  
 b. Application `<app_1>` from iOS device is registered and running on SDL  
