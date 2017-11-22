@@ -15,7 +15,7 @@ and `<UUID>` and `<appID>` parameters match with closed session
 SDL must:
 - consider such app as re-registered app
 - update data in PolicyTable (`<device_identifier>` section)
-- send UpdataDeviceList to HMI
+- send UpdateDeviceList to HMI
 
 _Note:_ For HMI during re-connection all applications remain registered and active, HMILevel resumption is not applicable
 
@@ -60,7 +60,7 @@ NOT start `<AppTransportChangeTimer> + <AppTransportChangeTimerAddition>*N` time
 _Note:_ In case of USB connection loss SDL must proceed with unexpected disconnect flow
 
 ## Non-Functional Requirements
-New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   must be added to .ini file -> [MAIN] section
+New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   must be added to smartdevicelink.ini file -> [MAIN] section
 
 ```
 [MAIN] 
