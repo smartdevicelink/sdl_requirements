@@ -35,7 +35,7 @@ SDL must:
 behave according to existing Data Resumption rules 
 
 ## Non-Functional Requirements
-New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   must be added to .ini file -> [MAIN] section
+New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   must be added to smartdevicelink.ini file -> [MAIN] section
 
 ```
 [MAIN] 
