@@ -65,7 +65,7 @@ New parameters "AppTransportChangeTimer" , "AppTransportChangeTimerAddition"   m
 ```
 [MAIN] 
 "AppTransportChangeTimer" = 500 ms 
-defines the timeout for waiting the mobile app to reconnect between Bluetooth and USB transports change
+Defines the timeout period SDL Core will wait for an application to re-register via alternate transport during 'transport switch'. If the application fails to re-register within this time, SDL Core shall inform HMI that the application has unregistered.
 
 ```
 
