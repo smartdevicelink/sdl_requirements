@@ -78,9 +78,9 @@ _Steps:_
  1.1. User connects another device over Bluetooth  
  1.1.a SDL receives signal with `<UUID_1>` about USB connection of the same device  
  1.1.b SDL receives signal with `<UUID_2>` about Bluetooth connection of another device  
- 1.1.c SDL opens hub EAP protocol for `<UUID_1>` USB session  
+ 1.1.c SDL opens appropriate EAP protocols for `<UUID_1>` USB session  
  1.1.d SDL closes active EAP session opened for `<UUID_1>` Bluetooth  
- 1.1.e SDL opens hub EAP protocol for `<UUID_2>` Bluetooth session  
+ 1.1.e SDL opens appropriate EAP protocols for `<UUID_2>` Bluetooth session  
  1.1.f SDL starts reconnection timer for `<UUID_1>`  
  1.1.g `<app_1>` from device `<UUID_2>` sends RegisterAppInterface (params)  
  Expected result:
