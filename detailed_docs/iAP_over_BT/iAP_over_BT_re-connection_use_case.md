@@ -12,35 +12,37 @@ _Steps:_
 _Expected:_  
 
 2. SDL receives signal with `<UUID>` about USB connection of the same device 
-3. SDL compares `<UUID>` of BT device connection with `<UUID>` of USB connection  
-4. `<UUID>` of BT device connection matches with `<UUID>` of USB connection
-5. SDL sends signal about transport switch to the System  
-6. SDL starts reconnection timer
-7. SDL receives `<RegisterAppInterface>` request **before** reconnection timer expires
-8. Application sends **valid** "hashID" with `RegisterAppInterface` request 
-9. SDL sends succesful response to the application 
-10. SDL updates data in PolicyTable 
-11. SDL notifies HMI via `UpdatadeviceList` about changed `transportType`
-12. SDL does not notify HMI about new registration
+3. SDL notifies HMI about new connection via UpdateDeviceList (`<UUID>`)  
+4. SDL responds ACK to connection signal
+5. SDL receives signal from external system about transport switch of the same <UUID> device 
+6. SDL substitutes iAP2BT adapter with iAP2USB adapter
+7. SDL  responds ACK to switch signal
+8. SDL starts reconnection timer
+9. HMI disconnects the iAP channel over BT transport 
+10. SDL notifies HMI via `UpdatadeviceList` about changed `transportType`
+11. SDL receives `<RegisterAppInterface>` request before timer expires
+12. Application sends valid "hashID" with `<RegisterAppInterface>` request
+13. SDL updates data in PolicyTable 
+14. SDL does not notify HMI about new registration
 
 
 _Exception 1:_  
-7.1. **After** timer expires application sends **valid** "hashID" with `<RegisterAppInterface>` request  
-7.1.a. SDL notifies HMI about app being unregistered   
-7.1.b. Application registers with **valid** "hashID"  
-7.1.c. SDL performs data resumption for this application  
-7.1.d. SDL **notifies** HMI about fresh application registration 
+11.1. **After** timer expires application sends **valid** "hashID" with `<RegisterAppInterface>` request  
+11.1.a. SDL notifies HMI about app being unregistered   
+11.1.b. Application registers with **valid** "hashID"  
+11.1.c. SDL performs data resumption for this application  
+11.1.d. SDL **notifies** HMI about fresh application registration 
 
 _Exception 2:_  
-7.1.b.1. Application registers with **invalid** or **missing** "hashID"   
-7.1.b.1.a. SDL clears all resumption data related to this application  
-7.1.b.1.b. SDL **notifies** HMI about fresh application registration (sends BC.OnAppRegistered to HMI send BC.UpdateAppList to HMI)
+11.1.b.1. Application registers with **invalid** or **missing** "hashID"   
+11.1.b.1.a. SDL clears all resumption data related to this application  
+11.1.b.1.b. SDL **notifies** HMI about fresh application registration (sends BC.OnAppRegistered to HMI send BC.UpdateAppList to HMI)
 
 _Exception 3:_  
-8.1. Application sends **invalid** or omitted "hashID" with `RegisterAppInterface` request  
-8.1.a. SDL responds with RESUME_FAILED to application's registration request  
-8.1.b. SDL clears all resumption data related to this application **except** "AppIconsFolder"  
-8.1.c. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
+12.1. Application sends **invalid** or omitted "hashID" with `RegisterAppInterface` request  
+12.1.a. SDL responds with RESUME_FAILED to application's registration request  
+12.1.b. SDL clears all resumption data related to this application **except** "AppIconsFolder"  
+12.1.c. SDL does **not** notify HMI about new registration (HMI continues to display app screen)
 
 ## Use Case 2: USB connection loss  
 
@@ -65,7 +67,7 @@ _Steps:_
  1. User connects the same device over USB
  2. SDL receives signal with `<UUID>` via IOSDeviceConnectInfo
  3. SDL connects USB device
- 4. SDL disconnects Bluetooth
+ 4. HMI disconnects the iAP channel over BT transport
  5. SDL starts reconnection timer
  6. Application `<app_2>` sends RegisterAppInterface (params)  
  
