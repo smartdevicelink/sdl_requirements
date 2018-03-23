@@ -255,27 +255,29 @@ _Expected:_
 
 _Expected:_
 
-1.a.3 SDL assigns HMILevel NONE to RC_app_1, releases module_1 from RC_app_1 control and unsubscribes RC_app_1 from receiving notifications about module_1 settings changed
+1.a.3 SDL assigns HMILevel NONE to RC_app_1, releases module_1 from RC_app_1 control and unsubscribes RC_app_1 from receiving notifications about module_1 settings changed  
 
-1.a.4 RC_app_2 gets in control of module_1
+1.a.4 SDL sends OnRCStatus to HMI, RC_app_1 and RC_app_2 with module_1 in `freeModules` parameter    
+
+1.a.5 RC_app_2 gets in control of module_1
 
 **Alternative Flow 2:**
 
 1.b.1 Any trigger of Policy Table Update happened and in received PTU module_1 is not in the list of assigned moduleTypes for RC_app_1
 
-1.b.2 RC_app_2 requests the control of module_1
-
 _Expected:_
 
 1.b.3 SDL disallows all RPC for module_1 from RC_app_1, releases module_1 from RC_app_1 control and unsubscribes RC_app_1 from receiving notifications about module_1 settings changed
 
-1.b.4 RC_app_2 gets in control of module_1
+1.b.4 SDL send OnRCStatus to HMI, RC_app_1 and RC_app_2 with module_1 in `freeModules` parameter
 
 _Excpetion 2.1_
 
 1.b.1.1 Any trigger of Policy Table Update happened and in received PTU RC_app_1 is revoked
 
-1.b.1.2 SDL releases module_1 from RC_app_1 control
+1.b.1.2 SDL releases module_1 from RC_app_1 control  
+
+1.b.1.3 SDL sends OnRCStatus to HMI, RC_app_1 and RC_app_2 with module_1 in `freeModules` parameter
 
 **Alternative Flow 3:**
 
@@ -303,7 +305,9 @@ _Expected:_
 
 1.c.3 SDL assigns HMILevel NONE to all applications registered from deviceID signed in deviceInfo and unsubscribes all applications of this device from all modules
 
-1.c.4 module_1 is not allocated to any application
+1.c.4 module_1 is not allocated to any application  
+
+1.c.5  SDL sends OnRCStatus to HMI, RC_app_1 and RC_app_2 with module_1 in `freeModules` parameter
 
 _Exception 3.1_
 
@@ -311,6 +315,8 @@ _Exception 3.1_
 
 1.c.1.2 SDL assigns HMILevel NONE to all applications registered from all devices and unsubscribes all applications from all modules
 
-1.c.1.3 module_1 is not allocated to any application
+1.c.1.3 module_1 is not allocated to any application  
+
+1.c.1.4 SDL sends OnRCStatus to HMI, RC_app_1 and RC_app_2 with module_1 in `freeModules` parameter
 
 > Requirement: [#10](https://github.com/smartdevicelink/sdl_requirements/issues/10) [SDL_RC] Resource allocation based on access mode
