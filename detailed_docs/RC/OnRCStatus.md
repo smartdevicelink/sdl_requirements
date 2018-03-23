@@ -53,8 +53,8 @@ _Expected:_
 3. SDL sends OnRCStatus notification to HMI and to RC app_1 with module_1 in `allocatedModules` parameter and remained modules in freeModules.  
 
 **Alternative flow 1**  
-1.a.1 RC app_1 already allocates module_1
-1.a.2 RC app_1 sends control request to module_1 one more time   
+1.a.1 RC app_1 already allocates module_1  
+1.a.2 RC app_1 sends control request to module_1 one more time  
 1.a.3 SDL does not send OnRCStatus  
 
 **Alternative flow 2**  
@@ -69,15 +69,13 @@ _Expected:_
 _Pre-conditions:_ 
 a.	mobile device is connected to SDL  
 
-b.	RC functionality is allowed on HMI  
+b.	RC functionality is allowed on HMI    
 
-c.	All modules are free  
+c.	RC functionality is allowed by policies  
 
-d.	RC functionality is allowed by policies  
+d.	RC app_1 is registered  
 
-e.	RC app_1 is registered  
-
-f.	RC app_1 allocates module_1  
+e.	RC app_1 allocates module_1  
 
 _Steps:_  
 
@@ -89,12 +87,12 @@ _Expected:_
 
 
 **Alternative flow 1**  
-1.a.1 RC app_1 starts unregistration 
-1.a.2 RC app_1 successfully unregistered
+1.a.1 RC app_1 starts unregistration  
+1.a.2 RC app_1 successfully unregistered  
 1.a.3 SDL sends OnRCStatus to HMI with all modules in `freeModules`  
 
-**Exception 1.1** 
-1.a.2.a RC sends invalid json in unregister request.  
+**Exception 1.1**  
+1.a.2.a RC sends invalid json in unregister request  
 1.a.2.b Unregistration is failed, SDL does not send OnRCStatus to HMI and to RC app_1
 
 **Alternative flow 2**  
@@ -142,5 +140,3 @@ d.2 SDL does NOT send OnRCStatus notification to app_2
 **Alternative flow 3**  
 1.b.1 RC app_2 allocates the module_1  
 1.b.2 SDL sends OnRCStatus to HMI, RC app_1, RC app_2  with module_1 in `allocatedModules`
-
-
