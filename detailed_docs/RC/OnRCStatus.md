@@ -83,7 +83,7 @@ _Steps:_
 
 _Expected:_  
 
-2. SDL sends OnRcStatus notification to RC app_1 and to HMI with app modules in `freeModules` parameter
+2. SDL sends OnRcStatus notification to RC app_1 and to HMI with all modules in `freeModules` parameter
 
 
 **Alternative flow 1**  
@@ -122,7 +122,10 @@ _Steps:_
 
 _Expected:_  
 
-3. SDL sends OnRCStatus to HMI and to RC app_1 and RC app_2 with module_1 in section allocatedModules and remained modules in freeModules  
+3. SDL sends OnRCStatus  
+- to HMI (app_1, allocatedModules:module_1; freeModules:module_2, module_3); (app_2, allocatedModules:(); freeModules:module_2, module_3)  
+- to RC app_1 (allocatedModules:module_1; freeModules:module_2, module_3)  
+- to RC app_2 (allocatedModules:(); freeModules:module_2, module_3) 
 
 **Alternative flow 1**  
 d.1 In case app_2 is not RC – > SDL sends OnRCStatus notification with all `freeModules` only to HMI and to RC app_1.  
