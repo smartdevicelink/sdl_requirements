@@ -10,7 +10,8 @@ In case
 SDL must
 - allocate access to RC module to requested application
 - process control request from this application  
-- responds with resultCode SUCCESS and sends OnRCStatus to HMI and registered apps with this RC module in `allocatedModules`.
+- respond with resultCode SUCCESS  
+- send OnRCStatus to HMI and registered apps with this RC module in `allocatedModules`
 
 2.
 In case
