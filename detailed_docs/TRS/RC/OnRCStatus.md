@@ -9,7 +9,7 @@ AND RC application sends ButtonPress or SetInteriorVehicleData request
 
 SDL must  
 send OnRCStatus notification to HMI and to mobile application  
-with all RC modules in `freeModules` parameter
+with RC modules in 'freeModules' and 'allocatedModules' parameters  
 
 
 2.
@@ -41,8 +41,13 @@ In case
 AND RC application allocates module_1  
 
 SDL must  
-send OnRCStatus to HMI and to registered RC application 
-with module_1 in parameter `allocatedModules` and remained modules in `freeModules`
+send OnRCStatus to
+HMI (app_1, allocatedModules:module_1; freeModules:module_2, module_3); (app_2, allocatedModules:(); freeModules:module_2, module_3);
+
+RC app_1 (allocatedModules:module_1; freeModules:module_2, module_3);
+
+RC app_2 (allocatedModules:(); freeModules:module_2, module_3)
+
 
 5. 
 In case  
@@ -114,6 +119,10 @@ SDL must
 send OnRCStatus to HMI with module_1 in `freeModules`  
 not send OnRCStatus to RC app_1 
 
+## Diagrams
+
+OnRCStatus
+![OnRCStatus](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/OnRCStatus.png)
 
 ## Non-Functional requirements  
 
