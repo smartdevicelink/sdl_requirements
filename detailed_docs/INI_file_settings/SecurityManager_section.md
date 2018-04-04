@@ -4,12 +4,6 @@
 |Parameter|Type|Example|Description|
 |:---|:----|:----|:----------|
 |Protocol|String|Protocol = TLSv1.2, DTLSv1.0.|Supported protocol version TLSv1.2, DTLSv1.0.|
-|KeyPath|String|KeyPath = client.key|Certificate and key path to pem file|
-|CertificatePath|String|CertificatePath = client.crt|Certificate and key path to pem file|
-|SSLMode|String|SSLMode = CLIENT|SSL mode could be SERVER or CLIENT|
-|CipherList|String|CipherList = ALL|Could be “ALL” ciphers or a list of chosen|
-|VerifyPeer|Boolean|VerifyPeer  = true|Defines if Mobile app certificate must be verified or not(could be used in both SSLMode Server and Client)|
-|CACertificatePath|String|CACertificatePath = .|Preloaded CA certificates directory|
 |ForceProtectedService|String|ForceProtectedService = Non|Force protected services (could be id's from 0x01 to 0xFF or “Non” value)|
 |ForceUnprotectedService|String|ForceUnprotectedService = Non|Force unprotected services (could be id's from 0x01 to 0xFF or “Non” value)
 |UpdateBeforeHours|Integer|UpdateBeforeHours = 24|The "UpdateBeforeHours" parameter defines the amount of time in hours for certificate expiration AND after expiration PTU sequence will be triggered|  
@@ -22,8 +16,10 @@ a) protected service handshake
 b) encryption  
 c) decryption by SDL  
 
-SDL must support the following version of "Protocol":
--> TLSv1.2
+SDL must  
+
+support the following version of "Protocol":  
+-> TLSv1.2  
 -> DTLSv1.0  
 
 2.  
@@ -38,37 +34,15 @@ SDL must
 - continue processing of the next valid encrypted packet  
 
 3.  
-The "KeyPath" parameter defines the path to .pem files of keys from certificates for TLS handshake  
-SDL must support both absolutive and relative paths for "KeyPath" and "CertificatePath" parameters at .ini file  
-
-4.  
-The "CertificatePath" parameter defines the path to .pem files of certificates for TLS handshake  
-SDL must support both absolutive and relative paths for "KeyPath" and "CertificatePath" parameters at .ini file  
-
-5.  
-The "SSLMode" parameter defines the current SSL mode for SDL (CLIENT or SERVER)  
-
-6.  
-The "CipherList" parameter defines the list of algorithms for encryption and hashing related to TLS connection  
-
-7.  
-The "VerifyPeer" (Boolean) parameter allows SDL to authenticate received certificates from mobile apps certificates with root certificate stored by `<CACertificatePath>`  
-Default value for "VerifyPeer" param is "true" 
-
-8.  
-The "CACertificatePath" parameter defines the path to root certificate for validation certificate received from mobile app during TLS handshake   
-
-9.  
 The "ForceProtectedService" parameter defines services which cannot be started as unprotected
 
 _Info: Service type 0x07 (RPC service) cannot be the value of "ForceprotectedService"_  
 
-10.  
+4.  
 The "ForceUnprotectedService" parameter defines services which cannot be started as protected OR delayed protected  
 
-	
+5.  
 The "UpdateBeforeHours" parameter defines the amount of time in hours for certificate expiration AND after expiration PTU sequence will be triggered
-
 
 
 ### Malformed messages filtering criteria  
