@@ -1,11 +1,10 @@
-TRS RegisterAppInterface  
-
 ## Functional requirements  
+
 1.  
 In case  
 mobile app sends RegisterAppInterface_request to SDL  
 and SDL checks the existence of apps icon at `<AppIconsFolder>`  
-and the apps icon exists at `<AppIconsFolder>`  
+and the apps icon exists at `<AppIconsFolder>` (value of [ini.file](https://github.com/smartdevicelink/sdl_core/blob/develop/src/appMain/smartDeviceLink.ini))  
 
 SDL must  
 - respond RegisterAppInterface (`<successfull_resultCode>`, "iconResumed" = true, params) to mobile app (in case of no other failures)  
@@ -35,4 +34,10 @@ MOBILE_API change
  If false, apps icon is not resumed at system</description>`    
  </param>    
  </function>
- ```
+ ```  
+
+## Diagram
+
+App Icon Resumption
+
+![App Icon Resumption](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/App_Icon_Resumption.png)

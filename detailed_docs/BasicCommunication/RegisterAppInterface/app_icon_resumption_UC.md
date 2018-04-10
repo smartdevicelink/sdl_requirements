@@ -19,7 +19,8 @@ _Expected:_
 
 
 **Alternative flow 1:**  
-b.1. Mobile application had NOT previously set an app icon successfully and / or the file does not exist on the head unit  
+b.1 Mobile application had NOT previously set an app `icon` successfully and/or the file does not exist on the head unit  
+b.2 Mobile application re-registeres   
 
 _Steps:_  
 1. Mobile application sends registration request  
@@ -29,5 +30,5 @@ _Expected:_
 2. SDL checks the existence of apps icon at AppIconsFolder  
 3. The apps icon does NOT exist at AppIconsFolder  
 4. SDL sends a response of success to mobile application with iconResumed flag off  
-5. SDL sends notification without "icon" parameter to HMI 
+5. SDL sends notification without `icon` parameter to HMI 
 6. Default app icon is displayed on the HMI
