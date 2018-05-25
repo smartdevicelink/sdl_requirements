@@ -83,7 +83,61 @@ SDL gets response from HMI with (resultCode: READ_ONLY) on <"any-RPC-except-of-S
 
 SDL must 
 
-send <"any-RPC-except-of-SetInteriorVehicleData"> response (resultCode: GENERIC_ERROR, success: false) to the related mobile app. 
+send <"any-RPC-except-of-SetInteriorVehicleData"> response (resultCode: GENERIC_ERROR, success: false) to the related mobile app  
+
+10. 
+In case media mobile app is
+1) RC and Media  
+2) in FULL or LIMITED HMI level 
+3) audio source=MOBILE_APP (keepContext = true)
+
+and sends SetInteriorVehicleData request to change audio sourse to either itself (with target MOBILE_APP) or other system sources
+
+SDL must  
+- transfer this request to HMI  
+- respond with <result_code> received from HMI  
+- change audio source successfully  
+- not change app's HMI level  
+
+11. 
+In case media mobile app is
+1) RC and Media  
+2) in FULL or LIMITED HMI level 
+3) audio source=MOBILE_APP (keepContext = false) or without keepContext param  
+
+SDL must  
+- transfer this request to HMI  
+- respond with <result_code> received from HMI  
+- change audio source successfully
+- change app's HMI level into 'BACKGROUND'
+
+
+12. 
+In case media mobile app is
+1) RC and Media  
+2) in BACKGROUND HMI level 
+3) audio source=MOBILE_APP (keepContext = true)
+
+and sends `Alert` (UI-related params WITH softButtons ‘yes’ ‘no’) to switch the audio source from others to itself  
+
+SDL must  
+- transfers the request to HMI with requested params displayed on the Alert dialog 
+- receive from HMI OnHMIStatus(FULL, audible)  
+- bring the application to foreground (HMI_FULL) 
+- change audio source successfully
+
+13.  
+In case mobile app is  
+1) RC and Non-Media  
+2) in any HMI level  
+
+and sends SetInteriorVehicleData to change audio sourse  
+
+SDL must 
+- transfer this request to HMI  
+- respond with <result_code> received from HMI  
+- not change audio source
+
 
 ## Non-Functional requirements
 
@@ -99,7 +153,8 @@ send <"any-RPC-except-of-SetInteriorVehicleData"> response (resultCode: GENERIC_
 |       | Current HD Channel | 1-3 | Get/Set/Notification |
 |       | Radio Signal Strength |  | Get/Notification | read only |
 |       | Signal Change Threshold |  | Get/Notification | read only |
-|       | Radio State | Acquiring, acquired, multicast, not_found | Get/Notification | read only |
+|       | Radio State | Acquiring, acquired, multicast, not_found | Get/Notification | read only |  
+|       | HD radio SIS data | see sisData type | Get,Notification | read only HD radio SIS data |
 | Climate | Current Cabin Temperature |  | Get/Notification | read only, value range depends on OEM |
 |         | Desired Cabin Temperature |  | Get/Set/Notification | value range depends on OEM |
 |         | AC Setting | on,off | Get/Set/Notification |  |
@@ -110,7 +165,23 @@ send <"any-RPC-except-of-SetInteriorVehicleData"> response (resultCode: GENERIC_
 |         | Dual Mode Setting | on,off  | Get/Set/Notification |  |
 |         | Fan Speed Setting | 0%-100% | Get/Set/Notification |  |
 |         | Ventilation Mode Setting | upper,lower,both,none  | Get/Set/Notification |  |
-
+|         | heated windshield | true, false | Get/Set/Notification | true means ON, false means OFF | |
+|         | heated rear window | true, false | Get/Set/Notification | true means ON, false means OFF | |
+|         | heated steering wheel | true, false | Get/Set/Notification | true means ON, false means OFF | |
+|         | heated mirrors | true, false | Get/Set/Notification | true means ON, false means OFF | |
+| Audio   | | | | |  
+|         | Audio volume | 0%-100% | Get/Set/Notification | the audio source volume level | |
+|         | Audio Source | MOBILE_APP, RADIO_TUNER, CD, BLUETOOTH, USB, etc. see PrimaryAudioSource| Get/Set/Notification | defines one of the available audio sources | |
+|         | keep Context | true, false | Set only | control whether HMI shall keep current application context or switch to default media UI/APP associated with the audio source | |
+|         | Equalizer Settings | Struct {Channel ID as integer, Channel setting as 0%-100%} | Get/Set/Notification | defines the list of supported channels (band) and their current/desired settings on HMI | |  
+| HMI Setting  | | | | |   
+|         | Display Mode | DAY, NIGHT, AUTO | Get/Set/Notification | current display mode of the HMI display | |  
+|         | Distance Unit | MILES, KILOMETERS | Get/Set/Notification | distance Unit used in the HMI (for maps/tracking distances) | |
+|         | Temperature Unit | FAHRENHEIT, CELSIUS | Get/Set/Notification | temperature Unit used in the HMI (for temperature measuring systems) | |
+| Light   | | | | | 
+|         | Light Status | ON, OFF| Get/Set/Notification | turn on/off a single light or all lights in a group | |
+|         | Light Density | float 0.0-1.0| Get/Set/Notification | change the density/dim a single light or all lights in a group| |
+|         | Light Color | RGB color| Get/Set/Notification | change the color scheme of a single light or all lights in a group| |
 
 ## Diagrams
 
