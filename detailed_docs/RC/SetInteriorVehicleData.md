@@ -4,9 +4,9 @@
 
 _Pre-conditions:_
 
-a. mobile device is connected to SDL.
+a. mobile device is connected to SDL
 
-b. app is registered with REMOTE_CONTROL appHMIType with SDL from this device.
+b. app is registered with REMOTE_CONTROL appHMIType with SDL from this device
 
 c. moduleType_X is allowed for this app by policies
 
@@ -84,11 +84,12 @@ _Expected:_
 1.a.1 app is running in BACKGROUND requests to switch the audio source from others to itself  
 
 _Expected:_
+
 1.a.2 application sends an alert with at least "yes" and "no" soft buttons  
-1.a.3 SDL transfers the request to HMI displayed on the Alert dialog
-1.a.4 User presses Alert "yes" softButton 
-1.a.5 HMI brings the application to foreground 
-1.a.6 SDL changes app's HMI level into FULL
+1.a.3 SDL transfers the request to HMI displayed on the Alert dialog  
+1.a.4 User presses Alert "yes" softButton  
+1.a.5 HMI brings the application to foreground   
+1.a.6 SDL changes app's HMI level into FULL  
 1.a.7 HMI sets audio source to this media application  
 1.a.8 SDL transfers received response from HMI to the app  
 1.a.9 Requested settings are successfully changed on HMI according to application's request
@@ -134,4 +135,44 @@ _Expected:_
 1.a.3. SDL receives the response from HMI  
 1.a.4. SDL transfers received response from HMI to the app  
 1.a.5. SDL does not change app’s HMI level  
-1.a.6. Requested settings are successfully changed on HMI according to application's request
+1.a.6. Requested settings are successfully changed on HMI according to application's request  
+
+## Use Case 4: App requests to change radio state  
+
+**Main Flow:**
+
+_Pre-conditions:_  
+
+a.	SDL and HMI are started  
+b.	app is registered with REMOTE_CONTROL appHMIType  
+c.	moduleType_RADIO is allowed for this app by policies  
+d.	app is subscribed to RADIO module  
+e.	app is able to enable/disable the HD radio or SiriusXM radio (by capabilities provided from HMI)
+
+_Steps:_
+
+1.	Mobile app sends a request to turn on the radio  
+
+_Expected:_  
+
+2.	SDL checks if the request is valid
+3.	SDL transfers request to HMI
+4.	SDL receives the response from HMI
+5.	HMI changes radio state
+6.	SDL transfers received response from HMI to the app
+
+**Exception:**  
+
+2.1 Request is invalid in case of wrong characters or symbols -> SDL returns INVALID_DATA and doesn't transfer the request to HMI
+
+**Alternative flow 1**
+
+_Pre-conditions:_  
+e.1. app is NOT able to enable/disable the radio or the capabilities were not provided
+
+_Steps:_  
+e.2. Mobile app sends a request to turn on the HD radio  
+
+_Expected:_  
+e.3 SDL rejects request with resultCode `UNSUPPORTED_RESOURCE`   
+e.4 SDL does not transfer request to HMI

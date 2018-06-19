@@ -1,6 +1,6 @@
 ## Functional Requirements
 
-1.
+1.  
 In case
 
 application is registered with REMOTE_CONTROL appHMIType
@@ -31,7 +31,7 @@ SDL must
 - respond with "resultCode: INVALID_DATA, success: false" to this mobile app
 - not transfer this request to HMI
 
-4.
+4.  
 In case 
 
 application sent valid SetInteriorVehicleData with just read-only parameters in "*ControlData" struct for the appropriate muduleType 
@@ -56,9 +56,9 @@ In case
 
 SDL must 
 
-send "resultCode: READ_ONLY, success:false" to the related mobile application. 
+send "resultCode: READ_ONLY, success:false" to the related mobile application 
 
-7.
+7.  
 In case
 
 mobile app sent SetInteriorVehicleData with all unknown controlData itmes from *controlData structure  or all controlData itmes that do not match with moduleType (for example app requested SetInteriorVehicledata for RADIO module with ClimateControlData items only),
@@ -74,7 +74,7 @@ In case
 
 SDL must
 - cut off these fake parameters
-- forward to HMI only items of controlData structure that are related to requested moduleType.
+- forward to HMI only items of controlData structure that are related to requested moduleType
 
 9. 
 In case 
@@ -111,7 +111,6 @@ SDL must
 - change audio source successfully
 - change app's HMI level into 'BACKGROUND'
 
-
 12. 
 In case media mobile app is
 1) RC and Media  
@@ -137,6 +136,41 @@ SDL must
 - transfer this request to HMI  
 - respond with <result_code> received from HMI  
 - not change audio source
+
+14.  
+In case  
+RadioCapabilities value is set with "hdRadioEnableAvailable" = true/"siriusxmRadioAvailable" = true by RC.GetCapabilities
+
+and application registered with REMOTE_CONTROL AppHMIType  
+sends SetInteriorVehicleData ("hdRadioEnable": true)/("band": "XM") request to SDL  
+
+SDL must  
+- transfer this request to HMI  
+- respond with <result_code> received from HMI  
+
+15.  
+In case  
+- RadioCapabilities value is set with "hdRadioEnableAvailable" = false/"siriusxmRadioAvailable" = false  
+or with omitted "hdRadioEnableAvailable"/"siriusxmRadioAvailable params  by RC.GetCapabilities
+
+- `band` is supported and is not read-only
+
+and application registered with REMOTE_CONTROL AppHMIType   
+sends SetInteriorVehicleData ("hdRadioEnable": true)/("band": "XM") request to SDL  
+
+SDL must  
+- respond UNSUPPORTED_RESOURCE success:false result code to mobile app
+- not transfer this request to HMI
+
+16. 
+In case 
+
+application registered with REMOTE_CONTROL AppHMIType 
+sends SetInteriorVehicleData request with data above the maximum value for the parameters "availableHDs", "hdChannel"  
+
+SDL must
+- respond INVALID_DATA success:false to mobile app
+- not transfer this request to HMI
 
 
 ## Non-Functional requirements
