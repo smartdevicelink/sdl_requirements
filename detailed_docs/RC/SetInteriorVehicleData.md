@@ -151,7 +151,7 @@ e.	app is able to enable/disable the HD radio or SiriusXM radio (by capabilities
 
 _Steps:_
 
-1.	Mobile app sends a request to turn on the radio  
+1. Mobile app sends a request to turn on the radio  
 
 _Expected:_  
 
@@ -176,3 +176,116 @@ e.2. Mobile app sends a request to turn on the HD radio
 _Expected:_  
 e.3 SDL rejects request with resultCode `UNSUPPORTED_RESOURCE`   
 e.4 SDL does not transfer request to HMI
+
+## Use Case 5: App sends a request to change the status of a light  
+
+**Main Flow:**
+
+_Pre-conditions:_   
+a. SDL and HMI are started  
+b. app is registered with REMOTE_CONTROL appHMIType  
+c. moduleType_LIGHTS is allowed for this app by policies   
+d. app is subscribed to LIGHTS module  
+e. app is allowed to change the ON/OFF status of a light (by capabilities provided from HMI)
+
+_Steps:_  
+
+1. Mobile app sends a request to change status of a light   
+
+_Expected:_    
+
+2.	SDL checks if the request is valid
+3.	SDL transfers request to HMI
+4.	SDL receives the response from HMI
+5.	HMI changes status of a light 
+6.	SDL transfers received response from HMI to the app
+
+**Alternative flow 1: App is not allowed to change the status of a light**  
+
+_Pre-conditions:_  
+
+a. SDL and HMI are started  
+b. app is registered with REMOTE_CONTROL appHMIType  
+c. moduleType_LIGHTS is allowed for this app by policies  
+d. app is subscribed to LIGHTS module    
+e. app is NOT allowed to change the ON/OFF status of a light (by capabilities provided from HMI)  
+
+_Steps:_  
+
+1.	Mobile app sends a request to change status of a light    
+
+_Expected:_  
+
+2. SDL checks if the request is valid  
+3. SDL transfers request to HMI  
+4. SDL receives the response from HMI  
+5. HMI does not change status of a light  
+6. SDL transfers received "READ_ONLY" resultCode + info= "The requested parameter is read-only" to the app
+
+**Alternative flow 2: Missed Capabilities**
+_Pre-conditions:_  
+
+a. SDL and HMI are started  
+b. app is registered with REMOTE_CONTROL appHMIType  
+c. moduleType_LIGHTS is allowed for this app by policies  
+d. app is subscribed to LIGHTS module  
+e. the light_value in not provided in capabilities from HMI/or HMI sends light_value without statusAvailable in capabilities  
+
+_Steps:_  
+
+1.	Mobile app sends a request to change status of a light  
+
+_Expected:_  
+
+2. SDL checks if the request is valid  
+3. SDL transfers request to HMI  
+4. SDL receives the response from HMI  
+5. HMI does not change status of a light  
+6. SDL transfers received response from HMI with result code UNSUPPORTED_RESOUCE, and info="The requested parameter of the given LightName is not supported by the vehicle."
+
+
+**Alternative flow 3: App requests to change the status of a light with read only value**  
+
+_Pre-conditions:_
+
+a. SDL and HMI are started  
+b. app is registered with REMOTE_CONTROL appHMIType  
+c. moduleType_LIGHTS is allowed for this app by policies   
+d. app is subscribed to LIGHTS module  
+e. app is allowed to change the ON/OFF status of a light (by capabilities provided from HMI)  
+f. current LightStatus for a LightName_1 has read-only values (RAMP_UP, RAMP_DOWN, UNKNOWN, INVALID)  
+
+_Steps:_  
+
+1.	Mobile app sends a request to change status of a light  
+
+_Expected:_  
+
+2. SDL checks if the request is valid  
+3. SDL transfers request to HMI  
+4. SDL receives the response from HMI  
+5. HMI does not change status of a light   
+6. SDL transfers received response with result code READ_ONLY, and info="The LightStatus enum passed is READ ONLY and cannot be written” to the app
+
+**Alternative flow 4: App requests to change the status of lights with mixed read-only and writeable values**  
+
+_Pre-conditions:_  
+
+a. SDL and HMI are started  
+b. app is registered with REMOTE_CONTROL appHMIType  
+c. moduleType_LIGHTS is allowed for this app by policies  
+d. app is subscribed to LIGHTS module  
+e. app is allowed to change the ON/OFF status of a light (by capabilities provided from HMI)  
+f. `xyzAvailable=false`
+g. current LightStatus for a LightName_1 is read-only ("RAMP_UP"/"RAMP_DOWN"/"UNKNOWN"/ "INVALID")  
+Current LightStatus for a LightName_2 can be written (LightStatus= "ON")
+
+_Steps:_ 
+Mobile app sends a request to change status of a LightName_1 and LightName_2 
+
+_Expected:_  
+2. SDL checks if the request is valid  
+3. SDL transfers request to HMI  
+4. SDL receives the response from HMI  
+5. HMI does not change status of a light   
+6. SDL transfers received response with result code READ_ONLY, and info="The requested parameter is read-only"

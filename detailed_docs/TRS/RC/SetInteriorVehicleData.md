@@ -159,7 +159,7 @@ and application registered with REMOTE_CONTROL AppHMIType
 sends SetInteriorVehicleData ("hdRadioEnable": true)/("band": "XM") request to SDL  
 
 SDL must  
-- respond UNSUPPORTED_RESOURCE success:false result code to mobile app
+- respond UNSUPPORTED_RESOURCE, success:false result code to mobile app
 - not transfer this request to HMI
 
 16. 
@@ -169,8 +169,52 @@ application registered with REMOTE_CONTROL AppHMIType
 sends SetInteriorVehicleData request with data above the maximum value for the parameters "availableHDs", "hdChannel"  
 
 SDL must
-- respond INVALID_DATA success:false to mobile app
+- respond INVALID_DATA, success:false to mobile app
 - not transfer this request to HMI
+
+17.  
+In case  
+
+- LightCapabilities value is set with "statusAvailable = true" by RC.GetCapabilities
+- All LightNames are settable
+
+and application registered with REMOTE_CONTROL AppHMIType  
+sends SetInteriorVehicleData request with changing LightStatus  
+
+SDL must  
+- transfer this request to HMI
+- respond with <result_code> received from HMI 
+
+18. 
+In case  
+
+- LightCapabilities value is set with "statusAvailable = false" by RC.GetCapabilities
+- All LightNames are settable
+
+SDL must 
+respond with READ_ONLY result code and info= "The requested parameter is read-only" 
+
+19.  
+In case
+- LightCapabilities value is set without "statusAvailable" value
+
+and application registered with REMOTE_CONTROL AppHMIType  
+sends SetInteriorVehicleData request with changing LightStatus  
+
+SDL must  
+respond with UNSUPPORTED_RESOURCE result code and info="The requested parameter of the given LightName is not supported by the vehicle."
+
+20.  
+In case  
+
+- LightCapabilities value is set with "statusAvailable = true" by RC.GetCapabilities  
+- and Lightstatus = "RAMP_UP"/"RAMP_DOWN"/"UNKNOWN"/"INVALID"  
+
+and application registered with REMOTE_CONTROL AppHMIType  
+sends SetInteriorVehicleData request with changing LightStatus  
+
+SDL must  
+respond with READ_ONLY result code and info="The LightStatus enum passed is READ ONLY and cannot be written."
 
 
 ## Non-Functional requirements
@@ -213,7 +257,7 @@ SDL must
 |         | Distance Unit | MILES, KILOMETERS | Get/Set/Notification | distance Unit used in the HMI (for maps/tracking distances) | |
 |         | Temperature Unit | FAHRENHEIT, CELSIUS | Get/Set/Notification | temperature Unit used in the HMI (for temperature measuring systems) | |
 | Light   | | | | | 
-|         | Light Status | ON, OFF| Get/Set/Notification | turn on/off a single light or all lights in a group | |
+|         | Light Status | ON, OFF; RAMP_UP, RAMP_DOWN, UNKNOWN, INVALID| Get/Set/Notification | turn on/off a single light or all lights in a group; and read-only values | |
 |         | Light Density | float 0.0-1.0| Get/Set/Notification | change the density/dim a single light or all lights in a group| |
 |         | Light Color | RGB color| Get/Set/Notification | change the color scheme of a single light or all lights in a group| |
 
