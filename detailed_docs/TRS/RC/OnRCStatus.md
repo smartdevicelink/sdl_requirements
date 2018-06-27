@@ -8,9 +8,8 @@ In case
 AND RC application sends ButtonPress or SetInteriorVehicleData request 
 
 SDL must  
-send OnRCStatus notification to HMI and to mobile application  
-with RC modules in 'freeModules' and 'allocatedModules' parameters  
-
+send OnRCStatus notification with RC modules in 'freeModules' and 'allocatedModules' parameters to HMI  
+send OnRCStatus notification with 'allowed = true', 'freeModules' and 'allocatedModules' parameters to mobile application 
 
 2.
 In case   
@@ -20,7 +19,7 @@ In case
 AND RC application sends ButtonPress or SetInteriorVehicleData request 
 
 SDL must  
-NOT sends OnRCStatus to HMI and registered application  
+send OnRCStatus notification with 'allowed = false' and empty arrays of 'freeModules', 'allocatedModules' to registered mobile application  
 
 3. 
 In case
@@ -69,8 +68,8 @@ In case
 AND RC app_2 starts registration
 
 SDL must  
-Send OnRCStatus notification to HMI and to RC app_1, RC app_2 with all modules in `freeModules` parameter.
-
+send OnRCStatus notification with all modules in `freeModules` parameter to HMI and to RC app_1, RC app_2 with all modules in `freeModules` parameter.  
+send and OnRCStatus notification with 'allowed = true' and all modules in `freeModules` parameter to RC app_1, RC app_2 
 
 7. 
 In case  
@@ -106,7 +105,7 @@ AND RC app_2 is registering with PT with revoked allocated module_1
 
 SDL must  
 deallocates module_1 from RC app_1  
-send OnRCStatus to HMI and to app1 and app2 with all modules in freeModules  
+send OnRCStatus to HMI and to app1 and app2 with all modules in `freeModules` 
 
 10.  
   In case  
@@ -132,13 +131,19 @@ OnRCStatus
 
 <function name="OnRCStatus" messagetype="notification">
   <description>Issued by SDL to notify the application about remote control status change on SDL</description>
-  <param name="allocatedModules" type="ModuleData" minsize="0" maxsize="100" array="true" mandatory="true">
-    <description>Contains a list (zero or more) of module types that are allocated to the application.</description>
-  </param>
-  <param name="freeModules" type="ModuleData" minsize="0" maxsize="100" array="true" mandatory="true">
-    <description>Contains a list (zero or more) of module types that are free to access for the application.</description>
-  </param>    
-</function>
+     <param name="allowed" type="Boolean" mandatory="false" >
+       <description>If "true" - RC is allowed; if "false" - RC is disallowed.
+                    Not present in the notification in case by module allocation/deallocation.
+                    Present in notification in cases enabling/disabling RC or RC-app registration.
+      </description>
+     </param>
+      <param name="allocatedModules" type="ModuleData" minsize="0" maxsize="100" array="true" mandatory="true">
+        <description>Contains a list (zero or more) of module types that are allocated to the application.</description>
+      </param>
+      <param name="freeModules" type="ModuleData" minsize="0" maxsize="100" array="true" mandatory="true">
+        <description>Contains a list (zero or more) of module types that are free to access for the application.</description>
+      </param>
+    </function>
 ```
 
 ### Additions to HMI_API

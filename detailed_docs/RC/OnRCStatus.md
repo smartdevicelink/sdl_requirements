@@ -17,15 +17,16 @@ _Steps:_
 1.	RC application starts registration (upon a OnButtonPress or SetInteriorVehicleData request)
 
 _Expected:_   
-
-2. SDL sends OnRCStatus notification to HMI and to registered mobile application with all modules in `freeModules` parameter.
+1. SDL sends OnRCStatus with all modules in `freeModules` parameter to HMI
+2. SDL sends OnRCStatus(allowed = true, freeModules = {}) notification and to registered mobile application
 
 **Alternative flow 1**  
-b.1 RC functionality is disallowed on HMI - > SDL does not sends OnRCStatus to HMI and registered application.  
+b.1 RC functionality is disallowed on HMI  
+b.2 SDL sends OnRCStatus(allowed = false, freeModules = {}, allocatedModules = {}) notification to registered mobile application 
 
 **Alternative flow 2**  
 1.a.1 Non-RC application starts registration  
-1.a.2 SDL does not sends OnRCStatus to HMI and registered application.
+1.a.2 SDL does not sends OnRCStatus to HMI and non-RC application
 
 
 ## Use Case 2: Notification about RC module allocation after application’s registration
@@ -50,7 +51,8 @@ _Steps:_
 2.  RC app_1 allocates module_1
 
 _Expected:_  
-3. SDL sends OnRCStatus notification to HMI and to RC app_1 with module_1 in `allocatedModules` parameter and remained modules in freeModules.  
+3. SDL sends OnRCStatus notification to HMI with module_1 in `allocatedModules` parameter and remained modules in `freeModules`  
+4. SDL sends OnRCStatus notification to RC app_1 with (allowed = true), module_1 in `allocatedModules` parameter and remained modules in `freeModules` 
 
 **Alternative flow 1**  
 1.a.1 RC app_1 already allocates module_1  
@@ -83,7 +85,7 @@ _Steps:_
 
 _Expected:_  
 
-2. SDL sends OnRcStatus notification to RC app_1 and to HMI with all modules in `freeModules` parameter
+2. SDL sends OnRCStatus(allowed = false) notification with empty arrays of `allocatedModules`, `freeModules` to RC app_1
 
 
 **Alternative flow 1**  
@@ -97,7 +99,8 @@ _Expected:_
 
 **Alternative flow 2**  
 1.b.1 RC app_1 stops controlling module_1  
-1.b.2 SDL sends OnRCStatus to HMI and to app1 with all modules in `freeModules`
+1.b.2 SDL sends OnRCStatus to HMI with all modules in `freeModules`  
+
 
 
 ## Use Case 4: Notification about change of RC module allocation for multiple apps  
