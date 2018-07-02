@@ -14,10 +14,10 @@ d.	RC functionality is allowed by policies
 
 _Steps:_
 
-1.	RC application starts registration (upon a OnButtonPress or SetInteriorVehicleData request)
+1.	RC application starts registration
 
 _Expected:_   
-1. SDL sends OnRCStatus with all modules in `freeModules` parameter to HMI
+1. SDL sends OnRCStatus with all modules in `freeModules` and empty array of `allocatedModules` to HMI
 2. SDL sends OnRCStatus(allowed = true, freeModules = {}) notification and to registered mobile application
 
 **Alternative flow 1**  
@@ -46,9 +46,9 @@ d.	RC functionality is allowed by policies
 e.	RC app_1 is registered 
 
 _Steps:_
-1.	RC app_1 sends control request to module_1  
+1.	RC app_1 sends control request to module_1 (upon a OnButtonPress or SetInteriorVehicleData request) 
 
-2.  RC app_1 allocates module_1
+2. RC app_1 allocates module_1
 
 _Expected:_  
 3. SDL sends OnRCStatus notification to HMI with module_1 in `allocatedModules` parameter and remained modules in `freeModules`  
@@ -100,7 +100,6 @@ _Expected:_
 **Alternative flow 2**  
 1.b.1 RC app_1 stops controlling module_1  
 1.b.2 SDL sends OnRCStatus to HMI with all modules in `freeModules`  
-
 
 
 ## Use Case 4: Notification about change of RC module allocation for multiple apps  
