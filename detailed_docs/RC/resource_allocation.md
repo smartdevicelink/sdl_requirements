@@ -14,26 +14,30 @@ _Steps:_
 
 1. User chose to allow RC functionality via HMI and specified access mode as AUTO_ALLOW or didn't specify the access mode at all
 2. HMI sends notification to SDL that Remote control functionality is allowed with or without specified access mode
-3. RC_app_1 is in HMILevel FULL sends request to allocate the module _1 (either  to change settings or emulate button press)
-4. User activates RC_app_2 (app_2 is in FULL HMI level now)	+4. RC_app_1 is in control of the the module_1
-5. RC_app_2 sends control request to module_1 (sent request to either change settings or emulate button press)	+5. SDL sends OnRCStatus to HMI and to registered application app1 and app2 with module_1 in section `allocatedModules` and remained modules in `freeModules`  
-6. User activates RC_app_2 (app_2 is in FULL HMI level now)  
-7. RC_app_2 sends control request to module_1 (sent request to either change settings or emulate button press)
+3. RC_app_1 is in HMILevel FULL sends request to allocate the module_1 (either  to change settings or emulate button press)
+4. RC_app_1 is in control of the the module_1
+5.	SDL sends OnRCStatus to HMI (app_1, allocatedModules:module_1; freeModules:module_2, module_3); (app_2, allocatedModules:(); freeModules:module_2, module_3)
+6.	SDL sends OnRCStatus to RC app_1 (allocatedModules:module_1; freeModules:module_2, module_3)
+7.	SDL sends OnRCStatus to RC app_2 (allocatedModules:(); freeModules:module_2, module_3)
+8.	User activates RC_app_2 (app_2 is in FULL HMI level now)
+9.	RC_app_2 sends control request to module_1 (sent request to either change settings or emulate button press)
 
 _Expected:_
 
 8. RC_app_2 gets in control of the module_1  
-9. SDL sends OnRCStatus to HMI and to registered application app1 and app2 with module_1 in section allocatedModules
+9. SDL sends OnRCStatus to HMI (app_1, allocatedModules:(), freeModules:module_2, module_3); (app_2, allocatedModules:module_1; freeModules:module_2, module_3)  
+10. SDL sends OnRCStatus to RC app_1 (allocatedModules:(); freeModules:module_2, module_3)  
+11. SDL sends OnRCStatus to RC app_2 (allocatedModules:module_1; freeModules:module_2, module_3)
 
 _Exception 1:_
 
-6.1 User did not activate RC_app_2 (app_2 is in LIMITTED or BACKGROUND HMILevel)
+8.1 User did not activate RC_app_2 (app_2 is in LIMITTED or BACKGROUND HMILevel)
 
-6.2 RC_app_2 sends control request to module_1 (sent request to either change settings or emulate button press)
+8.2 RC_app_2 sends control request to module_1 (sent request to either change settings or emulate button press)
 
-6.3 RC_app_2 control request was rejected with result code REJECTED, success:false, RC_app_1 remains in control of module_1   
+8.3 RC_app_2 control request was rejected with result code REJECTED, success:false, RC_app_1 remains in control of module_1   
 
-6.4 SDL does not send OnRCStatus to HMI and to registered application 
+8.4 SDL does not send OnRCStatus to HMI and to registered application 
 
 _Exception 2:_
 
@@ -196,12 +200,16 @@ _Steps:_
 _Expected:_
 
 7. RC_app_2 gets in control of module_1 without asking a driver  
-8. SDL sends OnRCStatus to RC_app_1 and RC_app_2 and to HMI with module_1 in `allocatedModules` parameter.
-9. User activates RC_app_1 
-10. RC_app_1 requests the control of module_2  
-11. SDL sends the request to HMI to display permission prompt to the driver
-12. Driver allows, RC_app_1 gets control of module_2  
-13. SDL sends OnRCStatus notification to HMI, RC_app_1, RC_app_2 module_2 with corresponding `allocatedModules`
+8. SDL sends OnRCStatus HMI (app_1, allocatedModules:(), freeModules:module_2, module_3); (app_2, allocatedModules:module_1; freeModules:module_2, module_3)  
+9. SDL sends OnRCStatus to RC_app_1 (allocatedModules:(); freeModules:module_2, module_3)  
+10. SDL sends OnRCStatus to RC_app_2 (allocatedModules:module_1; freeModules:module_2, module_3) and to 
+11. User activates RC_app_1 
+12. RC_app_1 requests the control of module_2  
+13. SDL sends the request to HMI to display permission prompt to the driver
+14. Driver allows, RC_app_1 gets control of module_2  
+15. SDL sends OnRCStatus notification to HMI (app_1, allocatedModules:module_2, freeModules:module_3); (app_2, allocatedModules:module_1; freeModules:module_3)     
+16. RC_app_1 (allocatedModules:module_2; freeModules:module_3)  
+17. RC_app_2 module_2 (allocatedModules:module_1; freeModules:module_3)
 
 _Exception:_
 
