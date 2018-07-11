@@ -19,7 +19,7 @@ In case
 AND RC application sends ButtonPress or SetInteriorVehicleData request 
 
 SDL must  
-send OnRCStatus notification with 'allowed = false' and empty arrays of 'freeModules', 'allocatedModules' to registered mobile application  
+reject the request and NOT send OnRCStatus notification to HMI and to registered RC application
 
 3. 
 In case
@@ -35,18 +35,13 @@ NOT send OnRCStatus to HMI and to registered non-RC application
 In case  
 - RC functionality is allowed on HMI  
 - all RC modules are free
-- RC application is registered with SDL
+- RC app_1 is registered with SDL
 
-AND RC application allocates module_1  
+AND RC app_1 allocates module_1  
 
 SDL must  
-send OnRCStatus to
-HMI (app_1, allocatedModules:module_1; freeModules:module_2, module_3); (app_2, allocatedModules:(); freeModules:module_2, module_3);
-
-RC app_1 (allocatedModules:module_1; freeModules:module_2, module_3);
-
-RC app_2 (allocatedModules:(); freeModules:module_2, module_3)
-
+send OnRCStatus to HMI (app_1, allocatedModules:module_1; freeModules:module_2, module_3);  
+send OnRCStatus to RC app_1 (allocatedModules:module_1; freeModules:module_2, module_3);
 
 5. 
 In case  
@@ -68,8 +63,7 @@ In case
 AND RC app_2 starts registration
 
 SDL must  
-send OnRCStatus notification with all modules in `freeModules` parameter to HMI and to RC app_1, RC app_2 with all modules in `freeModules` parameter.  
-send and OnRCStatus notification with 'allowed = true' and all modules in `freeModules` parameter to RC app_1, RC app_2 
+send and OnRCStatus notification with 'allowed = true' and all modules in `freeModules` parameter to RC app_2 
 
 7. 
 In case  
@@ -80,20 +74,27 @@ In case
 AND RC app_1 allocates module_1  
 
 SDL must  
-send OnRCStatus to HMI and to RC app_1, RC app_2 with module_1 in section `allocatedModules`  
-and remained modules in `freeModules`
+
+send OnRCStatus to HMI (app_1, allocatedModules:module_1; freeModules:module_2, module_3); (app_2, allocatedModules:(); freeModules:module_2, module_3);
+
+send OnRCStatus to RC app_1 (allocatedModules:module_1; freeModules:module_2, module_3);
+
+send OnRCStatus to RC app_2 (allocatedModules:(); freeModules:module_2, module_3)
+
 
  8.
  In case  
-- RC functionality is allowed on HMI 
+- RC functionality is allowed on HMI, with allowed or without specified access mode  
 - RC app_1 and RC app_2 are registered with SDL
-- RC app_1 is in control of module_1 
+- RC app_1 is in control of module_1  
+- module_2, module_3 are free
 
 AND RC app_2 allocates module_1
 
 SDL must  
-sends OnRCStatus to HMI and to RC app_1, RC app_2 with module_1 in section `allocatedModules`  
-
+SDL send OnRCStatus to HMI (app_1, allocatedModules:(), freeModules:module_2, module_3); (app_2, allocatedModules:module_1; freeModules:module_2, module_3)
+SDL send OnRCStatus to RC app_1 (allocatedModules:(); freeModules:module_2, module_3)
+SDL send OnRCStatus to RC app_2 (allocatedModules:module_1; freeModules:module_2, module_3)
 
 9.  
  In case  
