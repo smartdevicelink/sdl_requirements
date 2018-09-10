@@ -39,6 +39,7 @@ NOT initiate app data resumption process
 
 1. 
 Every `AppSavePersistentDataTimeout` milliseconds defined in [smartDeviceLink.ini file](https://github.com/smartdevicelink/sdl_core/blob/master/src/appMain/smartDeviceLink.ini)  
+
 SDL must  
 persist in the database `<appID>`, `<hmi_appID>`, `<deviceID>`, `<isMedia>` (value requested by app and allowed by Policies)  
 and successful application data updates 
@@ -68,7 +69,7 @@ SDL must
 2. Strore correct `<isMedia>` value for each app received in RegisterAppInterface_request and allowed by Policies to resumption database  
 3. Continue generating resumption related data (in case getting some from mobile application) without sending OnHashChanged notification to mobile app
 
-_Information: HMI closes both BT and USB transports together with sending BC.OnExitAllApplications (SUSPEND). SDL is not in time to unregister all of the applications. SDL will resume them upon the next ign_on. Such operation is ok with Ford (confirmed in e-mail attached)_
+_Information: HMI closes both BT and USB transports together with sending BC.OnExitAllApplications (SUSPEND). SDL is not in time to unregister all of the applications. SDL will resume them upon the next ign_on._
 
 3.   
 In case  
@@ -85,11 +86,11 @@ In case
 SDL receives OnAwakeSDL notification from HMI after the preceding OnExitAllApplications(SUSPEND)  
 
 SDL must 
-1. store an application resumption-related data it received from the application during SUSPEND state into DB
-2. send a single OnHashChanged notification with new `hashID` to mobile app 
+1. store an application resumption-related data it received from the application during SUSPEND state into DB  
+2. send a single OnHashChanged notification with new `hashID` to mobile app
 
-5.  
-SDL must wait for the reconnection and store the app-related data for resumption during three consequentive ignition cycles only 
+
+5.SDL must wait for the reconnection and store the app-related data for resumption during three consequentive ignition cycles only 
 and clear all app-persisted data on the 4th IGNITION_ON
 
 6. 
@@ -130,7 +131,7 @@ after each of the following RPCs being executed with "success:true" and responde
 - UnsubscribeWayPoints
 
 Information:
-1. "success:true":  
+"success:true":  
 -> WARNINGS  
 -> SUCCESS  
 -> UNSUPPORTED_RESOURCE (only in case `<Interface>` is supported by system -> HMI respond with <Interface>.IsReady (available:true) to SDL)  
@@ -200,10 +201,9 @@ respond RegisterAppInterfaceResponse(success=true,result_code=RESUME_FAILED) to 
 
 1. `AppSavePersistentDataTimeout` value defined in smartDeviceLink.ini file - Timeout in milliseconds for periodical saving resumption persistent data
 
-2.  SDL must store resumption-related data in a separate Resumption database
+2.  SDL must store resumption-related data in a separate Resumption database.
 
-3. https://adc.luxoft.com/jira/browse/APPLINK-22677
-The "UseDBForResumption" parameter defines the possible way to store resumption data:
+3. The "UseDBForResumption" parameter defines the possible way to store resumption data:
 -> in case the value "true" = should be stored to database
 -> in case the value "false" = should be stored as JSON file
 
