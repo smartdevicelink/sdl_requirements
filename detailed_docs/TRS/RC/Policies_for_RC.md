@@ -116,4 +116,4 @@ _Info:_ Includes "RemoteControl" functional grouping and default UI commands.
 
 c. To control access of application to specific module type of the vehicle new optional moduleType field is added for SnapshotPT, Updated PT, Preloaded PT (that is, in case "moduleType" is omitted in the table, the table is still valid).
 
-_Info:_ "moduleType": ["RADIO", "CLIMATE", "SEAT"]
+_Info:_ "moduleType": ["RADIO", "CLIMATE", "AUDIO", "LIGHT", "HMI_SETTINGS", "SEAT"]
