@@ -10,7 +10,9 @@ sent ButtonPress RPC allowed by app's policies with
 
 SDL must 
 - transfer this request to HMI
-- respond with <resultCode> received from HMI
+- respond with <resultCode> received from HMI  
+- send OnRCStatus to HMI and to the application with the module in parameter `allocatedModules`  
+and remained modules in `freeModules`
 
 2.
 In case 
