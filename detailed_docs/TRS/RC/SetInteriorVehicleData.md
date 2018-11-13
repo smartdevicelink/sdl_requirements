@@ -198,6 +198,26 @@ SDL must
 |         | Defrost Zone Setting | front,rear,all,none  | Get/Set/Notification |  |
 |         | Dual Mode Setting | on,off  | Get/Set/Notification |  |
 |         | Fan Speed Setting | 0%-100% | Get/Set/Notification |  |
+
+|         | Ventilation Mode Setting | upper,lower,both,none  | Get/Set/Notification |  |  
+| Seat    | | | | |
+|         | Seat Heating Enabled | true, false | Get/Set/Notification | Indicates whether heating is enabled for a seat | |
+|         | Seat Cooling Enabled | true, false | Get/Set/Notification | Indicates whether cooling is enabled for a seat | |
+|         | Seat Heating  level | 0-100% | Get/Set/Notification | Level of the seat heating | |
+|         | Seat Cooling  level | 0-100% | Get/Set/Notification | Level of the seat cooling | |
+|         | Seat Horizontal Positon | 0-100% | Get/Set/Notification | adjust a seat forward/backward, 0 means the nearest position to the steering wheel, 100% means the furthest position from the steering wheel | |
+|         | Seat Vertical Position | 0-100% | Get/Set/Notification | adjust seat height (up or down) in case there is only one actuator for seat height, 0 means the lowest position, 100% means the highest position | |
+|         | Seat-Front Vertical Position | 0-100% | Get/Set/Notification | adjust seat front height (in case there are two actuators for seat height), 0 means the lowest position, 100% means the highest position | |
+|         | Seat-Back Vertical Position | 0-100% | Get/Set/Notification | adjust seat back height (in case there are two actuators for seat height), 0 means the lowest position, 100% means the highest position | |
+|         | Seat Back Tilt Angle | 0-100% | Get/Set/Notification | backrest recline, 0 means the angle that back top is nearest to the steering wheel, 100% means the angle that back top is furthest from the steering wheel | |
+|         | Head Support Horizontal Position | 0-100% | Get/Set/Notification | adjust head support forward/backward, 0 means the nearest position to the front, 100% means the furthest position from the front | |
+|         | Head Support Vertical Position | 0-100% | Get/Set/Notification | adjust head support height (up or down), 0 means the lowest position, 100% means the highest position | |
+|         | Seat Massaging Enabled | true, false | Get/Set/Notification | indicates whether massage is enabled for a seat | | 
+|         | Massage Mode | List of Struct {MassageZone, MassageMode} | Get/Set/Notification | list of massage mode of each zone | |
+|         | Massage Cushion Firmness | List of Struct {Cushion, 0-100%} | Get/Set/Notification | list of firmness of each massage cushion | |
+|         | Seat memory | Struct{ id, label, action (SAVE/RESTORE/NONE)} | Get/Set/Notification | seat memory | |
+
+
 |         | Ventilation Mode Setting | upper,lower,both,none  | Get/Set/Notification |  |
 |         | heated windshield | true, false | Get/Set/Notification | true means ON, false means OFF | |
 |         | heated rear window | true, false | Get/Set/Notification | true means ON, false means OFF | |
@@ -216,6 +236,7 @@ SDL must
 |         | Light Status | ON, OFF| Get/Set/Notification | turn on/off a single light or all lights in a group | |
 |         | Light Density | float 0.0-1.0| Get/Set/Notification | change the density/dim a single light or all lights in a group| |
 |         | Light Color | RGB color| Get/Set/Notification | change the color scheme of a single light or all lights in a group| |
+
 
 ## Diagrams
 
