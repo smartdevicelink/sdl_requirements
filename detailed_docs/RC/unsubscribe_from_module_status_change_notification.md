@@ -22,7 +22,7 @@ _Expected:_
 5. SDL transfers received response from HMI to the app
 6. Emulate any changes in module data either by changing settings via button press on HMI or commands from application
 7. HMI sends notification about changes in module data to SDL
-8. Application does not receive notification with module data changes 
+8. Application does not receive notification with module data changes
 
 **Alternative flow 1**
 
@@ -85,7 +85,7 @@ _Steps:_
 _Expected:_
 
 2. HMI sends notification to SDL that RC functionality is disabled
-3. SDL assigns HMIlevel NONE and unsubscribes application from module settings change notification
+3. SDL unsubscribes application from module settings change notification
 
 **Alternative flow 1**
 

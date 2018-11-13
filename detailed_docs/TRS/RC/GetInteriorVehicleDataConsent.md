@@ -10,6 +10,9 @@ In case
 SDL must
 - allocate access to RC module to requested application
 - process control request from this application
+- respond with resultCode SUCCESS
+- send OnRCStatus to HMI with this RC module in `allocatedModules`
+- send OnRCStatus to the application with this RC module in `allocatedModules` and with allowed:true
 
 2.
 In case
@@ -23,7 +26,7 @@ SDL must
 - respond on control request to RC application with result code TIMED_OUT, success:false, info: "The resource is in use and the driver did not respond in time"
 - not allocate access for remote control module to the requested application (meaning SDL must leave control of remote control module without changes)
 
-*Note:* SDL must initiate user prompt in case of consequent control request for the same module from this application 
+*Note:* SDL must initiate user prompt in case of consequent control request for the same module from this application
 
 3.
 In case
@@ -36,9 +39,9 @@ SDL must
 - respond on control request to RC application with result code GENERIC_ERROR, success:false
 - not allocate access for remote control module to the requested application (meaning SDL must leave control of remote control module without changes)
 
-*Note:* SDL must initiate user prompt in case of consequent control request for the same module from this application 
+*Note:* SDL must initiate user prompt in case of consequent control request for the same module from this application
 
-4. 
+4.
 In case
 - SDL received OnRemoteControlSettings notification from HMI with "ASK_DRIVER" access mode
 - and RC application (in HMILevel FULL) requested access to remote control module that is already allocated to another RC application

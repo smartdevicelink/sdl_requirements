@@ -19,13 +19,11 @@ _Steps:_
 _Expected:_
 
 2. HMI sends notification to SDL that remote_control functionality is disabled
-3. SDL assigns HMIlevel NONE to all applications with REMOTE_CONTROL appHMIType
-4. SDL sends OnHMIStatus (NONE) to all applications with REMOTE_CONTROL appHMIType
-5. SDL keeps all applications with REMOTE_CONTROL appHMIType registered
-6. SDL unsubscribes all applications from RC_modules on HMI
-7. SDL releases all allocated RC_modules
-8. HMILevel cannot be changed to other than NONE until RC functionality is enabled
-9. All RC-requests from applications with REMOTE_CONTROL appHMIType are not processed
+3. SDL does not change RC applications HMI levels
+4. SDL keeps all applications with REMOTE_CONTROL appHMIType registered
+5. SDL unsubscribes all applications from RC_modules on HMI
+6. SDL releases all allocated RC_modules
+7. All RC-requests from applications with REMOTE_CONTROL appHMIType are not processed
 
 ## Use Case 2: Enabling RC-functionality
 
@@ -50,7 +48,5 @@ _Steps:_
 _Expected:_
 
 2. HMI sends notification to SDL that remote_control functionality is enabled
-
-3. All RC applications remain in appHMILevel NONE until activated by user
 
 > Requirement: [#11](https://github.com/smartdevicelink/sdl_requirements/issues/11) [SDL_RC] Disable/enable RC-feature
