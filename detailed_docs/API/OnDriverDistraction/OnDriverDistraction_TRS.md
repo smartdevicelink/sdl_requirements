@@ -68,3 +68,7 @@ HMI API
   </param>
   </function>
 ```
+
+## Diagram
+OnDriverDistraction
+![OnDriverDistraction](./accessories/OnDriverDistraction_lockScreenDismissalEnabled.png)
