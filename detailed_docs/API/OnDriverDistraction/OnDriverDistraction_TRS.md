@@ -54,14 +54,16 @@ d. invalid json
 e. incorrect combination of params
 
 ## Non-functional requirements
-HMI API
+1. New `lockScreenDismissalEnabled` parameter must be added to Mobile_API
 
 ```
-  <function name="OnDriverDistraction" messagetype="notification">
-    <description>Notification must be sent from HMI to SDL when driver distraction state is changed. Driver distraction rules are defined by the platform.</description>
-    <param name="state" type="Common.DriverDistractionState" mandatory="true">
-      <description>See DriverDistractionState. </description>
-    </param>
+    <function name="OnDriverDistraction" functionID="OnDriverDistractionID" messagetype="notification" since="1.0">
+        <description>Provides driver distraction state to mobile applications</description>
+        <param name="state" type="DriverDistractionState" mandatory="true">
+            <description>Current State of Driver Distraction</description>
+        </param>
+    </function>
+    <!-- newly added parameter -->
     <param name="lockScreenDismissalEnabled" type="Boolean" mandatory="false">
     <description>
       If enabled, the lock screen will be able to be dismissed while connected to SDL, allowing users 
@@ -69,8 +71,34 @@ HMI API
       that they are not the driver.
     </description>
   </param>
-  </function>
+ ```  
+ 
+1. HMI_API
 ```
+  <function name="OnDriverDistraction" messagetype="notification">
+    <description>Notification must be sent from HMI to SDL when driver distraction state is changed. Driver distraction rules are defined by the platform.</description>
+    <param name="state" type="Common.DriverDistractionState" mandatory="true">
+      <description>See DriverDistractionState. </description>
+    </param>
+  </function>
+``` 
+3. PolicyTable must support new `lockScreenDismissalEnabled` parameter set by default as 'true' to module_config section of PT.
+```
+{
+    "policy_table": {
+        "module_config": {
+            "preloaded_pt": true,
+            "exchange_after_x_ignition_cycles": 100,
+            "exchange_after_x_kilometers": 1800,
+            "exchange_after_x_days": 30,
+            "timeout_after_x_seconds": 60,
+            "seconds_between_retries": [1,
+            5,
+            25,
+            125,
+            625],
+            "lockScreenDismissalEnabled": true
+  ```
 
 ## Diagram
 OnDriverDistraction
