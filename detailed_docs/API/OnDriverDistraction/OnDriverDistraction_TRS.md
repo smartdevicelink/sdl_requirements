@@ -73,7 +73,7 @@ e. incorrect combination of params
   </param>
  ```  
  
-1. HMI_API
+2. HMI_API
 ```
   <function name="OnDriverDistraction" messagetype="notification">
     <description>Notification must be sent from HMI to SDL when driver distraction state is changed. Driver distraction rules are defined by the platform.</description>
