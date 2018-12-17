@@ -29,15 +29,23 @@ _Expected:_
 _Pre-conditions:_
 
 a.	SDL and HMI are started  
-b.	Mobile app registers and gets NONE HMILevel
+b.	Mobile app registers and gets NONE HMILevel  
+c.  Mob app in NONE HMILevel is NOT allowed to get OnDriverDistraction notification by Policies
 
 _Steps:_
 1. HMI sends OnDriverDistraction notification to SDL
 
 _Expected:_  
 2.	SDL checks if OnDriverDistraction notification is valid  
-3.	SDL internally stores the values for `<state>` and `<lockScreenDismissalEnabled>` params  
+3.	SDL internally stores the values for `<state>` 
 4.	SDL transfers OnDriverDistraction notification with the last known (actual) state to this mobile app right after the app changes HMILevel to any other than NONE
+
+**Alternative flow:**  
+c.1 Mob app in NONE HMILevel is allowed to get OnDriverDistraction notification by Policies  
+c.2 HMI sends OnDriverDistraction notification to SDL  
+c.3 SDL checks if OnDriverDistraction notification is valid  
+c.4 SDL transfers valid OnDriverDistraction notification to mob app
+
 
 ## Use Case 3: Multiple apps - Sending Driver Distraction status when 1 app state changes from NONE
 
@@ -46,7 +54,8 @@ _Pre-conditions:_
 a.	SDL and HMI are started  
 b.	app_1 is registered on SDL and has FULL HMILevel  
 c.	app_2 is registered on SDL and has BACKGROUND HMILevel  
-d.	app_3 is registered and on SDL and has NONE HMILevel
+d.	app_3 is registered and on SDL and has NONE HMILevel  
+e.  Mob apps in NONE HMILevel are NOT allowed to get OnDriverDistraction notification by Policies
 
 _Steps:_ 
 
@@ -61,18 +70,24 @@ _Expected:_
 6. SDL sends OnHMIStatus (FULL) to app_3
 7. SDL sends OnDriverDistraction notification only to app_3
 
+**Alternative flow:**  
+e.1 Mob app in NONE HMILevel is allowed to get OnDriverDistraction notification by Policies  
+e.2 HMI sends OnDriverDistraction notification to SDL  
+e.3 SDL checks if OnDriverDistraction notification is valid  
+e.4 SDL transfers valid OnDriverDistraction notification to mob app_1, app_2, app_3  
+e.5 SDL does not send OnDriverDistraction notification to app_3 when app_3 changes its HMI Level from NONE to any other
+
 ## Use Case 4: Transferring notification after mobile app registration
 
 _Pre-conditions:_
 
-a.	SDL and HMI are started  
-b.	HMI sends OnDriverDistraction notification to SDL
+a.	SDL and HMI are started
 
 _Steps:_
-1. Mobile app successfully connects on SDL and gets any HMILevel (except for NONE)
+1. Mobile app successfully connects and gets any HMILevel allowed by Policies to receive OnDriverDistraction notification
 
 _Expected:_ 
 
-2.	SDL transfers OnDriverDistraction (ON) to this connected app
+2. SDL sends OnDriverDistraction notofication with current state to this connected app
 
-**Exceptions 1:** If DriverdDistraction mode was switched off BEFORE apps connection -> SDL will NOT notify this connected app
+**Note**: By default OnDriverDistraction(state=OFF) 
