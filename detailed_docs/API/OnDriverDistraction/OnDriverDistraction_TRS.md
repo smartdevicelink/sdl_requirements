@@ -39,19 +39,45 @@ SDL must
 transfer OnDriverDistraction (ON) to this connected app 
 
 5.  
-In case HMI sends invalid notification that SDL should transfer to mobile app  
+In case  
+HMI sends invalid notification that SDL should transfer to mobile app  
 
 SDL must 
 
 log the issue and ignore this notification
 
 Information:  
-1. Invalid notifications means the notification contains:  
+Invalid notifications means the notification contains:  
 a. params out of bounds or incorrect symbols (/t, /n, `<whitespace>`)  
 b. mandatory params are missing  
 c. params of wrong type  
 d. invalid json  
 e. incorrect combination of params
+
+6. 
+In case  
+HMI sends valid, allowed by policies OnDriverDistraction notification with all mandatory fields to SDL  
+and in Policies `lockScreenDismissalEnabled` param is set as `true`
+
+SDL must  
+transfer OnDriverDistraction notification with `lockScreenDismissalEnabled=true` to mobile app
+
+7.  
+In case  
+HMI sends valid, allowed by policies OnDriverDistraction notification with all mandatory fields to SDL  
+and `lockScreenDismissalEnabled` param is omitted in Policies  
+
+SDL must  
+transfer OnDriverDistraction notification without `lockScreenDismissalEnabled=true` to mobile app
+
+8.  
+In case  
+in Policies `lockScreenDismissalEnabled` param is missed and 
+after PTU `lockScreenDismissalEnabled` param's value was reworked
+and HMI sends valid, allowed by policies OnDriverDistraction notification with all mandatory fields to SDL
+
+SDL must  
+transfer OnDriverDistraction notification with `lockScreenDismissalEnabled` param to mobile app
 
 ## Non-functional requirements
 1. New `lockScreenDismissalEnabled` parameter must be added to Mobile_API
