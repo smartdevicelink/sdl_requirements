@@ -72,12 +72,12 @@ transfer OnDriverDistraction notification without `lockScreenDismissalEnabled=tr
 
 8.  
 In case  
-in Policies `lockScreenDismissalEnabled` param is missed and 
-after PTU `lockScreenDismissalEnabled` param's value was reworked
+in Policies `lockScreenDismissalEnabled` param is missed   
+and after PTU `lockScreenDismissalEnabled` param's value was updated  
 and HMI sends valid, allowed by policies OnDriverDistraction notification with all mandatory fields to SDL
 
 SDL must  
-transfer OnDriverDistraction notification with `lockScreenDismissalEnabled` param to mobile app
+transfer OnDriverDistraction notification with updated value of `lockScreenDismissalEnabled` param to mobile app
 
 ## Non-functional requirements
 1. New `lockScreenDismissalEnabled` parameter must be added to Mobile_API
