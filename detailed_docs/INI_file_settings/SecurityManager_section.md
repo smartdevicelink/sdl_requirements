@@ -42,27 +42,4 @@ _Info: Service type 0x07 (RPC service) cannot be the value of "ForceprotectedSer
 The "ForceUnprotectedService" parameter defines services which cannot be started as protected OR delayed protected  
 
 5.  
-The "UpdateBeforeHours" parameter defines the amount of time in hours for certificate expiration AND after expiration PTU sequence will be triggered
-
-
-### Malformed messages filtering criteria  
-In case  
-SDL receives message from mobile app  
-and this message does not match one or more of verification criteria  
-
-SDL must  
-mark such message as **malformed** 
-
-Verification criteria:  
-
-1. Protocol version shall be from 1 to 3
-2. ServiceType shall be equal 0x0 (Control), 0x07 (RPC), 0x0A (PCM), 0x0B (Video), 0x0F (Bulk)
-3. Frame type shall be 0x00 (Control), 0x01 (Single), 0x02 (First), 0x03 (Consecutive)
-4. For Control frames Frame info value shall be from 0x00 to 0x06 or 0xFE(Data Ack), 0xFF(HB Ack)
-5. For Single and First frames Frame info value shall be equal 0x00
-6. For Control frames Data Size value shall be less than MTU header
-7. For Single and Consecutive Data Size value shall be greater than 0x00 and shall be less than N (this value will be defined in .ini file)
-8. Message ID be equal or greater than 0x01 for non-Control Frames
-9. Data size of First Frame shall be equal 0x08 (payload of this packet will be 8 bytes).
-
-**AppLink Core must ignore any malformed messages and no harm to the system must occur from those malformed messages**
+The "UpdateBeforeHours" parameter defines the amount of time in hours for certificate expiration AND after expiration PTU sequence will be triggered.
