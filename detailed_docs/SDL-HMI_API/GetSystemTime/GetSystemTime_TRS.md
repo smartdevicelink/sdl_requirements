@@ -18,6 +18,7 @@ and HMI sends valid response during `<DefaultTimeout>`
 SDL must  
 
 - perform DTLS Handshake with mobile app  
+- send OnServiceUpdate(service_Type, REQUEST_ACCEPTED) notification to HMI  
 - send START_SERVICE_ACK, encryption = true to mobile app  
  
 3. In case  
@@ -25,7 +26,8 @@ SDL gets GetSystemTime response from HMI
 and mobile and SDL certificates are not valid according to date/time from GetSystemTime response  
 
 SDL must  
-- trigger PTU   
+- trigger PTU  
+- send OnServiceUpdate(service_Type, INVALID_CERT)   
 - respond START_SERVICE_NACK, encryption = false to mobile app in case of receiving one more time expired certificate during PTU
 
 4.  
@@ -40,6 +42,7 @@ c) HMI sends invalid by any reason response
 SDL must  
 - log corresponding error internally  
 - fail Handshake  
+- send OnServiceUpdate(service_Type, INVALID_TIME) notification to HMI  
 
 
 ## Non-functional requirements 
@@ -105,6 +108,6 @@ New struct "DateTime" must be added to MOBILE_API and HMI_API:
 
 GetSystemTime
 
-![GetSystemTime_ign_on](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/SDL-HMI_API/accessories/GetSystemTime_ign_on.png)  
+![GetSystemTime_ign_on](../accessories/GetSystemTime_ign_on.png)  
 
-![GetSystemTime_TLS_Handshake](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/SDL-HMI_API/accessories/GetSystemTime_TLS_Handshake.png)  
+![GetSystemTime_TLS_Handshake](../accessories/GetSystemTime_TLS_Handshake.png)  
