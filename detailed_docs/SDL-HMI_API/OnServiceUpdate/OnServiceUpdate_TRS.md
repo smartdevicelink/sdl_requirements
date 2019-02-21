@@ -9,23 +9,23 @@ send OnServiceUpdate notification with the status of services to HMI
 
 2.
 In case  
-mobile navi app successfully registers on SDL  
-and sends StartService(VIDEO, encryption=true) request to SDL
+ForceProtectedService=Non in .ini file  
+and registred mobile navi app sends StartService(VIDEO, encryption=true) request to SDL
 
 SDL must  
-transfer StartStream request to HMI  
-send OnServiceUpdate(appID, VIDEO, REQUEST_RECEIVED) notification to HMI
+- transfer StartStream request to HMI  
+- send OnServiceUpdate(appID, VIDEO, REQUEST_RECEIVED) notification to HMI  
 and start processing all respective steps for openning secure Video Service (getting the current system time, performing a policy table update, decrypting certificates and ensuring validity of the certificates.)
 
-Note: the only time when SDL would not be able provide the appID would be during the first StartService request for the RPC service before RAI was sent.
+_Note: The only time when SDL would not be able provide the `appID` would be during the first StartService request for the RPC service before RAI was sent._
 
 3.
 In case  
-mobile navi app sends StartService request for the Video Service  
+mobile navi app sends StartService(VIDEO, encryption = true) request to SDL
 and SDL has valid certificates
 
 SDL must  
-send OnServiceUpdate(VIDEO, REQUEST_ACCEPTED) notification to HMI
+send OnServiceUpdate(appID, VIDEO, REQUEST_ACCEPTED) notification to HMI
 
 4.
 In case  
@@ -33,13 +33,15 @@ mobile navi app sends StartService request for the Video Service
 and SDL doesn’t have certificates/has expired certificate/certificate is about to expire in next 24 hours
 
 SDL must  
-send OnStatusUpdate(UPDATE_NEEDED) notification to HMI
-start PTU  
-send OnStatusUpdate(UP_TO_DATE) notification to HMI after PTU successfully completed
+- send OnStatusUpdate(UPDATE_NEEDED) notification to HMI
+- start PTU  
+- send OnStatusUpdate(UP_TO_DATE) notification to HMI after PTU successfully completed
+- validate cerificate
+- send OnServiceUpdate(appID, VIDEO, REQUEST_ACCEPTED) to HMI 
 
 5.
-In case Policy Table Update times out 
-and PTU retry attempts have been exhausted
+In case Policy Table Update times out  
+and PTU retry attempts have been exhausted (is defined by the size of array `seconds_between_retries`in PT)
 
 SDL must  
 send OnServiceUpdate(VIDEO, REQUEST_REJECTED, PTU_FAILED) notification to HMI  
@@ -54,6 +56,7 @@ send OnServiceUpdate(VIDEO,INVALID_CERT) notification to HMI
 send StartServiceNACK(VIDEO) to the navi mobile app
 
 ## Non-Functional requirements
+
 ### HMI_API
 
 ```xml
