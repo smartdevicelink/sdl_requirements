@@ -1,34 +1,8 @@
 ## Functional requirements
 
-### Registering two identical apps from the same mobile device
-
-1.  
-In case  
-an application with `<appName>` and `<appID>` is registered with SDL from device_1  
-and another application with **the same** `<appName>` and **the same** `<appID>` from the same device requests registration
-
-SDL must  
-respond with RegisterAppInterface (resultCode: APPLICATION_REGISTERED_ALREADY, success: false, params) to app 
-
-2.  
-In case 
-application with `<appName>` and `<appID>` is registered with SDL from device_1
-and another application with **the same** `<appName>` and **different** `<appID>` requests registration 
-
-SDL must  
-respond with RegisterAppInterface (resultCode: DUPLICATE_NAME, success: false, params) to app 
-
-3.  
-In case  
-application with `<appName>` and `<appID>` is registered with SDL from device_1
-and another application with **different** `<appName>` and **the same** `<appID>` requests registration
-
-SDL must  
-respond with RegisterAppInterface (resultCode: APPLICATION_REGISTERED_ALREADY; success: false, params) to app 
-
 ### Registering two identical apps from 2 devices
 
-4.  
+1.  
 In case  
 application with `<appName>` and `<appID>` is registered with SDL from device_1  
 and another application with **the same** `<appName>` and **the same** `<appID>` from device_2 requests registration 
@@ -38,7 +12,7 @@ allow this second app registration
 respond with RegisterAppInterface (resultCode: SUCCESS, success: true, params) to app  
 and notify HMI via BC.OnAppRegistered
 
-5.  
+2.  
 In case  
 application with `<appName>` and `<appID>` is registered with SDL from device_1  
 and another application with **the same** `<appName>` and **different** `<appID>` from device_2 requests registration 
@@ -48,7 +22,7 @@ allow this second app registration
 respond with RegisterAppInterface (resultCode: SUCCESS, success: true, params) to app 
 and notify HMI via BC.OnAppRegistered 
  
-6.  
+3.  
 In case  
 application with `<appName>` and `<appID>` is registered with SDL from device_1  
 and another application with **different** `<appName>` and **the same** `<appID>` from device_2 requests registration 
@@ -60,7 +34,7 @@ and notify HMI via BC.OnAppRegistered
 
 ### Registering two identical apps from the same mobile device
 
-7.  
+4.  
 In case 
 app_1 with `<appName>` and `<appID>` is registered with SDL from device_1  
 and app_2 with **the same** `<appName>` and **the same** `<appID>` from **the same device_1** requests registration
@@ -69,7 +43,7 @@ SDL must
 reject app_2 registration request  
 respond with RegisterAppInterface (resultCode = APPLICATION_REGISTERED_ALREADY) to app_2
 
-8.  
+5.  
 In case  
 app_1 with `<appName>` and `<appID>`  is registered with SDL from device_1
 and app_2 with **the same** `<appName>` and **different** `<appID>` **from the same device_1** requests registration
@@ -78,7 +52,7 @@ SDL must
 reject app_2 registration request  
 respond with RegisterAppInterface (resultCode = DUPLICATE_NAME) to app_2
 
-9.  
+6.  
 In case 
 app_1 with `<appName>` and `<appID>`  is registered with SDL from device_1
 and app_2 with **different** `<appName>` and **the same** `<appID>` **from the same device_1** requests registration
@@ -89,7 +63,7 @@ respond with RegisterAppInterface (resultCode = APPLICATION_REGISTERED_ALREADY) 
  
 ### Registering the same app from multiple devices  
 
-10.  
+7.  
 In case  
 app_1 with `<appName>` and `<appID>` is registered with SDL from device_1  
 and app_2 with **the same** `<appName>` as app_1 and **the same** `<appID>` from **device_2** requests registration  
@@ -99,7 +73,7 @@ assign unique internal `<appID>` to app_2
 notify HMI via BC.OnAppRegistered  
 respond with RegisterAppInterface (resultCode = SUCCESS) to app_2
 
-11.  
+8.  
 In case  
 app_1 with `<appName>` and `<appID>` is registered with SDL from device_1  
 and app_2 with **the same** `appName` as app_1 and **different** `appID` from **device_2** requests registration  
@@ -108,7 +82,7 @@ SDL must
 notify HMI via BC.OnAppRegistered  
 respond with RegisterAppInterface (resultCode = SUCCESS) to app_2
 
-12.  
+9.  
 In case  
 app_1 with `<appName>` and `<appID>` is registered with SDL from device_1  
 and app_2 with **different** `<appName>` and **the same** `<appID>` from **device_2** requests registration  
