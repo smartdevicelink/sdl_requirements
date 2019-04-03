@@ -11,7 +11,7 @@ _Steps:_
 
 _Expected:_
 
-2. SDL checks `appName` and `app`
+2. SDL checks `appName` and `appID`
 3. `appName` and `apppID` are the same as mobile app_1  [OR the same `appID`, different `appName`]
 4. SDL rejects the app with same app name or the same app id from one device  
 5. SDL sends RegisterAppInterface (resultCode = APPLICATION_REGISTERED_ALREADY) to mobile app_2
@@ -26,7 +26,8 @@ _Pre-conditions:_
 
 a. SDL and HMI are started  
 b. mobile device_1 is connected via any transport  
-c. mobile app_1 (appName="first_app", appID=1) is registered on mobile device_1
+c. mobile device_2 is connected via any transport  
+d. mobile app_1 (appName="first_app", appID=1) is registered on mobile device_1
 
 _Steps:_
 1. mobile app_2 sends RAI from the mobile device_2
