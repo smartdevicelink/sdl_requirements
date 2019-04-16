@@ -100,7 +100,25 @@ SDL must
 * transfer GetInteriorVehicleData(module_1, subscribe=false) response received from HMI to RC app  
 
 _Note:_ SDL does not send GetInteriorVD(module_1, subscribe=false) by app unregistration in case there are some more apps still subscribed to module_1.
- 
+
+11.  
+In case  
+- mobile app sends GetInteriorVehicleData (subscribe=true) request and 
+- SDL receives GetInteriorVehicleData response with `gpsData` structure with any parameters except `longitudeDegrees`, `latitudeDegrees`, `altitude`  
+
+SDL must  
+* cut off all odd parameters
+* send GetInteriorVehicleData(`longitudeDegrees`, `latitudeDegrees`, `altitude`) response to mobile app
+
+12.  
+In case  
+- mobile app sends GetInteriorVehicleData (subscribe=true) request and  
+- SDL receives GetInteriorVehicleData response with `shifted` param in `stationLocation` structure of `moduleData` param from HMI 
+
+SDL must  
+* cut off all parameters except for `longitudeDegrees`, `latitudeDegrees`, `altitude` from `stationLocation` structure and   
+* send GetInteriorVehicleData response without `shifted` parameter to mobile app
+
 
 ## Functional Requirements
 #### Limitation for GetInteriorVehicleDataRequest

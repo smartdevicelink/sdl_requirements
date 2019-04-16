@@ -50,6 +50,12 @@ SDL must:
 - transfer received notification with all parameters as is to mobile app  
 - respond with `<received_resultCode_from_HMI>` to mobile app
 
+6.  
+In case SDL receives OnVehicleData notification from HMI 
+and this notification is contains `shifted` item in `gps` parameter  
+
+SDL must  
+transfer received notification to mobile app with the same value of `shifted` item in `gps` parameter as those from HMI
 
 ## Non-Functional Requirements  
 Additions to mobile API, HMI_API  
