@@ -14,7 +14,7 @@ _Steps:_
 _Expected:_  
 2.	SDL checks if OnDriverDistraction notification is valid  
 3.	SDL checks if the app in current HMILevel is allowed to receive OnDriverDistraction notification (defined by app's assigned Policies)  
-4.	SDL transfers OnDriverDistraction notification to all applications being connected to SDL at the moment on any device
+4.	SDL transfers OnDriverDistraction notification to all connection applications that are allowed to receive OnDriverDistraction
 
 **Exception 1:**  
 2.1 Received notification from HMI is invalid  
@@ -30,7 +30,7 @@ _Pre-conditions:_
 
 a.	SDL and HMI are started  
 b.	Mobile app registers and gets NONE HMILevel  
-c.  Mob app in NONE HMILevel is NOT allowed to get OnDriverDistraction notification by Policies
+c.  Mobile app in NONE HMILevel is NOT allowed to get OnDriverDistraction notification by Policies
 
 _Steps:_
 1. HMI sends OnDriverDistraction notification to SDL
@@ -38,7 +38,7 @@ _Steps:_
 _Expected:_  
 2.	SDL checks if OnDriverDistraction notification is valid  
 3.	SDL internally stores the values for `<state>`  
-4.	SDL transfers OnDriverDistraction notification with the last known (actual) state to this mobile app right after the app changes HMILevel to any other than NONE
+4.	SDL sends OnDriverDistraction notification with the last known (actual) state to this mobile app right after the app changes HMILevel to any other than NONE
 
 **Exception 1:**  
 c.1 Mob app in NONE HMILevel is allowed to get OnDriverDistraction notification by Policies  
@@ -54,7 +54,7 @@ _Pre-conditions:_
 a.	SDL and HMI are started  
 b.	app_1 is registered on SDL and has FULL HMILevel  
 c.	app_2 is registered on SDL and has BACKGROUND HMILevel  
-d.	app_3 is registered and on SDL and has NONE HMILevel  
+d.	app_3 is registered and on SDL has NONE HMILevel  
 e.  Mob apps in NONE HMILevel are NOT allowed to get OnDriverDistraction notification by Policies
 
 _Steps:_ 
