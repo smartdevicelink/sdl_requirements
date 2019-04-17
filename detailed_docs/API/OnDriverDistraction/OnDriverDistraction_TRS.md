@@ -22,7 +22,7 @@ _Whether the app receives the notification in current HMILevel is defined by app
 
 3.  
 In case
-mobile app registers and gets NONE HMILevel
+mobile app registers and gets NONE HMI Level
 and SDL receives OnDriverDistraction (`<state>`) fom HMI
 
 SDL must  
@@ -32,7 +32,7 @@ transfer the last known (actual) OnDriverDistraction (`<state>`) to this mobile 
 4. 
 In case 
 HMI sends OnDriverDistraction (ON) to SDL 
-and mobile app successfully connects on SDL and gets any HMILevel
+and mobile app successfully connects on SDL and gets any HMI Level except NONE
 
 SDL must  
 
@@ -65,12 +65,20 @@ transfer OnDriverDistraction notification with `lockScreenDismissalEnabled=true`
 7.  
 In case  
 HMI sends valid, allowed by policies OnDriverDistraction notification with all mandatory fields to SDL  
+and in Policies `lockScreenDismissalEnabled` param is set as `false`
+
+SDL must  
+transfer OnDriverDistraction notification without `lockScreenDismissalEnabled=false` to mobile app
+
+8.  
+In case  
+HMI sends valid, allowed by policies OnDriverDistraction notification with all mandatory fields to SDL  
 and `lockScreenDismissalEnabled` param is omitted in Policies  
 
 SDL must  
-transfer OnDriverDistraction notification without `lockScreenDismissalEnabled=true` to mobile app
+transfer OnDriverDistraction notification without `lockScreenDismissalEnabled` param to mobile app
 
-8.  
+9.  
 In case  
 in Policies `lockScreenDismissalEnabled` param is missed   
 and after PTU `lockScreenDismissalEnabled` param's value was updated  
@@ -108,7 +116,7 @@ transfer OnDriverDistraction notification with updated value of `lockScreenDismi
     </param>
   </function>
 ``` 
-3. PolicyTable must support new `lockScreenDismissalEnabled` parameter set by default as 'true' to module_config section of PT.
+3. PolicyTable must support new `lock_screen_dismissal_enabled` parameter set by default as 'true' to module_config section of PT.
 ```
 {
     "policy_table": {
@@ -123,7 +131,7 @@ transfer OnDriverDistraction notification with updated value of `lockScreenDismi
             25,
             125,
             625],
-            "lockScreenDismissalEnabled": true
+            "lock_screen_dismissal_enabled": true
   ```
 
 ## Diagram
