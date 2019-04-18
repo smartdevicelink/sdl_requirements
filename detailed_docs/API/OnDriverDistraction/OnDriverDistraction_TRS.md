@@ -15,10 +15,10 @@ HMI notifies SDL about current DriverDistraction mode ON/OFF via OnDriverDistrac
 
 SDL must  
 
-transfer OnDriverDistraction(state) notification to all applications being connected to SDL at the moment on any device
+transfer OnDriverDistraction(`<state>`) notification to all applications being registered to SDL running in any HMI Level except NONE
 
 _Information:_
-_Whether the app receives the notification in current HMILevel is defined by app's assigned Policies. Often, OnDriverDistraction is disallowed for apps in NONE._
+_Whether the app receives the notification in current HMILevel is defined by app's assigned Policies._
 
 3.  
 In case
