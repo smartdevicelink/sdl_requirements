@@ -99,8 +99,99 @@ SDL must
 * send GetInteriorVD(module_1, subscribe=false) request to HMI  
 * transfer GetInteriorVehicleData(module_1, subscribe=false) response received from HMI to RC app  
 
-_Note:_ SDL does not send GetInteriorVD(module_1, subscribe=false) by app unregistration in case there are some more apps still subscribed to module_1.
+_Note:_ SDL does not send GetInteriorVD(module_1, subscribe=false) by app unregistration in case there are some more apps still subscribed to module_1
+
+### Resumption  
+
+1.  
+In case  
+- RC app was subscribed to some vehicle data 
+- and unexpected disconnect occured or SDL was stopped while app registration
+
+SDL must 
+* save application subscriptions internally
+* keep application subscriptions for 3 (configured by ini file) ignition cycles
+
+2.  
+In case  
+- RC app was subscribed to some vehicle data 
+- and re-registers with valid `hashID` after unexpected disconnect on 4th ignition cycle  
+
+SDL must
+* clear all app-persisted data on the 4th IGNITION_ON 
+* not resume persistent data  
+* respond RegisterAppInterfaceResponse(SUCCESS) to mobile app
+
+3. 
+In case  
+RC app with valid `hashID` re-registers after unexpected disconnect or new ignition cycle
+and sends GetInteriorVehicleData(subscribe=true) request
+
+SDL must  
+* restore interior vehicle data subscriptions  
+* transfer GetInteriorVehicleData(subscribe=true) request to HMI during data resumption for all necessary modules 
+* respond RAI(SUCCESS) to mobile app
+* update `hashID` after successful resumption  
+* send OnHashChange notification with updated `hashID` to mobile app
+
+4.  
+In case  
+- RC app with valid `hashID` re-registers after unexpected disconnect or new ignition cycle
+- and sends GetInteriorVehicleData(subscribe=true) request
+- and HMI responds with error resultCode
+
+SDL must  
+* process unsuccess response from HMI  
+* respond RegisterAppInterfaceResponse(success=true,result_code=RESUME_FAILED) to mobile application  
+
+5.  
+In case
+- RC app with valid `hashID` re-registers after unexpected disconnect or new ignition cycle
+- and sends GetInteriorVehicleData(subscribe=true) request for all modules
+- and HMI responds with error resultCode to RC.GetInteriorVD(subscribe=true, modules_1) request
+
+SDL must
+* process unsuccess response from HMI  
+* remove all restored data for others modules  
+* respond RegisterAppInterfaceResponse(success=true,result_code=RESUME_FAILED) to mobile application
+
+6. 
+In case  
+- RC app successfully unsubscribes from vehicle data before unexpected disconnect or new ignition cycle  
+by sending GetInteriorVehicleData(module_1, subscribe=false) request
+- and then re-registers with valid `hashID` after unexpected disconnect or in new ignition cycle
+
+SDL must  
+* not resume the vehicle data  
+* not send GetInteriorVehicleData(subscribe=true) request to HMI  
+* not update `hashID`
  
+ 7.  
+ In case  
+ - RC app_1, RC app_2 are subscribed to module_1  
+ - and transport disconnect occurs  
+ - and RC app_1, RC app_2 with valid `hashID` re-register after unexpected disconnect  
+
+ SDL must  
+ * send GetInteriorVehicleData(subscribe=true, modules_1) request to HMI during resumption data for RC app_1  
+ * restore subscription for RC app_2 internally  
+ * respond RAI(SUCCESS) to mobile apps  
+ * update `hashID` after successful resumption  
+ * send OnHashChange notifications with updated `hashID` to mobile apps 
+
+8.  
+In case
+ - RC app_1 is subscribed to module_1
+ - RC app_2 is subscribed to module_2
+ - and RC app_1, RC app_2 with valid `hashID` re-register after unexpected disconnect and send GetInteriorVehicleData(subscribe=true) requests 
+ - HMI responds with error resultCode to RC app_1
+ - and HMI responds with success to RC app_2
+
+SDL must  
+* process unsuccess response from HMI  
+* respond RegisterAppInterfaceResponse(success=true,result_code=RESUME_FAILED) to RC app_1  
+* respond RegisterAppInterfaceResponse(success=true,result_code=SUCCESS) to RC app_2
+
 
 ## Functional Requirements
 #### Limitation for GetInteriorVehicleDataRequest
