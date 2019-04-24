@@ -15,7 +15,7 @@ HMI notifies SDL about current DriverDistraction mode ON/OFF via OnDriverDistrac
 
 SDL must  
 
-transfer OnDriverDistraction(`<state>`) notification with all mandatory fields and `lock_screen_dismissal_enabled` parameter (value corresponds to the one defined in Policy) to all applications being registered to SDL
+transfer OnDriverDistraction(`<state>`) notification with all mandatory fields and `lockScreenDismissalEnabled` parameter (value corresponds to the one defined in Policy) to all applications being registered to SDL
 
 _Information:_
 _Whether the app receives the notification in current HMILevel is defined by app's assigned Policies._
@@ -60,7 +60,7 @@ HMI sends valid, allowed by policies OnDriverDistraction notification with all m
 and in Policies `lock_screen_dismissal_enabled` param is set as `true`
 
 SDL must  
-transfer OnDriverDistraction notification with `lock_screen_dismissal_enabled=true` to mobile app
+transfer OnDriverDistraction notification with `lockScreenDismissalEnabled` to mobile app
 
 7.  
 In case  
@@ -73,10 +73,10 @@ transfer OnDriverDistraction notification without `lockScreenDismissalEnabled=fa
 8.  
 In case  
 HMI sends valid, allowed by policies OnDriverDistraction notification with all mandatory fields to SDL  
-and `lock_screen_dismissal_enabled` param is omitted in Policies  
+and `lock_screen_dismissal_enabled` param is not defined in Policies  
 
 SDL must  
-transfer OnDriverDistraction notification without `lock_screen_dismissal_enabled` param to mobile app
+transfer OnDriverDistraction notification without `lockScreenDismissalEnabled` param to mobile app
 
 9.  
 In case  
