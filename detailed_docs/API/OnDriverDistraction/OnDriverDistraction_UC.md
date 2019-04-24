@@ -34,11 +34,14 @@ c.  Mobile app in NONE HMILevel is NOT allowed to get OnDriverDistraction notifi
 
 _Steps:_
 1. HMI sends OnDriverDistraction notification to SDL
+2. SDL checks if OnDriverDistraction notification is valid  
+3. SDL internally stores the values for `<state>`  
+4. User activates app
+5. HMI sends request to activate the app
 
 _Expected:_  
-2.	SDL checks if OnDriverDistraction notification is valid  
-3.	SDL internally stores the values for `<state>`  
-4.	SDL sends OnDriverDistraction notification with the last known (actual) state to this mobile app right after the app changes HMILevel to any other than NONE
+6. SDL sends OnHMIStatus (FULL) to the app  
+7. SDL sends OnDriverDistraction notification with the last known (actual) state to this mobile app right after the app changes HMILevel from NONE
 
 **Exception 1:**  
 c.1 Mob app in NONE HMILevel is allowed to get OnDriverDistraction notification by Policies  
@@ -62,12 +65,11 @@ _Steps:_
 1. HMI sends OnDriverDistraction notification to SDL
 2. SDL checks if OnDriverDistraction notification is valid
 3. SDL transfers OnDriverDistraction notification to app_1, app_2 (HMI Levels are allowed by Policies)  
-4. User activates app_3 being in NONE 
-
-_Expected:_
-
+4. User activates app_3 being in NONE
 5. HMI sends request to activate app_3 to SDL
-6. SDL sends OnHMIStatus (FULL) to app_3
+
+_Expected:_  
+6. SDL sends OnHMIStatus (FULL) to app_3  
 7. SDL sends OnDriverDistraction notification only to app_3
 
 **Alternative flow:**  
