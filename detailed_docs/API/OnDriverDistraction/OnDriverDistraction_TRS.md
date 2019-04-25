@@ -4,10 +4,10 @@
 Driver distraction rules (if active) are expected to be configurable on HMI for each platform.  
 HMI must inform SDL via OnDriverDistraction whenever the driver distraction mode is activated/deactivated on HMI.  
 
-Important Note: DD rules are not applicable to SDL functionality, but describes platform (head unit) configuration and driver distraction restrictions to display or operate some functionality on HMI.  
+Important Note: DD rules are not applicable to SDL functionality, but describe platform (head unit) configuration and driver distraction restrictions to display or operate some functionality on HMI.  
 Driver distraction rules may be specific to contry/area, so it depends on HMI when to trigger activate/deactivate states.
 
-For current HMI configuration, sub-menu opening and and ScrollableMessage operating are not available duringh DD ON mode. HMI may notify user about DD mode enabling-disabling.
+For current HMI configuration, sub-menu opening and and ScrollableMessage operating are not available during DD ON mode. HMI may notify user about DD mode enabling-disabling.
 
 2. 
 In case  
@@ -31,8 +31,8 @@ transfer the last known (actual) OnDriverDistraction (`<state>`) and to this mob
 
 4. 
 In case  
-Policy DB has `lock_screen_dismissal_enabled=true`
-HMI sends OnDriverDistraction (ON) to SDL 
+Policy DB has `lock_screen_dismissal_enabled=true`  
+HMI sends OnDriverDistraction (ON) to SDL  
 and mobile app successfully connects on SDL and gets any HMI Level except NONE
 
 SDL must  
@@ -56,41 +56,41 @@ d. invalid json
 e. incorrect combination of params
 
 6. 
-In case
-Policy DB has `lock_screen_dismissal_enabled=true`
-Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level
+In case  
+Policy DB has `lock_screen_dismissal_enabled=true`  
+Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level  
 HMI sends a valid OnDriverDistraction notification with `state=DD_ON` to SDL
 
-SDL must
+SDL must  
 transfer OnDriverDistraction notification with `state=DD_ON` and `lockScreenDismissalEnabled=true` to the mobile app
 
 7.  
-In case
-Policy DB has `lock_screen_dismissal_enabled=false`
-Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level
+In case  
+Policy DB has `lock_screen_dismissal_enabled=false`  
+Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level  
 and HMI sends a valid OnDriverDistraction notification with `state=DD_ON` to SDL
 
-SDL must
+SDL must  
 transfer OnDriverDistraction notification with `state=DD_ON` and `lockScreenDismissalEnabled=false` to the mobile app
 
 8.  
-In case
-Policy DB does not have `lock_screen_dismissal_enabled` defined
-Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level
+In case  
+Policy DB does not have `lock_screen_dismissal_enabled` defined  
+Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level  
 HMI sends a valid OnDriverDistraction notification to SDL
 
-SDL must
-transfer OnDriverDistraction notification without lockScreenDismissalEnabled to the mobile app
+SDL must  
+transfer OnDriverDistraction notification without `lockScreenDismissalEnabled` to the mobile app
 
 9.  
-In case
-Initially policy DB does not have lock_screen_dismissal_enabled defined,
-After PTU lock_screen_dismissal_enabled is updated,
-Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level
-HMI sends a valid OnDriverDistraction notification with state=DD_ON to SDL
+In case  
+Initially policy DB does not have lock_screen_dismissal_enabled defined,  
+After PTU lock_screen_dismissal_enabled is updated,  
+Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level  
+HMI sends a valid OnDriverDistraction notification with `state=DD_ON` to SDL
 
 SDL must
-transfer OnDriverDistraction notification with state=DD_ON and lockScreenDismissalEnabled=value in policy to the mobile app
+transfer OnDriverDistraction notification with `state=DD_ON` and lockScreenDismissalEnabled=value in policy to the mobile app
 
 ## Non-functional requirements
 1. New `lockScreenDismissalEnabled` parameter must be added to Mobile_API
