@@ -14,7 +14,7 @@ _Steps:_
 _Expected:_  
 2.	SDL checks if OnDriverDistraction notification is valid  
 3.	SDL checks if the app in current HMILevel is allowed to receive OnDriverDistraction notification (defined by app's assigned Policies)  
-4.	SDL transfers OnDriverDistraction notification to all connection applications that are allowed to receive OnDriverDistraction
+4.	SDL transfers an OnDriverDistraction notification to all connected applications that are allowed to receive OnDriverDistraction
 
 **Exception 1:**  
 2.1 Received notification from HMI is invalid  
