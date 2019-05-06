@@ -57,12 +57,12 @@ e. incorrect combination of params
 
 6. 
 In case  
-Policy DB has `lock_screen_dismissal_enabled=true`  
+Policy DB has `lock_screen_dismissal_enabled=false`  
 Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level  
 HMI sends a valid OnDriverDistraction notification with `state=DD_ON` to SDL
 
 SDL must  
-transfer OnDriverDistraction notification with `state=DD_ON` and `lockScreenDismissalEnabled=true` to the mobile app
+transfer OnDriverDistraction notification with `state=DD_ON` and `lockScreenDismissalEnabled=false` to the mobile app
 
 7.  
 In case  
