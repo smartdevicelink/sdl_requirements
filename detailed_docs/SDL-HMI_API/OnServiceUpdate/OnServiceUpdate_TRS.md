@@ -5,9 +5,27 @@ mobile navi app successfully registers on SDL
 and sends StartService request for a service (RPC/Audio/Video)
 
 SDL must  
-send OnServiceUpdate(`serviceType`, `REQUEST_RECEIVED`) notification with the status of requested service to HMI
+send OnServiceUpdate(`serviceType`, `REQUEST_RECEIVED`) notification to HMI
 
 2.
+In case  
+mobile navi app requested StartService  
+SDL has valid certificates  
+and the requested service successfully started  
+
+SDL must  
+send OnServiceUpdate(`serviceType`, `REQUEST_ACCEPTED`) notification to HMI
+
+3.  
+In case  
+mobile navi app sends StartService request  
+and SDL doesn't have certificates/has expired certificate/certificate is about to expire in next 24 hours  
+and the requested service is not able to start  
+
+SDL must  
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`)
+
+4.
 In case  
 ForceProtectedService=Non in .ini file  
 and registred mobile navi app sends StartService(VIDEO, encryption=true) request to SDL
@@ -18,26 +36,6 @@ SDL must
 and start processing all respective steps for openning secure Video Service (getting the current system time, performing a policy table update, decrypting certificates and ensuring validity of the certificates.)
 
 _Note: The only time when SDL would not be able provide the `appID` would be during the first StartService request for the RPC service before RAI was sent._
-
-3.
-In case  
-mobile navi app sends StartService(VIDEO, encryption = true) request to SDL
-and SDL has valid certificates
-
-SDL must  
-send OnServiceUpdate(appID, VIDEO, REQUEST_ACCEPTED) notification to HMI
-
-4.
-In case  
-mobile navi app sends StartService request for the Video Service  
-and SDL doesn’t have certificates/has expired certificate/certificate is about to expire in next 24 hours
-
-SDL must  
-- send OnStatusUpdate(UPDATE_NEEDED) notification to HMI
-- start PTU  
-- send OnStatusUpdate(UP_TO_DATE) notification to HMI after PTU successfully completed
-- validate cerificate
-- send OnServiceUpdate(appID, VIDEO, REQUEST_ACCEPTED) to HMI 
 
 5.
 In case Policy Table Update times out  
