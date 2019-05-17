@@ -2,10 +2,10 @@
 1.
 In case  
 mobile navi app successfully registers on SDL  
-and sends StartService request for the Video Service
+and sends StartService request for a service (RPC/Audio/Video)
 
 SDL must  
-send OnServiceUpdate notification with the status of services to HMI
+send OnServiceUpdate(`serviceType`, `REQUEST_RECEIVED`) notification with the status of requested service to HMI
 
 2.
 In case  
