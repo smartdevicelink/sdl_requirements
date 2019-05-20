@@ -35,7 +35,7 @@ and Service is rejected because the system was unable
 HMI responds GetSystemTime(REJECTED) 
 
 SDL must  
-send OnServiceUpdate(`serviceType`, reason=`INVALID_TIME`) to HMI
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`INVALID_TIME`) to HMI
 
 5.  
 In case  
@@ -43,7 +43,7 @@ mobile app sends StartService request
 the requested service is not able to start due to invalid/expired certificate
 
 SDL must  
-send OnServiceUpdate(`serviceType`, reason=`INVALID_CERT`) to HMI
+send OnServiceUpdate(`serviceType`,`REQUEST_REJECTED`, reason=`INVALID_CERT`) to HMI
 
 6.
 In case  
@@ -52,7 +52,7 @@ and Policy Table Update times out
 and PTU retry attempts have been exhausted (is defined by the size of array `seconds_between_retries`in PT)
 
 SDL must  
-send OnServiceUpdate(`serviceType`, REQUEST_REJECTED, reason=`PTU_FAILED`) notification to HMI  
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`PTU_FAILED`) notification to HMI  
 send StartServiceNACK(VIDEO) to the navi mobile app
 
 7.
@@ -60,7 +60,16 @@ In case
 PTU brings invlid/expired certificate
 
 SDL must  
-send OnServiceUpdate(`serviceType`, reason=`INVALID_CERT`) notification to HMI  
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`INVALID_CERT`) notification to HMI  
+send StartServiceNACK(`serviceType`) to the mobile app
+
+8.
+In case
+in .ini file ForceProtectedService=0x0A
+and the mob app requests to start unprotected serviceType 0x0A
+
+SDL must  
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`) notification to HMI  
 send StartServiceNACK(`serviceType`) to the mobile app
 
 ## Non-Functional requirements
