@@ -87,7 +87,7 @@ send StartServiceNACK(`serviceType`) to the mobile app
   <param name="serviceEvent" type="Common.ServiceEvent" mandatory="false">
     <description>Specifies service update event.</description>
   </param>
-  <param name="reason" type="Common.ServiceUpdateReason" mandatory="false">
+  <param name="reason" type="Common.ServiceStatusUpdateReason" mandatory="false">
     <description>
       The reason for a service event. Certain events may not have a reason, such as when a service is ACCEPTED (which is the normal expected behavior).
     </description>
