@@ -62,7 +62,7 @@ _Expected:_
 1.2.3 SDL sends encrypted respose received from HMI to mob app
 
 **Alt flow 2**   
-1.3.1 mob app sends an **unencrypted RPC request** that needs protection  
+1.3.1 mob app sends an **unencrypted RPC request** that **needs protection**  
 1.3.2 SDL sends unencrypted response with result code `ENCRYPTION_NEEDED` to mob app  
 
 **Alt flow 3**   
