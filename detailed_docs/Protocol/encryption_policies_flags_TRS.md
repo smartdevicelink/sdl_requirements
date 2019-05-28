@@ -7,7 +7,7 @@ and in function group `encryption_required=true`
 
 SDL must  
 
-send OnPermissionsChang(requireEncryption=true) notification to mob app 
+send OnPermissionsChange(requireEncryption=true) notification to mob app 
 enable encryption for RPC service 7 
 receive/send all the RPCs within that function group encrypted
 
