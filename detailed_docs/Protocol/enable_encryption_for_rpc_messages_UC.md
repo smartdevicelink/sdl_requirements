@@ -87,7 +87,7 @@ _Expected:_
 
 **Alt flow 1**  
 1.2.1 HMI sends a notification that **does not need protection**  
-1.2.2 SDL transfers encrypted notification to the mob app
+1.2.2 SDL transfers uncrypted notification to the mob app
 
 
 ## Use case 5: Handling RPCs from mob app after PTU 
