@@ -79,23 +79,16 @@ a.  mobile application is registered and running on SDL
 b.  encryption of RPC service 7 is **enabled**
 
 _Steps:_
-1. HMI sends an encrypted notification that **needs protection**
+1. HMI sends a notification that **needs protection**
 
 _Expected:_  
 
 2. SDL transfers encrypted notification to the mob app
 
 **Alt flow 1**  
-1.2.1 HMI sends an encrypted notification that **does not need protection**  
+1.2.1 HMI sends a notification that **does not need protection**  
 1.2.2 SDL transfers encrypted notification to the mob app
 
-**Alt flow 2**  
-1.3.1 HMI sends an unencrypted notification that **needs protection**  
-1.3.2 SDL transfers unencrypted notification to the mob app
-
-**Alt flow 3**  
-1.4.1 HMI sends an unencrypted notification that **does not need protection**  
-1.4.2 SDL transfers unencrypted notification to the mob app
 
 ## Use case 5: Handling RPCs from mob app after PTU 
 
