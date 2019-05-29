@@ -2,28 +2,34 @@
 
 1.  
 In case  
-in `app_policies` flag has value `encryption_required=true` or value does not exist   
-and in function group `encryption_required=true` 
+in `app_policies` flag in the app level has value `encryption_required=true` or value does not exist   
 
 SDL must  
 
-send OnPermissionsChange(requireEncryption=true) notification to mob app 
+send OnPermissionsChange(requireEncryption=true) notification to mob app  
+check the flag in the function group level or RPC level  
 receive/send all the RPCs within that function group encrypted when encryption for RPC service 7 is enable
 
-2.  
+2. 
 In case  
-in `app_policies` flag has value `encryption_required=false` 
+in `app_policies` flag in the app level has value `encryption_required=false`
 
-SDL must 
-
-NOT check the value of `encryption_required` in the function group  
-NOT enable encryption for RPC service 7
+SDL must  
+NOT check the flag in the function group level or RPC level  
+NOT send RPCs encrypted
 
 3.  
 In case  
+in function group flag has value `encryption_required=true`  
+
+SDL must  
+receive/send all the RPCs within that function group encrypted when encryption for RPC service 7 is enable
+
+4.  
+In case  
 in function group `encryption_required=false` or value does not exist for a function group
 
-SDL must 
+SDL may 
 receive/send RPC messages of that function group unencrypted in both encryption enabled and disabled SDL services
 
 ## Non-functional requirements
