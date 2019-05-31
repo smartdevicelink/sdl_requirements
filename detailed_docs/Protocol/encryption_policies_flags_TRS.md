@@ -36,7 +36,7 @@ receive/send all the RPCs within that function group UNencrypted if in function 
 |4|FALSE|TRUE|FALSE|
 |5|FALSE|FALSE|FALSE|
 |6|FALSE|MISSING|FALSE|
-|7|MISSING|TRUE|FALSE|
+|7|MISSING|TRUE|TRUE|
 |8|MISSING|FALSE|FALSE|
 |9|MISSING|MISSING|FALSE|
 
