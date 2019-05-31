@@ -1,13 +1,12 @@
 ## Functional requirements
 
 1.  
-In case  
-in `app_policies` flag in the app level has value `encryption_required=true` or value does not exist   
+In case
+in `app_policies` flag in the app level has value `encryption_required=true` 
+and in function group `encryption_required=true` 
 
 SDL must  
 
-send OnPermissionsChange(requireEncryption=true) notification to mob app  
-check the flag in the function group level or RPC level  
 receive/send all the RPCs within that function group encrypted when encryption for RPC service 7 is enable
 
 2. 
@@ -16,21 +15,30 @@ in `app_policies` flag in the app level has value `encryption_required=false`
 
 SDL must  
 NOT check the flag in the function group level or RPC level  
-NOT send RPCs encrypted
+send RPCs unencrypted
 
-3.  
+3.
 In case  
-in function group flag has value `encryption_required=true`  
+in `app_policies` flag in the app level `encryption_required` does not exist
 
 SDL must  
-receive/send all the RPCs within that function group encrypted when encryption for RPC service 7 is enable
+check the value of `encryption_required` in the function group  
+receive/send all the RPCs within that function group encrypted only in function group `encryption_required=true`  
+receive/send all the RPCs within that function group UNencrypted if in function group `encryption_required=false` OR does not exist
 
-4.  
-In case  
-in function group `encryption_required=false` or value does not exist for a function group
+### Expected system behavior of RPC
 
-SDL may 
-receive/send RPC messages of that function group unencrypted in both encryption enabled and disabled SDL services
+|#| app_policies<br>encryption_required   | functional_group<br>encryption_required |RPC<br>requireEncryption|
+|---|-------------------------------------|---------------------------------------|-----------------------|
+|1|TRUE|TRUE|TRUE|
+|2|TRUE|FALSE|FALSE|
+|3|TRUE|MISSING|FALSE|
+|4|FALSE|TRUE|FALSE|
+|5|FALSE|FALSE|FALSE|
+|6|FALSE|MISSING|FALSE|
+|7|MISSING|TRUE|FALSE|
+|8|MISSING|FALSE|FALSE|
+|9|MISSING|MISSING|FALSE|
 
 ## Non-functional requirements
 
