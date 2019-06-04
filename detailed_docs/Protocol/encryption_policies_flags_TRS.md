@@ -1,8 +1,8 @@
 ## Functional requirements
 
 1.  
-In case
-in `app_policies` flag in the app level has value `encryption_required=true` 
+In case  
+in `app_policies` flag in the app level has value `encryption_required=true`  
 and in function group `encryption_required=true` 
 
 SDL must  
@@ -28,17 +28,17 @@ receive/send all the RPCs within that function group UNencrypted if in function 
 
 ### Expected system behavior of RPC
 
-|#| app_policies<br>encryption_required   | functional_group<br>encryption_required |RPC<br>requireEncryption|
-|---|-------------------------------------|---------------------------------------|-----------------------|
-|1|TRUE|TRUE|TRUE|
-|2|TRUE|FALSE|FALSE|
-|3|TRUE|MISSING|FALSE|
-|4|FALSE|TRUE|FALSE|
-|5|FALSE|FALSE|FALSE|
-|6|FALSE|MISSING|FALSE|
-|7|MISSING|TRUE|TRUE|
-|8|MISSING|FALSE|FALSE|
-|9|MISSING|MISSING|FALSE|
+|#|app_policies<br>encryption_required|functional_group<br>encryption_required|RPC<br>requireEncryption|top level of OnPermissionsChange<br>requireEncryption|PermissionItem<br>requireEncryption| 
+|-|:-------------------------------:|:--------------------------------:|:-----------------------:|:-----------:|:-----------:|
+|1|TRUE|TRUE|TRUE|TRUE|TRUE|
+|2|TRUE|FALSE|FALSE|TRUE|MISSING|
+|3|TRUE|MISSING|FALSE|TRUE|MISSING|
+|4|FALSE|TRUE|FALSE|FALSE|MISSING|
+|5|FALSE|FALSE|FALSE|FALSE|MISSING|
+|6|FALSE|MISSING|FALSE|FALSE|MISSING|
+|7|MISSING|TRUE|TRUE|TRUE|TRUE|
+|8|MISSING|FALSE|FALSE|MISSING|MISSING|
+|9|MISSING|MISSING|FALSE|MISSING|MISSING|
 
 ## Non-functional requirements
 
