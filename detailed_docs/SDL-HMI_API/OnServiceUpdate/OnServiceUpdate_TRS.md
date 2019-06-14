@@ -65,11 +65,11 @@ send StartServiceNACK(`serviceType`) to the mobile app
 
 8.
 In case
-in .ini file ForceProtectedService=0x0A
-and the mob app requests to start unprotected serviceType 0x0A
+in .ini file ForceProtectedService=0x0A or ForceProtectedService=0x0B
+and mob app sends StartService request (<service_type>, encryption = false) to start unprotected serviceType 0x0A or 0x0B 
 
 SDL must  
-send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`) notification to HMI  
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, `PROTECTION_ENFORCED`) notification to HMI  
 send StartServiceNACK(`serviceType`) to the mobile app
 
 ## Non-Functional requirements
