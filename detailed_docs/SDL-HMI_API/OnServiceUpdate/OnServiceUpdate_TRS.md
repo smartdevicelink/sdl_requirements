@@ -18,7 +18,20 @@ and the requested service successfully started
 SDL must  
 send OnServiceUpdate(`serviceType`, `REQUEST_ACCEPTED`) notification to HMI
 
-3.  
+3.
+In case  
+force protection for Audio/Video service is switched OFF  
+and mobile app sends StartService(`serviceType`, encryption = true) request to open protected Video/Audio service  
+and the service is not able to start due to one of the following reasons
+* missing or rejected GetSystemTime_response from HMI
+* invalid mobile certificate
+* invalid SDL certificate 
+
+SDL must  
+send OnServiceUpdate (`serviceType`, `REQUEST_ACCEPTED`, `PROTECTION_DISABLED`) to HMI
+send StartServiceACK(`serviceType`, encryption = false) to the app
+
+4.  
 In case  
 mobile app sends StartService request  
 and SDL doesn't have certificates/has expired certificate/certificate is about to expire in next 24 hours  
@@ -27,7 +40,7 @@ and the requested service is not able to start
 SDL must  
 send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`)
 
-4.
+5.
 In case  
 mobile app sends StartService request  
 SDL sends GetSystemTime() to HMI to get a valid SystemTime for certificate authentication  
@@ -37,7 +50,7 @@ HMI responds GetSystemTime(REJECTED)
 SDL must  
 send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`INVALID_TIME`) to HMI
 
-5.  
+6.  
 In case  
 mobile app sends StartService request  
 the requested service is not able to start due to invalid/expired certificate
@@ -45,7 +58,7 @@ the requested service is not able to start due to invalid/expired certificate
 SDL must  
 send OnServiceUpdate(`serviceType`,`REQUEST_REJECTED`, reason=`INVALID_CERT`) to HMI
 
-6.
+7.
 In case  
 SDL triggers PTU  
 and Policy Table Update times out  
@@ -55,7 +68,7 @@ SDL must
 send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`PTU_FAILED`) notification to HMI  
 send StartServiceNACK(VIDEO) to the navi mobile app
 
-7.
+8.
 In case
 PTU brings invlid/expired certificate
 
@@ -63,13 +76,13 @@ SDL must
 send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`INVALID_CERT`) notification to HMI  
 send StartServiceNACK(`serviceType`) to the mobile app
 
-8.
-In case
-in .ini file ForceProtectedService=0x0A or ForceProtectedService=0x0B
-and mob app sends StartService request (<service_type>, encryption = false) to start unprotected serviceType 0x0A or 0x0B 
+9.
+In case  
+in .ini file ForceProtectedService=0x0A or ForceProtectedService=0x0B  
+and mob app sends StartService request (`serviceType`, encryption = false) to start unprotected serviceType 0x0A or 0x0B 
 
 SDL must  
-send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, `PROTECTION_ENFORCED`) notification to HMI  
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`PROTECTION_ENFORCED`) notification to HMI  
 send StartServiceNACK(`serviceType`) to the mobile app
 
 ## Non-Functional requirements
