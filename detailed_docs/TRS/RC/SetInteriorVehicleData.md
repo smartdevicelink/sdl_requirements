@@ -198,7 +198,6 @@ SDL must
 |         | Defrost Zone Setting | front,rear,all,none  | Get/Set/Notification |  |
 |         | Dual Mode Setting | on,off  | Get/Set/Notification |  |
 |         | Fan Speed Setting | 0%-100% | Get/Set/Notification |  |
-
 |         | Ventilation Mode Setting | upper,lower,both,none  | Get/Set/Notification |  |  
 | Seat    | | | | |
 |         | Seat Heating Enabled | true, false | Get/Set/Notification | Indicates whether heating is enabled for a seat | |
@@ -216,8 +215,6 @@ SDL must
 |         | Massage Mode | List of Struct {MassageZone, MassageMode} | Get/Set/Notification | list of massage mode of each zone | |
 |         | Massage Cushion Firmness | List of Struct {Cushion, 0-100%} | Get/Set/Notification | list of firmness of each massage cushion | |
 |         | Seat memory | Struct{ id, label, action (SAVE/RESTORE/NONE)} | Get/Set/Notification | seat memory | |
-
-
 |         | Ventilation Mode Setting | upper,lower,both,none  | Get/Set/Notification |  |
 |         | heated windshield | true, false | Get/Set/Notification | true means ON, false means OFF | |
 |         | heated rear window | true, false | Get/Set/Notification | true means ON, false means OFF | |
@@ -246,3 +243,60 @@ SetInteriorVehicleData
 
 SetInteriorVehicleData_READ_ONLY
 ![SetInteriorVehicleData_READ_ONLY](https://github.com/smartdevicelink/sdl_requirements/blob/master/detailed_docs/accessories/SetInteriorVehicleData_READ_ONLY.png)
+
+
+## Non-functional Requirements
+### Mobile_API
+
+```
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request" since="4.5">
+        <param name="moduleData" type="ModuleData" mandatory="true">
+            <description>The module data to set for the requested RC module.</description>
+        </param>
+    </function>
+    
+    <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="response" since="4.5">
+        <description>Used to set the values of one remote control module </description>
+        <param name="moduleData" type="ModuleData" mandatory="true">
+        </param>
+        <param name="resultCode" type="Result" platform="documentation" mandatory="true">
+            <description>See Result</description>
+            <element name="SUCCESS"/>
+            <element name="INVALID_DATA"/>
+            <element name="OUT_OF_MEMORY"/>
+            <element name="TOO_MANY_PENDING_REQUESTS"/>
+            <element name="APPLICATION_NOT_REGISTERED"/>
+            <element name="GENERIC_ERROR"/>
+            <element name="REJECTED"/>
+            <element name="IGNORED"/>
+            <element name="DISALLOWED"/>
+            <element name="USER_DISALLOWED"/>
+            <element name="READ_ONLY"/>
+            <element name="UNSUPPORTED_RESOURCE"/>
+            <element name="IN_USE"/>
+        </param>
+        <param name="info" type="String" maxlength="1000" mandatory="false">
+        </param>
+        <param name="success" type="Boolean" platform="documentation" mandatory="true">
+            <description> true if successful; false, if failed </description>
+        </param>
+    </function>
+```
+
+### HMI_API
+```
+ <function name="SetInteriorVehicleData" functionID="SetInteriorVehicleDataID" messagetype="request">
+    <param name="moduleData" type="Common.ModuleData" mandatory="true" >
+      <description>The module type and data to set</description>
+    </param>
+    <param name="appID" type="Integer" mandatory="true">
+      <description>Internal SDL-assigned ID of the related application</description>
+    </param>
+  </function>
+
+  <function name="SetInteriorVehicleData" messagetype="response">
+    <description>Used to set the values of one zone and one data type within that zone</description>
+    <param name="moduleData" type="Common.ModuleData" mandatory="true" >
+    </param>
+  </function>
+  ```
