@@ -1,6 +1,6 @@
 ## Functional requirements
 
-### Registering two identical apps from 2 devices
+### Registeringtwo identical apps from multiple devices
 
 1.  
 In case  
@@ -61,36 +61,20 @@ SDL must
 reject the second app registration request (that is, respond with RegisterAppInterface (resultCode = APPLICATION_REGISTERED_ALREADY) reject app_2 registration request  
 respond with RegisterAppInterface (resultCode = APPLICATION_REGISTERED_ALREADY) to app_2
  
-### Registering the same app from multiple devices  
+### Resumption of the same app running from multiple devices 
 
-7.  
-In case  
-app_1 with `<appName>` and `<appID>` is registered with SDL from device_1  
-and app_2 with **the same** `<appName>` as app_1 and **the same** `<appID>` from **device_2** requests registration  
-
-SDL must  
-assign unique internal `<appID>` to app_2  
-notify HMI via BC.OnAppRegistered  
-respond with RegisterAppInterface (resultCode = SUCCESS) to app_2
-
-8.  
-In case  
-app_1 with `<appName>` and `<appID>` is registered with SDL from device_1  
-and app_2 with **the same** `appName` as app_1 and **different** `appID` from **device_2** requests registration  
+1.  
+In case 
+app_1 with `<appName>` and `<appID>` is registered with SDL and running on device_1 in FULL  
+app_2 with **the same** `<appName>` and **the same** `<appID>` is registered with SDL and running on device_2 in LIMITED  
+app_1 and app_2 have data to be resumed  
+and disconnection on Ignition Off or Unexpected transport disconnect occurs  
 
 SDL must  
-notify HMI via BC.OnAppRegistered  
-respond with RegisterAppInterface (resultCode = SUCCESS) to app_2
-
-9.  
-In case  
-app_1 with `<appName>` and `<appID>` is registered with SDL from device_1  
-and app_2 with **different** `<appName>` and **the same** `<appID>` from **device_2** requests registration  
-
-SDL must  
-assign unique internal `<appID>` to app_2  
-notify HMI via BC.OnAppRegistered  
-respond with RegisterAppInterface (resultCode = SUCCESS) to app_2
+resume data and HMI Level for app_1  
+NOT resume data and HMI Level for mobile app_2 during resumption for app_1  
+responds RAI(SUCCESS) to app_1  
+resume mobile app_2 data and HMI Level after app_2 re-registeres with actual `hashId` SDL 
 
 ## Non-functional requirements  
 ### Mobile API description updates
