@@ -1,6 +1,6 @@
 ## Functional requirements
 
-### Registeringtwo identical apps from multiple devices
+### Registering two identical apps from multiple devices
 
 1.  
 In case  
