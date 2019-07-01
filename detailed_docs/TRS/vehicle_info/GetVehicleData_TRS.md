@@ -55,7 +55,14 @@ In case an application sends a request and:
 
 SDL must:
 
-respond with "GENERIC_ERROR, success:"false" to mobile application.
+respond with "GENERIC_ERROR, success:"false" to mobile application  
+
+7.  
+In case SDL transfers GetVehicleData_request to HMI
+and HMI sends `shifted` item in `gps` parameter of GetVehicleData response  
+
+SDL must  
+send GetVehicleData response to mob app with the same value of `shifted` item in `gps` parameter as those from HMI
 
 
 ## Non-Functional Requirements
