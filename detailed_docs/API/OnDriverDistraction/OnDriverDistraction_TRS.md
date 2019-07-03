@@ -181,8 +181,10 @@ The `lockScreenDismissalWarning` text must be pulled from the `textBody` field o
 1.3  
 The language of `lockScreenDismissalWarning` text should correspond to the active UI language (RegisterAppInterface`hmiDisplayLanguageDesired`).
 
-1.4
-In case active UI language is different from "EN_US", `lockScreenDismissalWarning` text will be diplayed in default "EN_US".  
+1.4  
+In case active UI language is different from "EN_US" and `lock_screen_dismissal_warning`(value of PT) doesn't contain this language,  
+the text of the `lockScreenDismissalWarning` will be diplayed in default "EN_US".  
+
 _Note: it is OEM responsibility to provide message translations._   
 
 ### 2. HMI_API
