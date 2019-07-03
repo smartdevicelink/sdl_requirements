@@ -64,7 +64,7 @@ HMI sends a valid OnDriverDistraction(state=DD_ON) notification to SDL
 SDL must  
 transfer OnDriverDistraction notification with `state=DD_ON` and `lockScreenDismissalEnabled=true` and `lockScreenDismissalWarning` "Swipe up to dismiss, acknowledging that you are not the driver" to the mobile app
 
-6.  
+6.
 In case  
 Policy DB has "lock_screen_dismissal_enabled=false"  
 Policy allows a mobile app to receive OnDriverDistraction notification in current HMI level  
@@ -177,7 +177,14 @@ a swipe up gesture to dismiss the lock screen must be allowed
 
 1.2  
 The `lockScreenDismissalWarning` text must be pulled from the `textBody` field of the appropriate consumer-friendly message (corresponding to the active UI language), all other fields will be ignored.
- 
+
+1.3  
+The language of `lockScreenDismissalWarning` text should correspond to the active UI language (RegisterAppInterface`hmiDisplayLanguageDesired`).
+
+1.4
+In case active UI language is different from "EN_US", `lockScreenDismissalWarning` text will be diplayed in default "EN_US".  
+_Note: it is OEM responsibility to provide message translations._   
+
 ### 2. HMI_API
 
 ```
