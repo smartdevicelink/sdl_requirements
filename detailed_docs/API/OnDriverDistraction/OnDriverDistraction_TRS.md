@@ -185,7 +185,15 @@ The language of `lockScreenDismissalWarning` text should correspond to the activ
 In case active UI language is different from "EN_US" and `lock_screen_dismissal_warning`(value of PT) doesn't contain this language,  
 the text of the `lockScreenDismissalWarning` will be diplayed in default "EN_US".  
 
-_Note: it is OEM responsibility to provide message translations._   
+_Note: it is OEM responsibility to provide message translations._
+
+1.5
+
+In case `lockScreenDismissalEnabled` is set to `true`  
+and `lockScreenDismissalWarning` is absent
+
+SDL must  
+transfer OnDriverDistraction(DD=ON) with `lockScreenDismissalEnabled=false` value to the mobile app
 
 ### 2. HMI_API
 
