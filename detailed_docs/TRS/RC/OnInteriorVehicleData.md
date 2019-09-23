@@ -26,12 +26,32 @@ SDL must
 - cut off all parameters except for `longitudeDegrees`, `latitudeDegrees`, `altitude` from `stationLocation` structure and  
 - send OnInteriorVehicleData notification without `shifted` parameter to mobile app
 
-## Non-Functional requirements  
+4.
+In case
+RC app sends is subscribed to a moduleData 
+and any data change occures to this moduleData
+and HMI sends OnInteriorVehicleData notification
+
+SDL must
+- transfer OnInteriorVehicleData notification (including `moduleId` for a `ModuleData`) to the subscribed RC app
+- update the cache
+
+
+## Non-Functional Requirements
+### Mobile API
+
+```
+    <function name="OnInteriorVehicleData" functionID="OnInteriorVehicleDataID" messagetype="notification" since="4.5">
+        <param name="moduleData" type="ModuleData"  mandatory="true">
+        </param>
+    </function>
+```
+
+### HMI API
 
 ```
 <function name="OnInteriorVehicleData" messagetype="notification">
   <param name="moduleData" type="Common.ModuleData" mandatory="true" >
   </param>
 </function>
-
 ```

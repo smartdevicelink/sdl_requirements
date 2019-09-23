@@ -119,6 +119,53 @@ SDL must
 * cut off all parameters except for `longitudeDegrees`, `latitudeDegrees`, `altitude` from `stationLocation` structure and   
 * send GetInteriorVehicleData response without `shifted` parameter to mobile app
 
+13.
+In case
+- RC app sends valid and allowed by policies GetInteriorvehicleData_request without optional `moduleID` param
+and if there is at least one module of the same moduleType published by capabilities
+
+SDL must
+- forward request to HMI adding the default `moduleID` (the `moduleId` of first module of requested `moduleType` provided in RC capabilities from HMI)
+- cache module data for this `moduleID` received from HMI
+- send response with `moduleID` param to mobile app
+
+14.
+In case
+- RC app sends valid and allowed by policies GetInteriorvehicleData_request with incorrect value of `moduleID` param
+
+SDL must
+- NOT forward request to HMI
+- respond with UNSUPPORTED_RESOURCE to mobile app
+
+15.
+In case
+- RC app sends valid and allowed by policies GetInteriorvehicleData_request with `moduleID` of incorrect data type
+SDL must
+- NOT forward request to HMI
+- respond with INVALID_DATA to mobile app
+
+## Non-functional Requirements
+### Mobile API
+```
+<function name="GetInteriorVehicleData" functionID="GetInteriorVehicleDataID" messagetype="request" since="4.5">
+        <param name="moduleType" type="ModuleType" mandatory="true">
+            <description>
+                The type of a RC module to retrieve module data from the vehicle.
+                In the future, this should be the Identification of a module.
+            </description>
+        </param>
++       <param name="moduleId" type="String" maxlength="100" mandatory="false" since="6.x">
++      <description>Id of a module, published by System Capability. <description>
++       </param>
+        <param name="subscribe" type="Boolean" mandatory="false" since="4.5.1">
++       <description since="6.x">
++           If subscribe is true, the head unit will register OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).
++           If subscribe is false, the head unit will unregister OnInteriorVehicleData notifications for the requested module (moduleId and moduleType).
++           If subscribe is not included, the subscription status of the app for the requested module (moduleId and moduleType) will remain unchanged.
+        </description>
+    </param>
+</function>
+```
 
 ## Functional Requirements
 #### Limitation for GetInteriorVehicleDataRequest
