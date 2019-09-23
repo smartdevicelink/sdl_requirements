@@ -85,6 +85,16 @@ SDL must
 send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`PROTECTION_ENFORCED`) notification to HMI  
 send StartServiceNACK(`serviceType`) to the mobile app
 
+10.
+In case  
+the certificate is missing/expired  
+and in .ini file ForceProtectedService=0x0A or ForceProtectedService=0x0B or ForceProtectedService=0x07  
+and mob app sends StartService request (`serviceType`, encryption = true) to start protected serviceType 0x0A or 0x0B or 0x07
+
+SDL must  
+send OnServiceUpdate (`service_type`, `REQUEST_REJECTED`, reason=`PROTECTION_DISABLED`) notification to HMI  
+send StartServiceNACK(`serviceType`) to the mobile app
+
 ## Non-Functional requirements
 
 ### HMI_API
