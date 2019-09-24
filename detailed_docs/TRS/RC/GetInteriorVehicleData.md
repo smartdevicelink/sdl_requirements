@@ -205,8 +205,11 @@ GetVehicleDataRequest = 5, 1
   <param name="moduleType" type="Common.ModuleType" mandatory="true" >
     <description>The module data to retrieve from the vehicle for that type</description>
   </param>
-  <param name="subscribe" type="Boolean" mandatory="false" defvalue="false">
-    <description>If subscribe is true, the head unit will send onInteriorVehicleData notifications for the module type</description>
+  <param name="moduleId" type="String" maxlength="100" mandatory="false">
+      <description>Id of a module, published by System Capability. </description>
+  </param>
+  <param name="subscribe" type="Boolean" mandatory="false">
+    <description>If subscribe is true, the head unit will send OnInteriorVehicleData notifications for the requested module (moduleId and moduleType)</description>
   </param>
 </function>
 ```
@@ -217,7 +220,7 @@ GetVehicleDataRequest = 5, 1
   </param>
   <param name="isSubscribed" type="Boolean" mandatory="false" >
     <description>Is a conditional-mandatory parameter: must be returned in case "subscribe" parameter was present in the related request.
-    if "true" - the "moduleType" from request is successfully subscribed and  the head unit will send onInteriorVehicleData notifications for the moduleDescription.
+    if "true" - the "moduleType" from request is successfully subscribed and  the head unit will send OnInteriorVehicleData notifications for the moduleDescription.
     if "false" - the "moduleType" from request is either unsubscribed or failed to subscribe.</description>
   </param>
 </function>
