@@ -27,8 +27,8 @@ and mobile and SDL certificates are not valid according to date/time from GetSys
 
 SDL must  
 - trigger PTU  
-- send OnServiceUpdate(service_Type, INVALID_CERT)   
-- respond START_SERVICE_NACK, encryption = false to mobile app in case of receiving one more time expired certificate during PTU
+- send OnServiceUpdate(service_Type, INVALID_CERT) notification to HMI    
+- send START_SERVICE_NACK, encryption = false to mobile app in case of receiving one more time expired certificate during PTU
 
 4.  
 In case  
