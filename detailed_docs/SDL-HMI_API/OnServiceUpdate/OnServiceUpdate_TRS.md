@@ -28,7 +28,7 @@ and the service is not able to start due to one of the following reasons
 * invalid SDL certificate 
 
 SDL must  
-send OnServiceUpdate (`serviceType`, `REQUEST_ACCEPTED`, `PROTECTION_DISABLED`) to HMI
+send OnServiceUpdate (`serviceType`, `REQUEST_ACCEPTED`,  reason=`PROTECTION_DISABLED`) to HMI
 send StartServiceACK(`serviceType`, encryption = false) to the app
 
 4.  
@@ -38,7 +38,7 @@ and SDL doesn't have certificates/has expired certificate/certificate is about t
 and the requested service is not able to start  
 
 SDL must  
-send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`)
+send OnServiceUpdate(`serviceType`, `REQUEST_REJECTED`, reason=`INVALID_CERT`)
 
 5.
 In case  
