@@ -190,7 +190,7 @@ _Note: it is OEM responsibility to provide message translations._
 1.5
 
 In case `lockScreenDismissalEnabled` is set to `true`  
-and `lockScreenDismissalWarning` is absent
+and `LockScreenDismissalWarning` message is absent at all in Policy DB
 
 SDL must  
 transfer OnDriverDistraction(DD=ON) with `lockScreenDismissalEnabled=false` value to the mobile app
@@ -220,7 +220,7 @@ defined by the following new policy table fields:
         ...
         "consumer_friendly_messages" : {
             ...
-            "lock_screen_dismissal_warning": 
+            "LockScreenDismissalWarning": 
                 "languages": {
                     "en-us": {
                         "textBody": "Swipe up to dismiss, acknowledging that you are not the driver"
