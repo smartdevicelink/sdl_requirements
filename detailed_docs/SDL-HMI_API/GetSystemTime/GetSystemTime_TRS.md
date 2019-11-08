@@ -21,16 +21,23 @@ SDL must
 - send OnServiceUpdate(service_Type, REQUEST_ACCEPTED) notification to HMI  
 - send START_SERVICE_ACK, encryption = true to mobile app  
  
-3. In case  
+3. 
+In case  
 SDL gets GetSystemTime response from HMI  
 and mobile and SDL certificates are not valid according to date/time from GetSystemTime response  
 
 SDL must  
-- trigger PTU  
-- send OnServiceUpdate(service_Type, INVALID_CERT) notification to HMI    
-- send START_SERVICE_NACK, encryption = false to mobile app in case of receiving one more time expired certificate during PTU
+- trigger PTU
 
-4.  
+4.
+In case 
+during PTU SDL receives one more time expired certificate
+
+SDL must
+- send OnServiceUpdate(service_Type, INVALID_CERT) notification to HMI    
+- send START_SERVICE_NACK, encryption = false to mobile app 
+
+5.  
 In case  
 SDL sends GetSystemTime request to HMI after BC.OnSystemTimeReady  
 and at least one of the following failures happens:  
